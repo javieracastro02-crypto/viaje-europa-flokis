@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Europa Junio 2026 ✈️</title>
+
+<!-- PWA Meta Tags -->
+<meta name="theme-color" content="#1a2e44">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Europa 2026">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<script>
+ const _warn = console.warn;
+ console.warn = (...args) => {
+   if (args[0] && typeof args[0] === 'string' && args[0].includes('Babel')) return;
+   _warn(...args);
+ };
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#f0ece4; font-family:'DM Sans',sans-serif; }</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState } = React;
+const navy="#1a2e44", gold="#d4a017", cream="#f0ece4";
+
+const itinerary=[
+{icon:"\u2708\uFE0F",date:"Mar 2 jun",city:"Santiago \u2192 Madrid",detail:"LATAM LA706 \u00B7 SCL 19:00 \u2192 MAD 13:55 (+1) \u00B7 C\u00F3d JLCDKB",status:"confirmed",tag:"VUELO"},
+{icon:"\uD83C\uDDEA\uD83C\uDDF8",date:"3\u20135 jun",city:"Madrid \u00B7 2 noches",detail:"Hotel ILUNION P\u00EDo XII \u00B7 Prado \u00B7 Retiro \u00B7 US$337",status:"confirmed",tag:"HOTEL"},
+{icon:"\u2708\uFE0F",date:"Vie 5 jun 18:30",city:"Madrid \u2192 Copenhague",detail:"SAS directo \u00B7 llega 21:45 \u00B7 US$207",status:"confirmed",tag:"VUELO"},
+{icon:"\uD83C\uDDE9\uD83C\uDDF0",date:"5\u20139 jun",city:"Copenhague \u00B7 4 noches",detail:"Wakeup CPH \u00B7 Tivoli \uD83C\uDFA1 \u00B7 La Sirenita \u00B7 Nyhavn",status:"confirmed",tag:"HOTEL"},
+{icon:"\uD83D\uDE82",date:"Mar 9 jun",city:"CPH \u2192 Estocolmo",detail:"Tren ~5h \u00B7 Puente de \u00D8resund \u00B7 raileurope.com",status:"pending",tag:"TREN"},
+{icon:"\uD83C\uDDF8\uD83C\uDDEA",date:"9\u201313 jun",city:"Estocolmo \u00B7 4 noches",detail:"Livington Hotel \u00B7 Gamla Stan \u00B7 Museo Vasa \u26A0\uFE0F1 noche perdida",status:"confirmed",tag:"HOTEL"},
+{icon:"\uD83D\uDEA2",date:"S\u00E1b 13 jun 17:00",city:"Ferry \u2192 Helsinki",detail:"Viking Line \u00B7 llega 14 jun ~10:00 \u00B7 Ref DFP194722507",status:"confirmed",tag:"FERRY"},
+{icon:"\uD83C\uDDEB\uD83C\uDDEE",date:"14\u201317 jun",city:"Helsinki \u00B7 3 noches",detail:"Hotel AX \u2B50\u2B50\u2B50\u2B50 \u00B7 Suomenlinna \uD83C\uDFF0 \u00B7 Sauna \uD83E\uDDD6",status:"confirmed",tag:"HOTEL"},
+{icon:"\u2708\uFE0F",date:"Mar 17 jun",city:"Helsinki \u2192 Oslo",detail:"Finnair / Norwegian \u00B7 ~1h 25min \u00B7 por comprar",status:"pending",tag:"VUELO"},
+{icon:"\uD83C\uDDF3\uD83C\uDDF4",date:"17\u201320 jun",city:"Oslo \u00B7 3 noches",detail:"Airbnb Sandakerveien 68A \u00B7 HMF3TJ4NPS",status:"confirmed",tag:"AIRBNB"},
+{icon:"\u2708\uFE0F",date:"S\u00E1b 20 jun",city:"Oslo \u2192 Madrid",detail:"Por comprar \u00B7 Google Flights \u00B7 ~3h",status:"pending",tag:"VUELO"},
+{icon:"\uD83C\uDDEA\uD83C\uDDF8",date:"20\u201322 jun",city:"Madrid \u00B7 2 noches",detail:"Hotel ILUNION P\u00EDo XII \u00B7 US$312",status:"confirmed",tag:"HOTEL"},
+{icon:"\u2708\uFE0F",date:"Lun 22 jun 01:45",city:"Madrid \u2192 Lima \u2192 Santiago",detail:"LATAM LA2485+LA2697 \u00B7 llega SCL 14:05 \u00B7 C\u00F3d JLCDKB",status:"confirmed",tag:"VUELO"},
+];
+
+const tagC={
+VUELO:{bg:"#e3f2fd",b:"#90caf9",t:"#01579b"},
+TREN:{bg:"#f3e5f5",b:"#ce93d8",t:"#6a1b9a"},
+FERRY:{bg:"#e0f7fa",b:"#80deea",t:"#00695c"},
+HOTEL:{bg:"#fff8e1",b:"#ffe082",t:"#f57f17"},
+AIRBNB:{bg:"#fce4ec",b:"#f48fb1",t:"#880e4f"},
+"EXCURSI\u00D3N":{bg:"#e8f5e9",b:"#a5d6a7",t:"#1b5e20"},
+};
+
+const hotels=[
+{city:"Madrid (ida)",flag:"\uD83C\uDDEA\uD83C\uDDF8",dates:"3\u20135 jun",nights:2,name:"Hotel ILUNION P\u00EDo XII \u2B50\u2B50\u2B50\u2B50",addr:"Av. de P\u00EDo XII, 77, Madrid",phone:"+34 913 87 62 00",ci:"flexible",co:"flexible",price:"US$337",codes:[],status:"confirmed",maps:"https://maps.google.com/?q=40.4689299,-3.6740122"},
+{city:"Copenhague",flag:"\uD83C\uDDE9\uD83C\uDDF0",dates:"5\u20139 jun",nights:4,name:"Wakeup Copenhagen \u2B50\u2B50",addr:"Carsten Niebuhrs Gade 11, 1577 CPH",phone:"+45 44 80 00 00",ci:"15:00",co:"11:00",price:"\u2014",codes:["Conf: 1852351686475589782","PIN: 874138","Check-in: 260223187"],status:"confirmed",maps:"https://maps.google.com/?q=55.6668251,12.5671154"},
+{city:"Estocolmo",flag:"\uD83C\uDDF8\uD83C\uDDEA",dates:"9\u201313 jun",nights:"4 ef.",name:"Livington Hotel \u2B50\u2B50\u2B50\u2B50",addr:"Siktgatan 7, 162 50 Estocolmo",phone:"+46 8 99 88 88",ci:"15:00\u201320:00",co:"hasta 12:00",price:"\u2014",codes:[],status:"confirmed",maps:"https://maps.google.com/?q=59.3704384,17.8601677",note:"Check-out el 13 jun para tomar el ferry. 1 noche perdida."},
+{city:"Helsinki",flag:"\uD83C\uDDEB\uD83C\uDDEE",dates:"14\u201317 jun",nights:3,name:"Hotel AX \u2B50\u2B50\u2B50\u2B50",addr:"V\u00E4limerenkatu 18, 00220 Helsinki, Finlandia",phone:"+358 29 3200480",ci:"15:00",co:"12:00",price:"\u2014",codes:["Conf: 5849137955","PIN: 5794"],status:"confirmed",maps:"https://maps.google.com/?q=V%C3%A4limerenkatu+18+00220+Helsinki"},
+{city:"Oslo (Airbnb)",flag:"\uD83C\uDDF3\uD83C\uDDF4",dates:"17\u201320 jun",nights:3,name:"Apartamento luminoso en Sandaker",addr:"Sandakerveien 68A, 0484 Oslo",phone:"Anfitri\u00F3n: Christian Sandlie",ci:"15:00",co:"11:00",price:"~$650",codes:["C\u00F3d: HMF3TJ4NPS"],status:"confirmed",maps:"https://maps.google.com/?q=59.9420259,10.7696817",note:"Se cobra el 1 de junio 2026."},
+{city:"Madrid (regreso)",flag:"\uD83C\uDDEA\uD83C\uDDF8",dates:"20\u201322 jun",nights:2,name:"Hotel ILUNION P\u00EDo XII \u2B50\u2B50\u2B50\u2B50",addr:"Av. de P\u00EDo XII, 77, Madrid",phone:"+34 913 87 62 00",ci:"flexible",co:"flexible",price:"US$312",codes:[],status:"confirmed",maps:"https://maps.google.com/?q=40.4689299,-3.6740122"},
+];
+
+const mapPlaces=[
+{flag:"\uD83C\uDDEA\uD83C\uDDF8",city:"Madrid",dates:"3\u20135 \u00B7 20\u201322 jun",spots:[
+{icon:"\uD83C\uDFE8",name:"Hotel ILUNION P\u00EDo XII",addr:"Av. de P\u00EDo XII, 77 \u00B7 +34 913 87 62 00",url:"https://maps.google.com/?q=40.4689299,-3.6740122"},
+{icon:"\uD83C\uDFDB\uFE0F",name:"Museo del Prado",addr:"C. de Ruiz de Alarc\u00F3n, 23",url:"https://maps.google.com/?q=Museo+del+Prado+Madrid"},
+{icon:"\uD83C\uDF33",name:"Parque del Retiro",addr:"Plaza de la Independencia, 7",url:"https://maps.google.com/?q=Parque+del+Retiro+Madrid"},
+]},
+{flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",dates:"5\u20139 jun",spots:[
+{icon:"\uD83C\uDFE8",name:"Wakeup Copenhagen",addr:"Carsten Niebuhrs Gade 11 \u00B7 +45 44 80 00 00",url:"https://maps.google.com/?q=55.6668251,12.5671154"},
+{icon:"\uD83C\uDFA1",name:"Parque Tivoli",addr:"Vesterbrogade 3 \u00B7 \u2B50 4.5",url:"https://maps.google.com/?q=55.673684,12.5681471"},
+{icon:"\uD83E\uDDDC",name:"La Sirenita",addr:"Langelinie promenade",url:"https://maps.google.com/?q=La+Sirenita+Copenhague"},
+]},
+{flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",dates:"9\u201313 jun",spots:[
+{icon:"\uD83C\uDFE8",name:"Livington Hotel",addr:"Siktgatan 7, 162 50 \u00B7 +46 8 99 88 88",url:"https://maps.google.com/?q=59.3704384,17.8601677"},
+{icon:"\uD83D\uDEA2",name:"Terminal Viking Line (ferry 13 jun)",addr:"Stadsg\u00E5rden 116 30 \u00B7 embarque ~16:00",url:"https://maps.google.com/?q=59.3161652,18.0966123"},
+{icon:"\uD83C\uDFD8\uFE0F",name:"Gamla Stan",addr:"Ciudad vieja de Estocolmo",url:"https://maps.google.com/?q=59.3256954,18.0718675"},
+]},
+{flag:"\uD83C\uDDEB\uD83C\uDDEE",city:"Helsinki",dates:"14\u201317 jun",spots:[
+{icon:"\uD83C\uDFE8",name:"Hotel AX \u2B50\u2B50\u2B50\u2B50",addr:"V\u00E4limerenkatu 18, 00220 \u00B7 +358 29 3200480",url:"https://maps.google.com/?q=V%C3%A4limerenkatu+18+00220+Helsinki"},
+{icon:"\uD83C\uDFF0",name:"Fortaleza Suomenlinna",addr:"Ferry desde el puerto \u00B7 \u2B50 4.6",url:"https://maps.google.com/?q=60.1453999,24.9881401"},
+{icon:"\uD83D\uDED2",name:"Mercado del Puerto",addr:"Etel\u00E4ranta, Helsinki",url:"https://maps.google.com/?q=Mercado+Puerto+Helsinki"},
+]},
+{flag:"\uD83C\uDDF3\uD83C\uDDF4",city:"Oslo",dates:"17\u201320 jun",spots:[
+{icon:"\uD83C\uDFE0",name:"Airbnb Sandaker \u00B7 HMF3TJ4NPS",addr:"Sandakerveien 68A, 0484 Oslo",url:"https://maps.google.com/?q=59.9420259,10.7696817"},
+{icon:"\uD83D\uDDFF",name:"Parque Vigeland",addr:"Nobel gate, 0268 Oslo \u00B7 \u2B50 4.7",url:"https://maps.google.com/?q=59.927029,10.700865"},
+]},
+];
+
+const allTasks=[
+{id:1,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\uD83D\uDE82 Tren Copenhague \u2192 Estocolmo",detail:"9 jun \u00B7 ~5h \u00B7 precio sube con el tiempo",link:"https://www.raileurope.com",ll:"raileurope.com",clp:"~$74k\u2013111k CLP"},
+{id:2,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\uD83C\uDFE8 Hotel Helsinki \u2014 Hotel AX",detail:"14\u201317 jun \u00B7 3 noches \u00B7 \u2705 CONFIRMADO \u00B7 Conf 5849137955",link:null,ll:"",clp:"\u2014"},
+{id:3,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\u2708\uFE0F Vuelo Helsinki \u2192 Oslo",detail:"17 jun \u00B7 Finnair o Norwegian \u00B7 directo ~1h 25min",link:"https://www.finnair.com",ll:"finnair.com",clp:"~$278k\u2013371k CLP"},
+{id:5,cat:"\uD83D\uDFE1 Antes de mayo",label:"\u2708\uFE0F Vuelo Oslo \u2192 Madrid",detail:"20 jun \u00B7 Google Flights \u00B7 ~3h",link:"https://www.google.com/flights",ll:"google.com/flights",clp:"~$186k\u2013278k CLP"},
+{id:6,cat:"\uD83C\uDF9F\uFE0F Entradas con reserva anticipada",label:"\uD83C\uDFA1 Parque Tivoli \u2014 Copenhague",detail:"5\u20139 jun \u00B7 Reservar online evita colas. Pack atracciones ~\u20AC66.",link:"https://shop.tivoli.dk/en/billetter-og-tivolikort",ll:"shop.tivoli.dk",clp:"~$18k\u201361k CLP x2"},
+{id:7,cat:"\uD83C\uDF9F\uFE0F Entradas con reserva anticipada",label:"\uD83D\uDEA2 Museo Vasa \u2014 Estocolmo",detail:"9\u201313 jun \u00B7 Uno de los m\u00E1s visitados, filas largas sin reserva.",link:"https://www.vasamuseet.se/en/visit/tickets",ll:"vasamuseet.se",clp:"~$16k\u201318k CLP x2"},
+{id:8,cat:"\uD83C\uDF9F\uFE0F Entradas con reserva anticipada",label:"\uD83E\uDDD6 Sauna L\u00F6yly \u2014 Helsinki",detail:"14\u201317 jun \u00B7 Requiere reserva online, especialmente en verano.",link:"https://www.loyly.fi/en/",ll:"loyly.fi",clp:"~$20k\u201335k CLP x2"},
+{id:13,cat:"\uD83D\uDCCB Antes de salir de Santiago",label:"\uD83D\uDEE1\uFE0F Contratar seguro de viaje",detail:"Cubrir todo el viaje 2\u201322 jun. Incluir: cancelaci\u00F3n, m\u00E9dico, p\u00E9rdida de equipaje. Comparar en comparaonline.cl o directamente con MAPFRE, Assist Card o AXA.",link:"https://www.assistcard.com/cl",ll:"assistcard.com",clp:"~$30k\u201380k CLP"},
+{id:9,cat:"\uD83D\uDCCB Antes de salir de Santiago",label:"\uD83D\uDCB3 Avisar al banco que viajan",detail:"Notificar para Espa\u00F1a, Dinamarca, Suecia, Finlandia y Noruega.",link:null,clp:"\u2014"},
+{id:10,cat:"\uD83D\uDCCB Antes de salir de Santiago",label:"\uD83D\uDCF1 Contratar roaming o SIM europea",detail:"Alternativa: comprar SIM en Madrid al llegar, m\u00E1s barato.",link:null,clp:"~$10k\u201330k CLP"},
+{id:11,cat:"\uD83D\uDCCB Antes de salir de Santiago",label:"\uD83E\uDDFE Guardar todas las confirmaciones",detail:"Ferry DFP194722507 \u00B7 Airbnb HMF3TJ4NPS \u00B7 Vuelos JLCDKB",link:null,clp:"\u2014"},
+{id:12,cat:"\uD83D\uDCCB Antes de salir de Santiago",label:"\uD83D\uDCB1 Cambiar efectivo",detail:"~\u20AC100 de respaldo. Escandinavia es casi todo tarjeta.",link:null,clp:"~$93k CLP"},
+];
+
+const paid=[
+{item:"\u2708\uFE0F Vuelos LATAM",when:"Ya cobrado",clp:"\u2014*"},
+{item:"\u2708\uFE0F SAS MAD \u2192 CPH",when:"Ya cobrado",clp:"$192k"},
+{item:"\uD83C\uDFE8 ILUNION Madrid ida",when:"Ya cobrado",clp:"$313k"},
+{item:"\uD83C\uDFE8 Wakeup Copenhagen",when:"Ya cobrado",clp:"\u2014*"},
+{item:"\uD83C\uDFE8 Livington Estocolmo",when:"Ya cobrado",clp:"\u2014*"},
+{item:"\uD83D\uDEA2 Ferry STK \u2192 HEL",when:"Ya cobrado",clp:"~$178k"},
+{item:"\uD83C\uDFE8 Hotel AX Helsinki",when:"Ya cobrado",clp:"\u2014*"},
+{item:"\uD83C\uDFE0 Airbnb Oslo",when:"\uD83D\uDCC5 1 jun 2026",clp:"~$603k",alert:true},
+{item:"\uD83C\uDFE8 ILUNION Madrid regreso",when:"Ya cobrado",clp:"$290k"},
+];
+
+const pending=[
+{item:"\uD83D\uDE82 Tren CPH \u2192 STK",when:"\uD83D\uDD34 Urgente",clp:"$74k\u2013111k",link:"https://www.raileurope.com"},
+{item:"\u2708\uFE0F HEL \u2192 OSL",when:"\uD83D\uDD34 Urgente",clp:"$278k\u2013371k",link:"https://www.finnair.com"},
+{item:"\u2708\uFE0F Oslo \u2192 Madrid",when:"\uD83D\uDFE1 Antes mayo",clp:"$186k\u2013278k",link:"https://www.google.com/flights"},
+{item:"\uD83D\uDEE1\uFE0F Seguro de viaje",when:"\uD83D\uDFE1 Antes mayo",clp:"$30k\u201380k",link:"https://www.assistcard.com/cl"},
+];
+
+const daily=[
+{city:"\uD83C\uDDEA\uD83C\uDDF8 Madrid",days:4,total:480},
+{city:"\uD83C\uDDE9\uD83C\uDDF0 Copenhague",days:4,total:600},
+{city:"\uD83C\uDDF8\uD83C\uDDEA Estocolmo",days:4,total:600},
+{city:"\uD83C\uDDEB\uD83C\uDDEE Helsinki",days:3,total:450},
+{city:"\uD83C\uDDF3\uD83C\uDDF4 Oslo",days:3,total:540},
+];
+
+const dayByDay=[
+{date:"Lun 2 jun",flag:"\uD83C\uDDE8\uD83C\uDDF1",city:"Santiago",color:"#1a2e44",items:[
+{time:"19:00",icon:"\u2708\uFE0F",text:"Vuelo LATAM LA706 SCL \u2192 MAD",note:"C\u00F3d JLCDKB \u00B7 llega 13:55 (+1)"},
+]},
+{date:"Mar 3 jun",flag:"\uD83C\uDDEA\uD83C\uDDF8",city:"Madrid",color:"#c62828",items:[
+{time:"13:55",icon:"\uD83D\uDEEC",text:"Llegada a Madrid",note:""},
+{time:"~15:30",icon:"\uD83C\uDFE8",text:"Check-in Hotel ILUNION P\u00EDo XII",note:"Av. de P\u00EDo XII, 77"},
+{time:"17:00",icon:"\uD83C\uDF33",text:"Paseo por Parque del Retiro",note:"Palacio de Cristal \u00B7 Estanque \u00B7 a 20 min del hotel en metro"},
+{time:"19:30",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en barrio de Las Letras",note:"Zona Huertas \u00B7 tapas \u00B7 cerca del Retiro caminando"},
+]},
+{date:"Mi\u00E9 4 jun",flag:"\uD83C\uDDEA\uD83C\uDDF8",city:"Madrid",color:"#c62828",items:[
+{time:"09:30",icon:"\uD83C\uDFDB\uFE0F",text:"Museo del Prado",note:"Entrada general ~\u20AC15 \u00B7 reservar online \u00B7 Vel\u00E1zquez, Goya, El Bosco"},
+{time:"13:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Barrio de las Letras",note:"A 5 min caminando del Prado"},
+{time:"14:30",icon:"\uD83C\uDFDB\uFE0F",text:"Museo Reina Sof\u00EDa",note:"Guernica de Picasso \u00B7 gratis despu\u00E9s de 19:00 \u00B7 a 10 min del Prado"},
+{time:"17:00",icon:"\u2615",text:"Merienda en Plaza Mayor / Sol",note:"Chocolater\u00EDa San Gin\u00E9s \u00B7 churros con chocolate"},
+{time:"19:00",icon:"\uD83D\uDEB6",text:"Paseo Gran V\u00EDa \u2192 Templo de Debod",note:"Atardecer desde el templo egipcio \u00B7 vistas a la sierra"},
+]},
+{date:"Jue 5 jun",flag:"\uD83C\uDDEA\uD83C\uDDF8\u2192\uD83C\uDDE9\uD83C\uDDF0",city:"Madrid \u2192 Copenhague",color:"#c62828",items:[
+{time:"10:00",icon:"\uD83D\uDEB6",text:"Palacio Real + Catedral de la Almudena",note:"Cambio de guardia mi\u00E9/s\u00E1b 12:00 \u00B7 jardines de Sabatini"},
+{time:"12:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Mercado de San Miguel",note:"Tapas gourmet \u00B7 a 5 min del Palacio"},
+{time:"14:00",icon:"\uD83C\uDFE8",text:"Recoger maletas del hotel",note:""},
+{time:"15:30",icon:"\uD83D\uDE95",text:"Traslado al aeropuerto Barajas",note:"Metro L8 o taxi ~30 min"},
+{time:"18:30",icon:"\u2708\uFE0F",text:"Vuelo SAS MAD \u2192 CPH",note:"Llega 21:45"},
+{time:"22:30",icon:"\uD83C\uDFE8",text:"Check-in Wakeup Copenhagen",note:"Carsten Niebuhrs Gade 11 \u00B7 PIN 874138"},
+]},
+{date:"Vie 6 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",color:"#01579b",items:[
+{time:"09:00",icon:"\uD83D\uDEB6",text:"Nyhavn \u2192 Amalienborg",note:"Puerto colorido \u00B7 fotos cl\u00E1sicas \u00B7 luego palacio real (cambio de guardia 12:00)"},
+{time:"10:30",icon:"\uD83E\uDDDC",text:"La Sirenita + Kastellet",note:"Fortaleza en forma de estrella \u00B7 a 15 min caminando desde Amalienborg"},
+{time:"12:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Torvehallerne",note:"Mercado cubierto \u00B7 sm\u00F8rrebr\u00F8d \u00B7 pasteles daneses"},
+{time:"14:00",icon:"\uD83C\uDFF0",text:"Castillo de Rosenborg",note:"Joyas de la corona \u00B7 jardines del Rey \u00B7 junto a Torvehallerne"},
+{time:"16:30",icon:"\uD83D\uDEB6",text:"Barrio de Christiania",note:"Barrio libre \u00B7 arte callejero \u00B7 a 20 min en metro desde Rosenborg"},
+{time:"19:00",icon:"\uD83C\uDF7A",text:"Cena y cerveza en Vesterbro",note:"Barrio trendy cerca del hotel \u00B7 Mikkeller, Warpigs"},
+]},
+{date:"S\u00E1b 7 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",color:"#01579b",items:[
+{time:"10:00",icon:"\uD83C\uDFA1",text:"Parque Tivoli",note:"Abren a las 11 \u00B7 reservar online \u00B7 Pack atracciones ~\u20AC66"},
+{time:"14:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en zona Tivoli / Str\u00F8get",note:"Str\u00F8get = calle peatonal m\u00E1s larga de Europa \u00B7 shopping"},
+{time:"15:30",icon:"\u26EA",text:"Torre Redonda (Rundetaarn)",note:"Subida en espiral \u00B7 vista panor\u00E1mica 360\u00B0 \u00B7 sobre Str\u00F8get"},
+{time:"17:00",icon:"\uD83D\uDEB6",text:"Paseo por canal de Christianshavn",note:"Iglesia de Nuestro Salvador (torre en espiral) \u00B7 casas flotantes"},
+{time:"20:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Nyhavn",note:"Restaurantes con vista al canal \u00B7 atardecer largo (sol hasta ~22:00)"},
+]},
+{date:"Dom 8 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",color:"#01579b",items:[
+{time:"09:30",icon:"\uD83D\uDEB4",text:"Arriendo bicicletas \u2192 zona norte",note:"CPH es la ciudad m\u00E1s ciclable del mundo \u00B7 ~50 DKK/d\u00EDa"},
+{time:"10:30",icon:"\uD83C\uDFDB\uFE0F",text:"Museo Nacional de Dinamarca",note:"Gratis \u00B7 historia vikinga \u00B7 centro de CPH"},
+{time:"13:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Reffen Street Food",note:"Mercado al aire libre en isla de Refshale\u00F8en \u00B7 comida mundial"},
+{time:"15:00",icon:"\uD83C\uDF3F",text:"Jard\u00EDn Bot\u00E1nico + barrio N\u00F8rrebro",note:"Invernadero de palmeras gratis \u00B7 luego barrio multicultural con caf\u00E9s"},
+{time:"18:00",icon:"\uD83C\uDF7A",text:"Tarde libre / compras \u00FAltimo d\u00EDa en CPH",note:"Preparar maletas \u00B7 cena temprana cerca del hotel"},
+]},
+{date:"Lun 9 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0\u2192\uD83C\uDDF8\uD83C\uDDEA",city:"CPH \u2192 Estocolmo",color:"#01579b",items:[
+{time:"08:00",icon:"\uD83C\uDFE8",text:"Check-out Wakeup Copenhagen",note:"CO 11:00 \u00B7 salir temprano"},
+{time:"~09:00",icon:"\uD83D\uDE82",text:"Tren Copenhague \u2192 Estocolmo",note:"~5h \u00B7 Puente \u00D8resund \u00B7 paisajes suecos \u00B7 \u26A0 por comprar"},
+{time:"~14:00",icon:"\uD83D\uDEEC",text:"Llegada a Estocolmo Central",note:""},
+{time:"15:00",icon:"\uD83C\uDFE8",text:"Check-in Livington Hotel",note:"Siktgatan 7 \u00B7 CI 15:00\u201320:00"},
+{time:"17:00",icon:"\uD83D\uDEB6",text:"Paseo por Gamla Stan",note:"Ciudad vieja \u00B7 callejones medievales \u00B7 Stortorget (plaza principal)"},
+{time:"19:30",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Gamla Stan",note:"Restaurantes con historia \u00B7 alb\u00F3ndigas suecas"},
+]},
+{date:"Mar 10 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#6a1b9a",items:[
+{time:"09:30",icon:"\uD83D\uDEA2",text:"Museo Vasa",note:"Barco de guerra de 1628 \u00B7 el museo m\u00E1s visitado de Escandinavia \u00B7 isla Djurg\u00E5rden"},
+{time:"12:00",icon:"\uD83C\uDF3F",text:"Paseo por Djurg\u00E5rden",note:"Isla verde \u00B7 Skansen (museo al aire libre) o ABBA Museum"},
+{time:"13:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Djurg\u00E5rden",note:"Rosendals Tr\u00E4dg\u00E5rd \u00B7 caf\u00E9 org\u00E1nico en invernadero"},
+{time:"15:30",icon:"\uD83D\uDEB6",text:"S\u00F6dermalm",note:"Barrio hipster \u00B7 tiendas vintage \u00B7 miradores \u00B7 ferry desde Djurg\u00E5rden"},
+{time:"18:00",icon:"\uD83C\uDF05",text:"Mirador de Monteliusv\u00E4gen",note:"Mejor atardecer de Estocolmo \u00B7 vista a Gamla Stan \u00B7 gratis"},
+{time:"19:30",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en S\u00F6dermalm",note:"Zona Medborgarplatsen \u00B7 restaurantes con terraza"},
+]},
+{date:"Mi\u00E9 11 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#6a1b9a",items:[
+{time:"09:00",icon:"\uD83C\uDFF0",text:"Palacio Real (Kungliga Slottet)",note:"Cambio de guardia ~12:15 \u00B7 en Gamla Stan"},
+{time:"10:30",icon:"\uD83C\uDFDB\uFE0F",text:"Nobel Prize Museum",note:"En Stortorget \u00B7 Gamla Stan \u00B7 a pasos del palacio"},
+{time:"12:00",icon:"\uD83C\uDF7D\uFE0F",text:"Fika (caf\u00E9 sueco) en Gamla Stan",note:"Caf\u00E9 Sten Sansen o Chokladkoppen \u00B7 kanelbulle (rol de canela)"},
+{time:"14:00",icon:"\uD83C\uDFDB\uFE0F",text:"Museo Fotograf\u00EDa (Fotografiska)",note:"En S\u00F6dermalm \u00B7 terraza con vista \u00B7 a 15 min caminando desde Gamla Stan"},
+{time:"16:30",icon:"\uD83D\uDEB6",text:"Barrio de \u00D6stermalm",note:"Mercado Saluhall (\u00F6stermalms) \u00B7 elegante \u00B7 quesos y salm\u00F3n sueco"},
+{time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en \u00D6stermalm",note:"Zona gastron\u00F3mica \u00B7 cocina n\u00F3rdica moderna"},
+]},
+{date:"Jue 12 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#6a1b9a",items:[
+{time:"10:00",icon:"\u26F5",text:"Tour en barco por archipi\u00E9lago",note:"Str\u00F6mma o similares \u00B7 ~2-3h \u00B7 islas alrededor de Estocolmo"},
+{time:"13:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Norrmalm",note:"Zona centro \u00B7 K25 food court o Hötorgshallen"},
+{time:"15:00",icon:"\uD83D\uDEB6",text:"City Hall (Stadshuset)",note:"Donde se entregan los Nobel \u00B7 torre con vista panor\u00E1mica \u00B7 Kungsholmen"},
+{time:"17:00",icon:"\uD83D\uDED2",text:"Compras / souvenirs",note:"Drottninggatan (peatonal) \u00B7 Design District \u00B7 preparar para ferry ma\u00F1ana"},
+{time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"\u00DAltima cena en Estocolmo",note:"Despedida \u00B7 elegir favorito de los d\u00EDas anteriores"},
+]},
+{date:"Vie 13 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA\u2192\uD83C\uDDEB\uD83C\uDDEE",city:"Estocolmo \u2192 Ferry",color:"#6a1b9a",items:[
+{time:"10:00",icon:"\uD83C\uDFE8",text:"Check-out Livington Hotel",note:"CO 12:00 \u00B7 \u26A0 1 noche perdida"},
+{time:"11:00",icon:"\uD83D\uDEB6",text:"Paseo final por Gamla Stan",note:"\u00DAltimas fotos \u00B7 caf\u00E9 de despedida"},
+{time:"13:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo cerca del terminal",note:"Terminal Stadsg\u00E5rden est\u00E1 en S\u00F6dermalm"},
+{time:"15:30",icon:"\uD83D\uDEA2",text:"Ir al terminal Viking Line",note:"Stadsg\u00E5rden 116 30 \u00B7 embarque ~16:00"},
+{time:"17:00",icon:"\uD83D\uDEA2",text:"Ferry Viking Line STK \u2192 HEL",note:"Ref DFP194722507 \u00B7 noche a bordo \u00B7 llega 14 jun ~10:00"},
+]},
+{date:"S\u00E1b 14 jun",flag:"\uD83C\uDDEB\uD83C\uDDEE",city:"Helsinki",color:"#00695c",items:[
+{time:"~10:00",icon:"\uD83D\uDEA2",text:"Llegada a Helsinki (ferry)",note:"Terminal Olympia / West"},
+{time:"10:30",icon:"\uD83D\uDEB6",text:"Paseo por el puerto + Kauppatori",note:"Mercado al aire libre \u00B7 salm\u00F3n \u00B7 caf\u00E9 \u00B7 a pasos del ferry"},
+{time:"12:00",icon:"\u26EA",text:"Catedral de Helsinki + Plaza del Senado",note:"Catedral blanca ic\u00F3nica \u00B7 a 5 min del mercado"},
+{time:"13:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Old Market Hall",note:"Mercado cubierto 1889 \u00B7 junto al puerto \u00B7 sopa de salm\u00F3n"},
+{time:"15:00",icon:"\uD83C\uDFE8",text:"Check-in Hotel AX",note:"V\u00E4limerenkatu 18 \u00B7 Conf 5849137955 \u00B7 PIN 5794"},
+{time:"17:00",icon:"\uD83D\uDEB6",text:"Barrio de Dise\u00F1o (Design District)",note:"Tiendas Marimekko, Iittala, Arabia \u00B7 a 10 min del hotel caminando"},
+{time:"19:30",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en zona Punavuori",note:"Barrio trendy \u00B7 cocina finlandesa moderna"},
+]},
+{date:"Dom 15 jun",flag:"\uD83C\uDDEB\uD83C\uDDEE",city:"Helsinki",color:"#00695c",items:[
+{time:"09:00",icon:"\u26F4\uFE0F",text:"Ferry a Suomenlinna",note:"Fortaleza patrimonio UNESCO \u00B7 ferry 15 min desde Kauppatori \u00B7 ~\u20AC5 ida y vuelta"},
+{time:"09:30",icon:"\uD83C\uDFF0",text:"Recorrer Suomenlinna",note:"Fortaleza del siglo XVIII \u00B7 t\u00FAneles \u00B7 murallas \u00B7 museo \u00B7 playas"},
+{time:"12:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Suomenlinna",note:"Caf\u00E9 en la isla o picnic con vista al mar"},
+{time:"14:00",icon:"\u26F4\uFE0F",text:"Ferry de vuelta a Helsinki",note:""},
+{time:"15:00",icon:"\uD83C\uDFDB\uFE0F",text:"Iglesia en la Roca (Temppeliaukio)",note:"Iglesia excavada en granito \u00B7 ac\u00FAstica incre\u00EDble \u00B7 zona T\u00F6\u00F6l\u00F6"},
+{time:"17:00",icon:"\uD83E\uDDD6",text:"Sauna L\u00F6yly",note:"Sauna p\u00FAblica con terraza al mar \u00B7 reservar online \u00B7 \u26A0 reservar"},
+{time:"20:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Eira / Hernesaari",note:"Zona costera cerca de L\u00F6yly \u00B7 restaurantes con vista"},
+]},
+{date:"Lun 16 jun",flag:"\uD83C\uDDEB\uD83C\uDDEE",city:"Helsinki",color:"#00695c",items:[
+{time:"10:00",icon:"\uD83C\uDFDB\uFE0F",text:"Museo de Arte Ateneum",note:"Arte fin\u00E9s cl\u00E1sico \u00B7 Gallen-Kallela \u00B7 frente a estaci\u00F3n central"},
+{time:"12:00",icon:"\uD83D\uDEB6",text:"Estaci\u00F3n Central + Biblioteca Oodi",note:"Arquitectura incre\u00EDble \u00B7 Oodi es gratis \u00B7 terraza en el techo"},
+{time:"13:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Kamppi",note:"Centro comercial \u00B7 opciones variadas"},
+{time:"15:00",icon:"\uD83C\uDF3F",text:"Parque Sibelius + monumento",note:"Monumento al compositor \u00B7 tubos de acero \u00B7 parque costero en T\u00F6\u00F6l\u00F6"},
+{time:"17:00",icon:"\uD83D\uDED2",text:"Compras \u00FAltimas / souvenirs",note:"Marimekko flagship \u00B7 Stockmann (mall hist\u00F3rico) \u00B7 preparar maletas"},
+{time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"\u00DAltima cena en Helsinki",note:"Elegir favorito o probar algo nuevo \u00B7 ma\u00F1ana vuelo a Oslo"},
+]},
+{date:"Mar 17 jun",flag:"\uD83C\uDDEB\uD83C\uDDEE\u2192\uD83C\uDDF3\uD83C\uDDF4",city:"Helsinki \u2192 Oslo",color:"#00695c",items:[
+{time:"09:00",icon:"\uD83C\uDFE8",text:"Check-out Hotel AX",note:"CO 12:00 \u00B7 salir temprano"},
+{time:"~10:00",icon:"\uD83D\uDE95",text:"Traslado al aeropuerto Helsinki-Vantaa",note:"Tren ~30 min desde estaci\u00F3n central"},
+{time:"--:--",icon:"\u2708\uFE0F",text:"Vuelo Helsinki \u2192 Oslo",note:"Finnair / Norwegian \u00B7 ~1h 25min \u00B7 \u26A0 por comprar"},
+{time:"~15:00",icon:"\uD83C\uDFE0",text:"Check-in Airbnb Oslo",note:"Sandakerveien 68A \u00B7 HMF3TJ4NPS"},
+{time:"16:30",icon:"\uD83D\uDEB6",text:"Paseo por Aker Brygge + Tj\u00F8rholmen",note:"Puerto moderno \u00B7 restaurantes \u00B7 vista al fiordo"},
+{time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Aker Brygge",note:"Mariscos noruegos \u00B7 vista al fiordo de Oslo"},
+]},
+{date:"Mi\u00E9 18 jun",flag:"\uD83C\uDDF3\uD83C\uDDF4",city:"Oslo",color:"#e65100",items:[
+{time:"09:30",icon:"\uD83D\uDDFF",text:"Parque Vigeland",note:"230+ esculturas de Vigeland \u00B7 el parque de esculturas m\u00E1s grande del mundo \u00B7 gratis"},
+{time:"11:30",icon:"\uD83D\uDEB6",text:"Barrio Majorstuen \u2192 Frogner",note:"Zona residencial elegante \u00B7 caf\u00E9s \u00B7 a pasos del parque"},
+{time:"13:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Mathallen",note:"Mercado gastron\u00F3mico \u00B7 zona Vulkan/Gr\u00FCnerl\u00F8kka \u00B7 comida n\u00F3rdica"},
+{time:"14:30",icon:"\uD83C\uDF3F",text:"Barrio Gr\u00FCnerl\u00F8kka",note:"El \u201cS\u00F6dermalm\u201d de Oslo \u00B7 vintage \u00B7 street art \u00B7 r\u00EDo Akerselva"},
+{time:"16:30",icon:"\uD83C\uDFDB\uFE0F",text:"Museo Munch",note:"El Grito de Munch \u00B7 edificio nuevo en Bj\u00F8rvika \u00B7 terraza con vista"},
+{time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Bj\u00F8rvika / Opera",note:"Zona moderna \u00B7 caminar sobre el techo de la \u00D3pera"},
+]},
+{date:"Jue 19 jun",flag:"\uD83C\uDDF3\uD83C\uDDF4",city:"Oslo",color:"#e65100",items:[
+{time:"09:00",icon:"\uD83C\uDFDB\uFE0F",text:"Museo de Barcos Vikingos / Museo Hist\u00F3rico",note:"Pen\u00EDnsula Bygd\u00F8y \u00B7 bus 30 o ferry desde Aker Brygge"},
+{time:"11:00",icon:"\uD83C\uDFDB\uFE0F",text:"Museo Fram (exploraci\u00F3n polar)",note:"Al lado del museo vikingo \u00B7 barco polar real \u00B7 Bygd\u00F8y"},
+{time:"12:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Bygd\u00F8y",note:"Caf\u00E9 del museo o picnic en la playa Huk"},
+{time:"14:30",icon:"\u26F4\uFE0F",text:"Ferry Bygd\u00F8y \u2192 Aker Brygge",note:"Vista al fiordo \u00B7 10 min"},
+{time:"15:00",icon:"\uD83C\uDFF0",text:"Fortaleza Akershus",note:"Castillo medieval \u00B7 vistas al puerto \u00B7 gratis exterior \u00B7 cerca de Aker Brygge"},
+{time:"16:30",icon:"\uD83D\uDEB6",text:"Karl Johans gate + Palacio Real",note:"Avenida principal \u00B7 parlamento \u00B7 palacio al final"},
+{time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"\u00DAltima cena en Oslo",note:"Gr\u00FCnerl\u00F8kka o zona favorita \u00B7 preparar maletas"},
+]},
+{date:"S\u00E1b 20 jun",flag:"\uD83C\uDDF3\uD83C\uDDF4\u2192\uD83C\uDDEA\uD83C\uDDF8",city:"Oslo \u2192 Madrid",color:"#e65100",items:[
+{time:"09:00",icon:"\uD83D\uDEB6",text:"Paseo final por Oslo",note:"Caf\u00E9 de despedida \u00B7 \u00FAltimas fotos"},
+{time:"11:00",icon:"\uD83C\uDFE0",text:"Check-out Airbnb Oslo",note:""},
+{time:"12:00",icon:"\uD83D\uDE95",text:"Traslado al aeropuerto Gardermoen",note:"Flytoget (tren express) ~20 min desde Oslo S"},
+{time:"--:--",icon:"\u2708\uFE0F",text:"Vuelo Oslo \u2192 Madrid",note:"~3h \u00B7 \u26A0 por comprar"},
+{time:"--:--",icon:"\uD83C\uDFE8",text:"Check-in ILUNION P\u00EDo XII",note:"Av. de P\u00EDo XII, 77"},
+{time:"20:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena de bienvenida en Madrid",note:"Algo ligero cerca del hotel"},
+]},
+{date:"Dom 21 jun",flag:"\uD83C\uDDEA\uD83C\uDDF8",city:"Madrid",color:"#c62828",items:[
+{time:"10:00",icon:"\uD83D\uDEB6",text:"Barrio de Malasa\u00F1a",note:"Barrio alternativo \u00B7 brunch \u00B7 tiendas vintage \u00B7 Plaza del 2 de Mayo"},
+{time:"12:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo tapas en La Latina",note:"Cava Baja \u00B7 mejor zona de tapas de Madrid \u00B7 a 15 min caminando"},
+{time:"14:30",icon:"\uD83D\uDEB6",text:"Rastro / Lavapi\u00E9s",note:"Dom = mercado El Rastro \u00B7 barrio multicultural \u00B7 arte urbano"},
+{time:"17:00",icon:"\u2615",text:"Merienda en barrio de las Letras",note:"Caf\u00E9 de despedida \u00B7 \u00FAltimas compras"},
+{time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"\u00DAltima cena del viaje",note:"Elegir el mejor lugar del viaje \u00B7 celebrar \u00B7 dormir temprano \u00B7 vuelo 01:45"},
+]},
+{date:"Lun 22 jun",flag:"\uD83C\uDDEA\uD83C\uDDF8\u2192\uD83C\uDDE8\uD83C\uDDF1",city:"Madrid \u2192 Santiago",color:"#c62828",items:[
+{time:"01:45",icon:"\u2708\uFE0F",text:"Vuelo LATAM LA2485 MAD \u2192 Lima",note:"C\u00F3d JLCDKB"},
+{time:"--:--",icon:"\u2708\uFE0F",text:"Conexi\u00F3n LATAM LA2697 Lima \u2192 SCL",note:"Llega 14:05 a Santiago"},
+]},
+];
+
+function App(){
+const [tab,setTab]=useState("quick");
+const [checked,setChecked]=useState(()=>{
+  try { return JSON.parse(localStorage.getItem("europa2026_checked")||"{}"); } catch(e){ return {}; }
+});
+const toggle=id=>{
+  setChecked(p=>{
+    const next={...p,[id]:!p[id]};
+    localStorage.setItem("europa2026_checked",JSON.stringify(next));
+    return next;
+  });
+};
+const done=Object.values(checked).filter(Boolean).length;
+const cats=[...new Set(allTasks.map(t=>t.cat))];
+const dt=daily.reduce((s,d)=>s+d.total,0);
+
+return (
+<div style={{background:cream,minHeight:"100vh"}}>
+
+  {/* HERO */}
+  <div style={{background:`linear-gradient(135deg,${navy},#253d57)`,padding:"40px 20px 34px",textAlign:"center",position:"relative"}}>
+    <div style={{position:"absolute",bottom:0,left:0,right:0,height:4,background:`linear-gradient(90deg,transparent,${gold},transparent)`}}/>
+    <div style={{fontSize:10,fontWeight:600,letterSpacing:4,textTransform:"uppercase",color:gold,marginBottom:8}}>{"✈"} Itinerario · Junio 2026</div>
+    <div style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(1.8rem,6vw,3rem)",fontWeight:900,color:"white",marginBottom:6}}>Europa del <span style={{color:gold}}>Norte</span></div>
+    <div style={{fontSize:12,color:"#b0c4d8",marginBottom:16}}>21 días · 6 países · 2 personas</div>
+    <div style={{display:"flex",justifyContent:"center",gap:5,flexWrap:"wrap"}}>
+      {["SCL","Madrid","CPH","STK","\u26F4HEL","Oslo","Madrid","SCL"].map((c,i,a)=>(
+        <span key={i} style={{fontSize:10,fontWeight:600,color:c.includes("\u26F4")?"#e2bb5a":"#d0e4f0"}}>{c}{i<a.length-1&&<span style={{color:gold,margin:"0 3px"}}>{"\u2192"}</span>}</span>
+      ))}
+    </div>
+  </div>
+
+  {/* TABS */}
+  <div style={{display:"flex",background:navy,borderBottom:`3px solid ${gold}`,overflowX:"auto"}}>
+    {[{id:"quick",l:"\u26A1 Itinerario"},{id:"days",l:"\uD83D\uDCC5 D\u00EDa a d\u00EDa"},{id:"full",l:"\uD83D\uDCCB Hoteles"},{id:"maps",l:"\uD83D\uDCCD Mapas"},{id:"finance",l:"\uD83D\uDCB0 Finanzas"},{id:"pending",l:"\u2611\uFE0F Pendientes"}].map(t=>(
+      <button key={t.id} onClick={()=>setTab(t.id)} style={{flex:"0 0 auto",padding:"11px 12px",fontSize:11,fontWeight:600,textTransform:"uppercase",color:tab===t.id?gold:"#b0c4d8",background:tab===t.id?"rgba(212,160,23,0.1)":"none",border:"none",borderBottom:tab===t.id?`3px solid ${gold}`:"3px solid transparent",marginBottom:-3,cursor:"pointer",whiteSpace:"nowrap"}}>
+        {t.l}
+      </button>
+    ))}
+  </div>
+
+  {/* QUICK */}
+  {tab==="quick"&&(
+    <div style={{padding:"16px",maxWidth:820,margin:"0 auto"}}>
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 10px rgba(0,0,0,0.06)"}}>
+        {itinerary.map((row,i)=>{
+          const tc=tagC[row.tag]||tagC.HOTEL;
+          return(
+            <div key={i} style={{display:"grid",gridTemplateColumns:"88px 26px 1fr auto",alignItems:"center",borderBottom:i<itinerary.length-1?"1px solid #f0ece4":"none",background:i%2===0?"white":"#fafaf8"}}>
+              <div style={{padding:"10px 6px 10px 12px"}}>
+                <div style={{fontSize:11,fontWeight:800,color:navy,lineHeight:1.2}}>{row.date.split(" ")[0]}</div>
+                <div style={{fontSize:10,fontWeight:600,color:gold}}>{row.date.split(" ").slice(1).join(" ")}</div>
+              </div>
+              <div style={{fontSize:16,textAlign:"center"}}>{row.icon}</div>
+              <div style={{padding:"10px 8px"}}>
+                <div style={{fontWeight:700,fontSize:12,color:navy,lineHeight:1.3}}>{row.city}</div>
+                <div style={{fontSize:10,color:"#666",marginTop:2,lineHeight:1.4}}>{row.detail}</div>
+              </div>
+              <div style={{padding:"10px 10px 10px 4px",display:"flex",flexDirection:"column",alignItems:"flex-end",gap:3}}>
+                <span style={{background:tc.bg,border:`1px solid ${tc.b}`,color:tc.t,borderRadius:10,padding:"1px 6px",fontSize:8,fontWeight:700,whiteSpace:"nowrap"}}>{row.tag}</span>
+                <span style={{fontSize:8,color:row.status==="confirmed"?"#43a047":"#e53935",fontWeight:600}}>{row.status==="confirmed"?"\u2713 OK":"\u26A0 PDTE"}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  )}
+
+  {/* DIA A DIA */}
+  {tab==="days"&&(
+    <div style={{padding:"16px",maxWidth:860,margin:"0 auto"}}>
+      {dayByDay.map((day,di)=>{
+        const hasContent=day.items.some(it=>!it.text.includes("D\u00EDa libre"));
+        return(
+          <div key={di} style={{marginBottom:12}}>
+            {/* Day header */}
+            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}>
+              <div style={{background:day.color,borderRadius:10,padding:"6px 12px",display:"flex",alignItems:"center",gap:8}}>
+                <span style={{fontSize:14}}>{day.flag}</span>
+                <div>
+                  <div style={{fontSize:12,fontWeight:700,color:"white",lineHeight:1.2}}>{day.date}</div>
+                  <div style={{fontSize:10,color:"rgba(255,255,255,0.7)"}}>{day.city}</div>
+                </div>
+              </div>
+              <div style={{flex:1,height:1,background:"#ddd"}}/>
+            </div>
+            {/* Day items */}
+            <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.04)",marginLeft:8}}>
+              {day.items.map((it,ii)=>{
+                const isFree=it.text.includes("D\u00EDa libre");
+                const isPending=it.note&&it.note.includes("\u26A0");
+                return(
+                  <div key={ii} style={{display:"flex",alignItems:"flex-start",gap:10,padding:"10px 14px",borderBottom:ii<day.items.length-1?"1px solid #f4f0e8":"none",background:isFree?"#fafaf8":"white"}}>
+                    {it.time&&<div style={{minWidth:40,fontSize:10,fontWeight:700,color:it.time==="--:--"?"#bbb":navy,marginTop:2,fontFamily:"monospace"}}>{it.time}</div>}
+                    <div style={{fontSize:16,flexShrink:0}}>{it.icon}</div>
+                    <div style={{flex:1}}>
+                      <div style={{fontWeight:isFree?500:600,fontSize:12,color:isFree?"#999":navy}}>{it.text}</div>
+                      {it.note&&<div style={{fontSize:10,color:isPending?"#e65100":"#888",marginTop:2,lineHeight:1.4}}>{it.note}</div>}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  )}
+
+  {/* HOTELES */}
+  {tab==="full"&&(
+    <div style={{padding:"16px",maxWidth:860,margin:"0 auto"}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
+        {hotels.map((h,i)=>(
+          <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
+            <div style={{background:h.status==="confirmed"?"#e8f5e9":"#fff3e0",padding:"10px 14px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+              <div>
+                <div style={{fontSize:10,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:gold}}>{h.flag} {h.dates}</div>
+                <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1.05rem",fontWeight:700,color:navy}}>{h.city}</div>
+              </div>
+              <div style={{background:gold+"22",border:`1px solid ${gold}`,borderRadius:20,padding:"2px 8px",fontSize:10,fontWeight:600,color:"#5a3e00"}}>{h.nights} noches</div>
+            </div>
+            <div style={{padding:"11px 14px"}}>
+              <div style={{fontWeight:600,fontSize:12,color:navy,marginBottom:4}}>{h.name}</div>
+              <div style={{fontSize:11,color:"#555",marginBottom:3}}>{"\uD83D\uDCCD"} {h.addr}</div>
+              {h.phone!=="\u2014"&&<div style={{fontSize:11,color:"#555",marginBottom:3}}>{"\uD83D\uDCDE"} {h.phone}</div>}
+              <div style={{fontSize:11,color:"#555",marginBottom:3}}>{"\u23F0"} CI {h.ci} \u00B7 CO {h.co}</div>
+              {h.price!=="\u2014"&&<div style={{fontSize:11,color:"#555",marginBottom:4}}>{"\uD83D\uDCB0"} {h.price}</div>}
+              {h.codes.length>0&&<div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:5}}>{h.codes.map((c,j)=><span key={j} style={{fontFamily:"monospace",background:"#f4f0e8",border:"1px solid #ddd",borderRadius:4,padding:"1px 5px",fontSize:9}}>{c}</span>)}</div>}
+              {h.note&&<div style={{background:"#fff8e1",border:"1px solid #ffd54f",borderRadius:6,padding:"5px 8px",fontSize:10,color:"#5d4037",marginBottom:6}}>{"\u26A0\uFE0F"} {h.note}</div>}
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:8,paddingTop:8,borderTop:"1px solid #f0ece4"}}>
+                <span style={{background:h.status==="confirmed"?"#e8f5e9":"#fff3e0",border:`1px solid ${h.status==="confirmed"?"#81c784":"#ffb74d"}`,color:h.status==="confirmed"?"#2e7d32":"#e65100",borderRadius:12,padding:"2px 8px",fontSize:10,fontWeight:700}}>{h.status==="confirmed"?"\u2713 Confirmado":"\u26A0 Pendiente"}</span>
+                <a href={h.maps} target="_blank" rel="noreferrer" style={{background:navy,color:"white",borderRadius:6,padding:"4px 8px",fontSize:10,fontWeight:600,textDecoration:"none"}}>{"\uD83D\uDDFA"} Maps</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {/* MAPAS */}
+  {tab==="maps"&&(
+    <div style={{padding:"16px",maxWidth:960,margin:"0 auto"}}>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
+        {mapPlaces.map((p,i)=>(
+          <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
+            <div style={{background:navy,padding:"10px 14px",display:"flex",alignItems:"center",gap:10}}>
+              <div style={{fontSize:20}}>{p.flag}</div>
+              <div>
+                <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1rem",fontWeight:700,color:"white"}}>{p.city}</div>
+                <div style={{fontSize:10,color:"#90caf9"}}>{p.dates}</div>
+              </div>
+            </div>
+            <div>
+              {p.spots.map((sp,j)=>(
+                <div key={j} style={{display:"flex",alignItems:"flex-start",gap:9,padding:"9px 14px",borderBottom:j<p.spots.length-1?"1px solid #f4f0e8":"none"}}>
+                  <div style={{fontSize:16,flexShrink:0}}>{sp.icon}</div>
+                  <div style={{flex:1}}>
+                    <div style={{fontWeight:600,fontSize:11,color:navy}}>{sp.name}</div>
+                    <div style={{fontSize:10,color:"#666",marginTop:1}}>{sp.addr}</div>
+                    <a href={sp.url} target="_blank" rel="noreferrer" style={{display:"inline-block",background:navy,color:"white",borderRadius:5,padding:"2px 7px",fontSize:10,fontWeight:600,textDecoration:"none",marginTop:4}}>{"\uD83D\uDDFA"} Abrir en Maps</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {/* FINANZAS */}
+  {tab==="finance"&&(
+    <div style={{padding:"16px",maxWidth:900,margin:"0 auto"}}>
+      <div style={{background:"#f8f4ec",border:"1px solid #e0d0a0",borderRadius:10,padding:"8px 13px",marginBottom:14,fontSize:11,color:"#555"}}>
+        {"\uD83D\uDCB1"} <strong>1 USD = $928 CLP</strong> {"\u00B7"} actualizado 21 mar 2026
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:16}}>
+        {[{l:"Ya pagado",c:"~$1.722M+",u:"~$1.856+",bg:navy},{l:"Por pagar",c:"~$1.011M\u20131.383M",u:"~$1.090\u20131.490",bg:"#7a3e00"},{l:"Comidas",c:`~$${Math.round(dt*928/1000).toLocaleString("es-CL")}k`,u:`~$${dt}`,bg:"#01579b"},{l:"Total",c:"~$6,7M\u20137,4M",u:"~$7.200\u20138.000",bg:"#2e5339"}].map((t,i)=>(
+          <div key={i} style={{background:t.bg,borderRadius:12,padding:"13px 10px",textAlign:"center"}}>
+            <div style={{fontSize:9,fontWeight:600,letterSpacing:1,textTransform:"uppercase",color:"rgba(255,255,255,0.65)",marginBottom:3}}>{t.l}</div>
+            <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1rem",fontWeight:700,color:"white",lineHeight:1.1}}>{t.c}</div>
+            <div style={{fontSize:9,color:"rgba(255,255,255,0.45)",marginTop:2}}>{t.u} USD</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+        <div style={{background:"#e8f5e9",padding:"9px 14px",borderBottom:"1px solid #c8e6c9",fontSize:11,fontWeight:700,textTransform:"uppercase",color:"#2e7d32"}}>{"\u2705"} Ya pagado</div>
+        {paid.map((r,i)=>(
+          <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<paid.length-1?"1px solid #f4f0e8":"none",background:r.alert?"#fffde7":"white",gap:8,flexWrap:"wrap"}}>
+            <div style={{fontSize:12,color:navy,fontWeight:500,flex:1}}>{r.item}</div>
+            <div style={{display:"flex",gap:8,alignItems:"center"}}>
+              <span style={{background:r.alert?"#fff3e0":"#e8f5e9",border:`1px solid ${r.alert?"#ffb74d":"#81c784"}`,color:r.alert?"#e65100":"#2e7d32",borderRadius:12,padding:"1px 7px",fontSize:10,fontWeight:600,whiteSpace:"nowrap"}}>{r.when}</span>
+              <span style={{fontWeight:700,color:navy,fontSize:12,minWidth:50,textAlign:"right"}}>{r.clp}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+        <div style={{background:"#fff3e0",padding:"9px 14px",borderBottom:"1px solid #ffe0b2",fontSize:11,fontWeight:700,textTransform:"uppercase",color:"#e65100"}}>{"\u23F3"} Por pagar</div>
+        {pending.map((r,i)=>(
+          <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<pending.length-1?"1px solid #f4f0e8":"none",gap:8,flexWrap:"wrap"}}>
+            <div style={{flex:1}}>
+              <div style={{fontSize:12,color:navy,fontWeight:500}}>{r.item}</div>
+              <span style={{background:r.when.includes("\uD83D\uDD34")?"#fce4ec":"#fff8e1",border:`1px solid ${r.when.includes("\uD83D\uDD34")?"#f48fb1":"#ffd54f"}`,color:r.when.includes("\uD83D\uDD34")?"#c62828":"#e65100",borderRadius:10,padding:"1px 6px",fontSize:9,fontWeight:600}}>{r.when}</span>
+            </div>
+            <div style={{display:"flex",gap:8,alignItems:"center"}}>
+              <span style={{fontWeight:700,color:"#c62828",fontSize:12}}>{r.clp}</span>
+              <a href={r.link} target="_blank" rel="noreferrer" style={{background:"#e3f2fd",border:"1px solid #4a9fc4",color:"#0277bd",borderRadius:6,padding:"3px 8px",fontSize:11,fontWeight:600,textDecoration:"none"}}>{"\u2192"}</a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+        <div style={{background:"#e3f2fd",padding:"9px 14px",borderBottom:"1px solid #bbdefb",fontSize:11,fontWeight:700,textTransform:"uppercase",color:"#0277bd"}}>{"\uD83C\uDF7D\uFE0F"} Comidas & actividades {"\u00B7"} ~$150 USD/d{"\u00ED"}a</div>
+        {daily.map((r,i)=>(
+          <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"8px 14px",borderBottom:i<daily.length-1?"1px solid #f4f0e8":"none"}}>
+            <span style={{fontSize:12,color:navy}}>{r.city} {"\u00B7"} {r.days} d{"\u00ED"}as</span>
+            <span style={{fontWeight:600,color:navy,fontSize:12}}>${Math.round(r.total*928/1000).toLocaleString("es-CL")}k</span>
+          </div>
+        ))}
+        <div style={{display:"flex",justifyContent:"space-between",padding:"10px 14px",background:"#e3f2fd"}}>
+          <span style={{fontWeight:700,color:"#0277bd",fontSize:12}}>Total comidas</span>
+          <span style={{fontWeight:700,color:"#0277bd",fontSize:13}}>${Math.round(dt*928/1000).toLocaleString("es-CL")}k CLP</span>
+        </div>
+      </div>
+
+      <div style={{background:navy,borderRadius:14,padding:"16px"}}>
+        <div style={{fontSize:10,fontWeight:600,letterSpacing:3,textTransform:"uppercase",color:gold,marginBottom:12}}>Resumen total</div>
+        {[["Vuelos","~$1.392M\u20131.670M"],["Alojamiento","~$1.810M\u20132.042M"],["Trenes+Ferry","~$399k\u2013501k"],["Comidas","~$2.478M"],["Imprevistos","~$603k"]].map(([l,c],i)=>(
+          <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"5px 0",borderBottom:"1px solid rgba(255,255,255,0.07)",fontSize:12}}>
+            <span style={{color:"#b0c4d8"}}>{l}</span>
+            <span style={{color:"white",fontWeight:600}}>{c}</span>
+          </div>
+        ))}
+        <div style={{display:"flex",justifyContent:"space-between",padding:"10px 0 2px",borderTop:"2px solid rgba(255,255,255,0.2)",marginTop:4}}>
+          <span style={{color:gold,fontWeight:700,fontSize:13}}>TOTAL</span>
+          <span style={{color:gold,fontWeight:700,fontSize:13}}>~$6,7M\u20137,4M CLP</span>
+        </div>
+        <div style={{display:"flex",justifyContent:"space-between",fontSize:11}}>
+          <span style={{color:"#90caf9"}}>Por persona</span>
+          <span style={{color:"#90caf9",fontWeight:600}}>~$3,3M\u20133,7M CLP</span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* PENDIENTES */}
+  {tab==="pending"&&(
+    <div style={{padding:"16px",maxWidth:860,margin:"0 auto"}}>
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",padding:"14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
+          <div style={{fontWeight:700,fontSize:13,color:navy}}>Progreso</div>
+          <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1.2rem",fontWeight:700,color:done===allTasks.length?"#2e7d32":gold}}>{done}/{allTasks.length}</div>
+        </div>
+        <div style={{background:"#f0ece4",borderRadius:20,height:9,overflow:"hidden"}}>
+          <div style={{background:done===allTasks.length?"#43a047":gold,height:"100%",borderRadius:20,width:`${(done/allTasks.length)*100}%`,transition:"width 0.4s"}}/>
+        </div>
+        <div style={{fontSize:10,color:"#888",marginTop:5}}>{allTasks.length-done} tareas pendientes \u00B7 toca para marcar</div>
+      </div>
+
+      {cats.map(cat=>{
+        const tasks=allTasks.filter(t=>t.cat===cat);
+        const catDone=tasks.filter(t=>checked[t.id]).length;
+        const isR=cat.includes("\uD83D\uDD34"),isY=cat.includes("\uD83D\uDFE1"),isT=cat.includes("\uD83C\uDF9F");
+        const hBg=isR?"#fce4ec":isY?"#fff8e1":isT?"#e3f2fd":"#f3e5f5";
+        const hC=isR?"#c62828":isY?"#e65100":isT?"#01579b":"#6a1b9a";
+        const hB=isR?"#f48fb1":isY?"#ffd54f":isT?"#90caf9":"#ce93d8";
+        return(
+          <div key={cat} style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+            <div style={{background:hBg,padding:"10px 14px",borderBottom:`1px solid ${hB}`,display:"flex",justifyContent:"space-between"}}>
+              <div style={{fontSize:11,fontWeight:700,color:hC}}>{cat}</div>
+              <div style={{fontSize:10,color:hC,opacity:0.8}}>{catDone}/{tasks.length}</div>
+            </div>
+            {tasks.map((t,i)=>{
+              const isDone=!!checked[t.id];
+              return(
+                <div key={t.id} onClick={()=>toggle(t.id)} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"12px 14px",borderBottom:i<tasks.length-1?"1px solid #f4f0e8":"none",background:isDone?"#f8fdf8":"white",cursor:"pointer"}}>
+                  <div style={{width:20,height:20,borderRadius:5,border:`2px solid ${isDone?"#43a047":gold}`,background:isDone?"#43a047":"white",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:1}}>
+                    {isDone&&<span style={{color:"white",fontSize:12,fontWeight:700}}>{"\u2713"}</span>}
+                  </div>
+                  <div style={{flex:1}}>
+                    <div style={{fontWeight:700,fontSize:12,color:isDone?"#888":navy,textDecoration:isDone?"line-through":"none"}}>{t.label}</div>
+                    <div style={{fontSize:10,color:isDone?"#bbb":"#666",marginTop:2,lineHeight:1.5}}>{t.detail}</div>
+                    <div style={{display:"flex",alignItems:"center",gap:6,marginTop:5,flexWrap:"wrap"}}>
+                      {t.clp!=="\u2014"&&<span style={{background:"#f8f4ec",border:"1px solid #e0d0a0",borderRadius:10,padding:"1px 7px",fontSize:9,fontWeight:600,color:"#7a5a00"}}>{t.clp}</span>}
+                      {t.link&&!isDone&&(
+                        <a href={t.link} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()} style={{background:isR?"#fce4ec":isT?"#e3f2fd":"#e8f5e9",border:`1px solid ${isR?"#f48fb1":isT?"#90caf9":"#81c784"}`,color:isR?"#c62828":isT?"#0277bd":"#2e7d32",borderRadius:6,padding:"2px 7px",fontSize:10,fontWeight:600,textDecoration:"none"}}>{t.ll} {"\u2192"}</a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+      <div style={{background:navy,borderRadius:12,padding:"14px",textAlign:"center"}}>
+        <div style={{fontSize:11,color:"#b0c4d8",marginBottom:3}}>Airbnb Oslo se cobra el</div>
+        <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1.2rem",fontWeight:700,color:gold}}>1 de junio 2026</div>
+        <div style={{fontSize:10,color:"#90caf9",marginTop:2}}>~$650 USD {"\u00B7"} ~$603k CLP {"\u00B7"} HMF3TJ4NPS</div>
+      </div>
+    </div>
+  )}
+</div>
+);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+
+<!-- Service Worker Registration -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg.scope))
+      .catch(err => console.log('SW registration failed:', err));
+  });
+}
+</script>
+</body>
+</html>

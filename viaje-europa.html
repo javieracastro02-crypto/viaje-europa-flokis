@@ -294,6 +294,8 @@ const dayByDay=[
 
 function App(){
 const [tab,setTab]=useState("quick");
+const [filterCountry,setFilterCountry]=useState("all");
+const [filterDay,setFilterDay]=useState("all");
 const [checked,setChecked]=useState(()=>{
   try { return JSON.parse(localStorage.getItem("europa2026_checked")||"{}"); } catch(e){ return {}; }
 });
@@ -307,6 +309,45 @@ const toggle=id=>{
 const done=Object.values(checked).filter(Boolean).length;
 const cats=[...new Set(allTasks.map(t=>t.cat))];
 const dt=daily.reduce((s,d)=>s+d.total,0);
+
+const countries=[
+  {id:"all",flag:"Todos",color:"#888"},
+  {id:"ES",flag:"\uD83C\uDDEA\uD83C\uDDF8",color:"#c62828"},
+  {id:"DK",flag:"\uD83C\uDDE9\uD83C\uDDF0",color:"#01579b"},
+  {id:"SE",flag:"\uD83C\uDDF8\uD83C\uDDEA",color:"#6a1b9a"},
+  {id:"FI",flag:"\uD83C\uDDEB\uD83C\uDDEE",color:"#00695c"},
+  {id:"NO",flag:"\uD83C\uDDF3\uD83C\uDDF4",color:"#e65100"},
+];
+const countryMap={
+  "ES":["\uD83C\uDDEA\uD83C\uDDF8","Madrid","Espa"],
+  "DK":["\uD83C\uDDE9\uD83C\uDDF0","Copenhague","CPH","Dinamarca"],
+  "SE":["\uD83C\uDDF8\uD83C\uDDEA","Estocolmo","STK","Suecia"],
+  "FI":["\uD83C\uDDEB\uD83C\uDDEE","Helsinki","HEL","Finlandia"],
+  "NO":["\uD83C\uDDF3\uD83C\uDDF4","Oslo","Noruega"],
+};
+const matchesCountry=(text,cid)=>{
+  if(cid==="all")return true;
+  return(countryMap[cid]||[]).some(k=>text.includes(k));
+};
+const dayDates=dayByDay.map(d=>d.date);
+const filteredDays=dayByDay.filter(d=>{
+  if(filterCountry!=="all"&&!matchesCountry(d.city+d.flag,filterCountry))return false;
+  if(filterDay!=="all"&&d.date!==filterDay)return false;
+  return true;
+});
+const filteredItinerary=itinerary.filter(r=>{
+  if(filterCountry==="all")return true;
+  return matchesCountry(r.city+r.icon+r.detail,filterCountry);
+});
+const filteredHotels=hotels.filter(h=>{
+  if(filterCountry==="all")return true;
+  return matchesCountry(h.city+h.flag+h.addr,filterCountry);
+});
+const filteredMaps=mapPlaces.filter(p=>{
+  if(filterCountry==="all")return true;
+  return matchesCountry(p.city+p.flag,filterCountry);
+});
+const showFilters=["quick","days","full","maps"].includes(tab);
 
 return (
 <div style={{background:cream,minHeight:"100vh"}}>
@@ -333,38 +374,101 @@ return (
     ))}
   </div>
 
-  {/* QUICK */}
-  {tab==="quick"&&(
-    <div style={{padding:"16px",maxWidth:820,margin:"0 auto"}}>
-      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 10px rgba(0,0,0,0.06)"}}>
-        {itinerary.map((row,i)=>{
-          const tc=tagC[row.tag]||tagC.HOTEL;
-          return(
-            <div key={i} style={{display:"grid",gridTemplateColumns:"88px 26px 1fr auto",alignItems:"center",borderBottom:i<itinerary.length-1?"1px solid #f0ece4":"none",background:i%2===0?"white":"#fafaf8"}}>
-              <div style={{padding:"10px 6px 10px 12px"}}>
-                <div style={{fontSize:11,fontWeight:800,color:navy,lineHeight:1.2}}>{row.date.split(" ")[0]}</div>
-                <div style={{fontSize:10,fontWeight:600,color:gold}}>{row.date.split(" ").slice(1).join(" ")}</div>
-              </div>
-              <div style={{fontSize:16,textAlign:"center"}}>{row.icon}</div>
-              <div style={{padding:"10px 8px"}}>
-                <div style={{fontWeight:700,fontSize:12,color:navy,lineHeight:1.3}}>{row.city}</div>
-                <div style={{fontSize:10,color:"#666",marginTop:2,lineHeight:1.4}}>{row.detail}</div>
-              </div>
-              <div style={{padding:"10px 10px 10px 4px",display:"flex",flexDirection:"column",alignItems:"flex-end",gap:3}}>
-                <span style={{background:tc.bg,border:`1px solid ${tc.b}`,color:tc.t,borderRadius:10,padding:"1px 6px",fontSize:8,fontWeight:700,whiteSpace:"nowrap"}}>{row.tag}</span>
-                <span style={{fontSize:8,color:row.status==="confirmed"?"#43a047":"#e53935",fontWeight:600}}>{row.status==="confirmed"?"\u2713 OK":"\u26A0 PDTE"}</span>
-              </div>
-            </div>
-          );
-        })}
+  {/* FILTERS */}
+  {showFilters&&(
+    <div style={{background:"white",borderBottom:"1px solid #e0d8cc",padding:"8px 12px"}}>
+      <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
+        <span style={{fontSize:9,fontWeight:700,color:"#999",textTransform:"uppercase",letterSpacing:1}}>Pa{"í"}s</span>
+        {countries.map(c=>(
+          <button key={c.id} onClick={()=>{setFilterCountry(c.id);setFilterDay("all");}} style={{padding:"3px 8px",fontSize:c.id==="all"?10:14,borderRadius:8,border:filterCountry===c.id?`2px solid ${c.color}`:"2px solid transparent",background:filterCountry===c.id?"#f4f0e8":"transparent",cursor:"pointer",lineHeight:1}}>{c.flag}</button>
+        ))}
+        {tab==="days"&&<>
+          <span style={{fontSize:9,fontWeight:700,color:"#999",textTransform:"uppercase",letterSpacing:1,marginLeft:8}}>D{"í"}a</span>
+          <select value={filterDay} onChange={e=>setFilterDay(e.target.value)} style={{fontSize:10,padding:"3px 6px",borderRadius:6,border:"1px solid #ddd",background:"white",color:navy,fontWeight:600}}>
+            <option value="all">Todos</option>
+            {dayDates.map(d=><option key={d} value={d}>{d}</option>)}
+          </select>
+        </>}
+        {(filterCountry!=="all"||filterDay!=="all")&&(
+          <button onClick={()=>{setFilterCountry("all");setFilterDay("all");}} style={{fontSize:9,padding:"3px 8px",borderRadius:8,background:"#fce4ec",border:"1px solid #f48fb1",color:"#c62828",cursor:"pointer",fontWeight:600}}>Limpiar</button>
+        )}
       </div>
+    </div>
+  )}
+
+  {/* QUICK TIMELINE */}
+  {tab==="quick"&&(
+    <div style={{padding:"16px 12px",maxWidth:520,margin:"0 auto"}}>
+      {(()=>{
+        const groups=[
+          {label:"VUELOS",color:"#01579b",bg:"#e3f2fd",items:itinerary.filter(r=>r.tag==="VUELO")},
+          {label:"ALOJAMIENTO",color:"#f57f17",bg:"#fff8e1",items:itinerary.filter(r=>["HOTEL","AIRBNB"].includes(r.tag))},
+          {label:"TRANSPORTE",color:"#6a1b9a",bg:"#f3e5f5",items:itinerary.filter(r=>["TREN","FERRY"].includes(r.tag))},
+        ];
+        const confirmed=filteredItinerary.filter(r=>r.status==="confirmed").length;
+        const total=filteredItinerary.length;
+        return(<>
+          {/* Progress bar */}
+          <div style={{background:"white",borderRadius:12,border:"1px solid #e0d8cc",padding:"12px 14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
+              <span style={{fontSize:11,fontWeight:700,color:navy}}>Confirmados</span>
+              <span style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:confirmed===total?"#2e7d32":gold}}>{confirmed}/{total}</span>
+            </div>
+            <div style={{background:"#f0ece4",borderRadius:20,height:6,overflow:"hidden"}}>
+              <div style={{background:confirmed===total?"#43a047":gold,height:"100%",borderRadius:20,width:`${(confirmed/total)*100}%`,transition:"width 0.4s"}}/>
+            </div>
+          </div>
+
+          {/* Timeline */}
+          <div style={{position:"relative",paddingLeft:20}}>
+            {/* Vertical line */}
+            <div style={{position:"absolute",left:9,top:0,bottom:0,width:2,background:`linear-gradient(to bottom,${gold},${navy})`,borderRadius:2}}/>
+
+            {filteredItinerary.map((row,i)=>{
+              const tc=tagC[row.tag]||tagC.HOTEL;
+              const isConfirmed=row.status==="confirmed";
+              return(
+                <div key={i} style={{position:"relative",marginBottom:i<filteredItinerary.length-1?2:0}}>
+                  {/* Dot on timeline */}
+                  <div style={{position:"absolute",left:-16,top:12,width:12,height:12,borderRadius:"50%",background:isConfirmed?"#43a047":"#e53935",border:"2px solid white",boxShadow:"0 1px 3px rgba(0,0,0,0.2)",zIndex:1}}/>
+
+                  {/* Card */}
+                  <div style={{background:"white",borderRadius:10,border:"1px solid #e8e2d8",padding:"8px 10px",marginLeft:8,boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
+                    <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:3}}>
+                      <span style={{fontSize:14}}>{row.icon}</span>
+                      <span style={{fontWeight:700,fontSize:12,color:navy,flex:1,lineHeight:1.2}}>{row.city}</span>
+                      <span style={{background:tc.bg,border:`1px solid ${tc.b}`,color:tc.t,borderRadius:8,padding:"1px 5px",fontSize:7,fontWeight:700,whiteSpace:"nowrap",letterSpacing:0.5}}>{row.tag}</span>
+                    </div>
+                    <div style={{display:"flex",alignItems:"center",gap:6}}>
+                      <span style={{fontSize:10,fontWeight:600,color:gold,minWidth:55}}>{row.date}</span>
+                      <span style={{fontSize:9,color:"#888",flex:1,lineHeight:1.3,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{row.detail}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Legend */}
+          <div style={{display:"flex",gap:8,justifyContent:"center",marginTop:14,flexWrap:"wrap"}}>
+            <div style={{display:"flex",alignItems:"center",gap:4}}>
+              <div style={{width:8,height:8,borderRadius:"50%",background:"#43a047"}}/>
+              <span style={{fontSize:9,color:"#666"}}>Confirmado</span>
+            </div>
+            <div style={{display:"flex",alignItems:"center",gap:4}}>
+              <div style={{width:8,height:8,borderRadius:"50%",background:"#e53935"}}/>
+              <span style={{fontSize:9,color:"#666"}}>Pendiente</span>
+            </div>
+          </div>
+        </>);
+      })()}
     </div>
   )}
 
   {/* DIA A DIA */}
   {tab==="days"&&(
     <div style={{padding:"16px",maxWidth:860,margin:"0 auto"}}>
-      {dayByDay.map((day,di)=>{
+      {filteredDays.map((day,di)=>{
         const hasContent=day.items.some(it=>!it.text.includes("D\u00EDa libre"));
         return(
           <div key={di} style={{marginBottom:12}}>
@@ -406,7 +510,7 @@ return (
   {tab==="full"&&(
     <div style={{padding:"16px",maxWidth:860,margin:"0 auto"}}>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
-        {hotels.map((h,i)=>(
+        {filteredHotels.map((h,i)=>(
           <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
             <div style={{background:h.status==="confirmed"?"#e8f5e9":"#fff3e0",padding:"10px 14px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div>
@@ -438,7 +542,7 @@ return (
   {tab==="maps"&&(
     <div style={{padding:"16px",maxWidth:960,margin:"0 auto"}}>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
-        {mapPlaces.map((p,i)=>(
+        {filteredMaps.map((p,i)=>(
           <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
             <div style={{background:navy,padding:"10px 14px",display:"flex",alignItems:"center",gap:10}}>
               <div style={{fontSize:20}}>{p.flag}</div>

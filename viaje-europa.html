@@ -6,7 +6,7 @@
 <title>Europa Junio 2026 ✈️</title>
 
 <!-- PWA Meta Tags -->
-<meta name="theme-color" content="#1a2e44">
+<meta name="theme-color" content="#8a9e8d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Europa 2026">
@@ -23,14 +23,14 @@
    _warn(...args);
  };
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#f0ece4; font-family:'DM Sans',sans-serif; }</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#f8f6f3; font-family:'Outfit',sans-serif; }</style>
 </head>
 <body>
 <div id="root"></div>
 <script type="text/babel">
 const { useState } = React;
-const navy="#1a2e44", gold="#d4a017", cream="#f0ece4";
+const navy="#4a554c", gold="#dea5a4", cream="#f8f6f3";
 
 const itinerary=[
 {icon:"\u2708\uFE0F",date:"Mar 2 jun",city:"Santiago \u2192 Madrid",detail:"LATAM LA706 \u00B7 SCL 19:00 \u2192 MAD 13:55 (+1) \u00B7 C\u00F3d JLCDKB",status:"confirmed",tag:"VUELO"},
@@ -149,7 +149,8 @@ const dayByDay=[
 {time:"09:30",icon:"\uD83C\uDFDB\uFE0F",text:"Museo del Prado",note:"Entrada general ~\u20AC15 \u00B7 reservar online \u00B7 Vel\u00E1zquez, Goya, El Bosco"},
 {time:"13:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Barrio de las Letras",note:"A 5 min caminando del Prado"},
 {time:"14:30",icon:"\uD83C\uDFDB\uFE0F",text:"Museo Reina Sof\u00EDa",note:"Guernica de Picasso \u00B7 gratis despu\u00E9s de 19:00 \u00B7 a 10 min del Prado"},
-{time:"17:00",icon:"\u2615",text:"Merienda en Plaza Mayor / Sol",note:"Chocolater\u00EDa San Gin\u00E9s \u00B7 churros con chocolate"},
+{time:"16:00",icon:"\uD83C\uDF75",text:"Matchafix",note:"Matcha latte \u00B7 caf\u00E9 aesthetic \u00B7 zona centro"},
+{time:"17:00",icon:"\u2615",text:"Plaza Mayor / Sol",note:"Chocolater\u00EDa San Gin\u00E9s \u00B7 churros con chocolate"},
 {time:"19:00",icon:"\uD83D\uDEB6",text:"Paseo Gran V\u00EDa \u2192 Templo de Debod",note:"Atardecer desde el templo egipcio \u00B7 vistas a la sierra"},
 ]},
 {date:"Jue 5 jun",flag:"\uD83C\uDDEA\uD83C\uDDF8\u2192\uD83C\uDDE9\uD83C\uDDF0",city:"Madrid \u2192 Copenhague",color:"#c62828",items:[
@@ -353,14 +354,14 @@ return (
 <div style={{background:cream,minHeight:"100vh"}}>
 
   {/* HERO */}
-  <div style={{background:`linear-gradient(135deg,${navy},#253d57)`,padding:"40px 20px 34px",textAlign:"center",position:"relative"}}>
+  <div style={{background:`linear-gradient(135deg,#8a9e8d,#a3b5a6)`,padding:"40px 20px 34px",textAlign:"center",position:"relative"}}>
     <div style={{position:"absolute",bottom:0,left:0,right:0,height:4,background:`linear-gradient(90deg,transparent,${gold},transparent)`}}/>
     <div style={{fontSize:10,fontWeight:600,letterSpacing:4,textTransform:"uppercase",color:gold,marginBottom:8}}>{"✈"} Itinerario · Junio 2026</div>
-    <div style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(1.8rem,6vw,3rem)",fontWeight:900,color:"white",marginBottom:6}}>Europa del <span style={{color:gold}}>Norte</span></div>
-    <div style={{fontSize:12,color:"#b0c4d8",marginBottom:16}}>21 días · 6 países · 2 personas</div>
+    <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(1.8rem,6vw,3rem)",fontWeight:900,color:"white",marginBottom:6}}>Europa del <span style={{color:gold}}>Norte</span></div>
+    <div style={{fontSize:12,color:"rgba(255,255,255,0.7)",marginBottom:16}}>21 días · 6 países · 2 personas</div>
     <div style={{display:"flex",justifyContent:"center",gap:5,flexWrap:"wrap"}}>
       {["SCL","Madrid","CPH","STK","\u26F4HEL","Oslo","Madrid","SCL"].map((c,i,a)=>(
-        <span key={i} style={{fontSize:10,fontWeight:600,color:c.includes("\u26F4")?"#e2bb5a":"#d0e4f0"}}>{c}{i<a.length-1&&<span style={{color:gold,margin:"0 3px"}}>{"\u2192"}</span>}</span>
+        <span key={i} style={{fontSize:10,fontWeight:600,color:c.includes("\u26F4")?"#dea5a4":"rgba(255,255,255,0.8)"}}>{c}{i<a.length-1&&<span style={{color:gold,margin:"0 3px"}}>{"\u2192"}</span>}</span>
       ))}
     </div>
   </div>
@@ -376,7 +377,7 @@ return (
 
   {/* FILTERS */}
   {showFilters&&(
-    <div style={{background:"white",borderBottom:"1px solid #e0d8cc",padding:"8px 12px"}}>
+    <div style={{background:"white",borderBottom:"1px solid #e4ddd6",padding:"8px 12px"}}>
       <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
         <span style={{fontSize:9,fontWeight:700,color:"#999",textTransform:"uppercase",letterSpacing:1}}>Pa{"í"}s</span>
         {countries.map(c=>(
@@ -409,12 +410,12 @@ return (
         const total=filteredItinerary.length;
         return(<>
           {/* Progress bar */}
-          <div style={{background:"white",borderRadius:12,border:"1px solid #e0d8cc",padding:"12px 14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+          <div style={{background:"white",borderRadius:12,border:"1px solid #e4ddd6",padding:"12px 14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
               <span style={{fontSize:11,fontWeight:700,color:navy}}>Confirmados</span>
-              <span style={{fontFamily:"'Playfair Display',serif",fontSize:14,fontWeight:700,color:confirmed===total?"#2e7d32":gold}}>{confirmed}/{total}</span>
+              <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:14,fontWeight:700,color:confirmed===total?"#2e7d32":gold}}>{confirmed}/{total}</span>
             </div>
-            <div style={{background:"#f0ece4",borderRadius:20,height:6,overflow:"hidden"}}>
+            <div style={{background:"#f0ebe5",borderRadius:20,height:6,overflow:"hidden"}}>
               <div style={{background:confirmed===total?"#43a047":gold,height:"100%",borderRadius:20,width:`${(confirmed/total)*100}%`,transition:"width 0.4s"}}/>
             </div>
           </div>
@@ -484,7 +485,7 @@ return (
               <div style={{flex:1,height:1,background:"#ddd"}}/>
             </div>
             {/* Day items */}
-            <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.04)",marginLeft:8}}>
+            <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.04)",marginLeft:8}}>
               {day.items.map((it,ii)=>{
                 const isFree=it.text.includes("D\u00EDa libre");
                 const isPending=it.note&&it.note.includes("\u26A0");
@@ -511,13 +512,13 @@ return (
     <div style={{padding:"16px",maxWidth:860,margin:"0 auto"}}>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
         {filteredHotels.map((h,i)=>(
-          <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
+          <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
             <div style={{background:h.status==="confirmed"?"#e8f5e9":"#fff3e0",padding:"10px 14px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div>
                 <div style={{fontSize:10,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:gold}}>{h.flag} {h.dates}</div>
-                <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1.05rem",fontWeight:700,color:navy}}>{h.city}</div>
+                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.05rem",fontWeight:700,color:navy}}>{h.city}</div>
               </div>
-              <div style={{background:gold+"22",border:`1px solid ${gold}`,borderRadius:20,padding:"2px 8px",fontSize:10,fontWeight:600,color:"#5a3e00"}}>{h.nights} noches</div>
+              <div style={{background:gold+"22",border:`1px solid ${gold}`,borderRadius:20,padding:"2px 8px",fontSize:10,fontWeight:600,color:"#7a5a58"}}>{h.nights} noches</div>
             </div>
             <div style={{padding:"11px 14px"}}>
               <div style={{fontWeight:600,fontSize:12,color:navy,marginBottom:4}}>{h.name}</div>
@@ -527,7 +528,7 @@ return (
               {h.price!=="\u2014"&&<div style={{fontSize:11,color:"#555",marginBottom:4}}>{"\uD83D\uDCB0"} {h.price}</div>}
               {h.codes.length>0&&<div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:5}}>{h.codes.map((c,j)=><span key={j} style={{fontFamily:"monospace",background:"#f4f0e8",border:"1px solid #ddd",borderRadius:4,padding:"1px 5px",fontSize:9}}>{c}</span>)}</div>}
               {h.note&&<div style={{background:"#fff8e1",border:"1px solid #ffd54f",borderRadius:6,padding:"5px 8px",fontSize:10,color:"#5d4037",marginBottom:6}}>{"\u26A0\uFE0F"} {h.note}</div>}
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:8,paddingTop:8,borderTop:"1px solid #f0ece4"}}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:8,paddingTop:8,borderTop:"1px solid #f0ebe5"}}>
                 <span style={{background:h.status==="confirmed"?"#e8f5e9":"#fff3e0",border:`1px solid ${h.status==="confirmed"?"#81c784":"#ffb74d"}`,color:h.status==="confirmed"?"#2e7d32":"#e65100",borderRadius:12,padding:"2px 8px",fontSize:10,fontWeight:700}}>{h.status==="confirmed"?"\u2713 Confirmado":"\u26A0 Pendiente"}</span>
                 <a href={h.maps} target="_blank" rel="noreferrer" style={{background:navy,color:"white",borderRadius:6,padding:"4px 8px",fontSize:10,fontWeight:600,textDecoration:"none"}}>{"\uD83D\uDDFA"} Maps</a>
               </div>
@@ -543,12 +544,12 @@ return (
     <div style={{padding:"16px",maxWidth:960,margin:"0 auto"}}>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
         {filteredMaps.map((p,i)=>(
-          <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
+          <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
             <div style={{background:navy,padding:"10px 14px",display:"flex",alignItems:"center",gap:10}}>
               <div style={{fontSize:20}}>{p.flag}</div>
               <div>
-                <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1rem",fontWeight:700,color:"white"}}>{p.city}</div>
-                <div style={{fontSize:10,color:"#90caf9"}}>{p.dates}</div>
+                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1rem",fontWeight:700,color:"white"}}>{p.city}</div>
+                <div style={{fontSize:10,color:"rgba(255,255,255,0.55)"}}>{p.dates}</div>
               </div>
             </div>
             <div>
@@ -576,16 +577,16 @@ return (
         {"\uD83D\uDCB1"} <strong>1 USD = $928 CLP</strong> {"\u00B7"} actualizado 21 mar 2026
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:16}}>
-        {[{l:"Ya pagado",c:"~$1.722M+",u:"~$1.856+",bg:navy},{l:"Por pagar",c:"~$1.011M\u20131.383M",u:"~$1.090\u20131.490",bg:"#7a3e00"},{l:"Comidas",c:`~$${Math.round(dt*928/1000).toLocaleString("es-CL")}k`,u:`~$${dt}`,bg:"#01579b"},{l:"Total",c:"~$6,7M\u20137,4M",u:"~$7.200\u20138.000",bg:"#2e5339"}].map((t,i)=>(
+        {[{l:"Ya pagado",c:"~$1.722M+",u:"~$1.856+",bg:navy},{l:"Por pagar",c:"~$1.011M\u20131.383M",u:"~$1.090\u20131.490",bg:"#8b6050"},{l:"Comidas",c:`~$${Math.round(dt*928/1000).toLocaleString("es-CL")}k`,u:`~$${dt}`,bg:"#01579b"},{l:"Total",c:"~$6,7M\u20137,4M",u:"~$7.200\u20138.000",bg:"#6b7c6e"}].map((t,i)=>(
           <div key={i} style={{background:t.bg,borderRadius:12,padding:"13px 10px",textAlign:"center"}}>
             <div style={{fontSize:9,fontWeight:600,letterSpacing:1,textTransform:"uppercase",color:"rgba(255,255,255,0.65)",marginBottom:3}}>{t.l}</div>
-            <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1rem",fontWeight:700,color:"white",lineHeight:1.1}}>{t.c}</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1rem",fontWeight:700,color:"white",lineHeight:1.1}}>{t.c}</div>
             <div style={{fontSize:9,color:"rgba(255,255,255,0.45)",marginTop:2}}>{t.u} USD</div>
           </div>
         ))}
       </div>
 
-      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
         <div style={{background:"#e8f5e9",padding:"9px 14px",borderBottom:"1px solid #c8e6c9",fontSize:11,fontWeight:700,textTransform:"uppercase",color:"#2e7d32"}}>{"\u2705"} Ya pagado</div>
         {paid.map((r,i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<paid.length-1?"1px solid #f4f0e8":"none",background:r.alert?"#fffde7":"white",gap:8,flexWrap:"wrap"}}>
@@ -598,7 +599,7 @@ return (
         ))}
       </div>
 
-      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
         <div style={{background:"#fff3e0",padding:"9px 14px",borderBottom:"1px solid #ffe0b2",fontSize:11,fontWeight:700,textTransform:"uppercase",color:"#e65100"}}>{"\u23F3"} Por pagar</div>
         {pending.map((r,i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<pending.length-1?"1px solid #f4f0e8":"none",gap:8,flexWrap:"wrap"}}>
@@ -614,7 +615,7 @@ return (
         ))}
       </div>
 
-      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
         <div style={{background:"#e3f2fd",padding:"9px 14px",borderBottom:"1px solid #bbdefb",fontSize:11,fontWeight:700,textTransform:"uppercase",color:"#0277bd"}}>{"\uD83C\uDF7D\uFE0F"} Comidas & actividades {"\u00B7"} ~$150 USD/d{"\u00ED"}a</div>
         {daily.map((r,i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"8px 14px",borderBottom:i<daily.length-1?"1px solid #f4f0e8":"none"}}>
@@ -632,7 +633,7 @@ return (
         <div style={{fontSize:10,fontWeight:600,letterSpacing:3,textTransform:"uppercase",color:gold,marginBottom:12}}>Resumen total</div>
         {[["Vuelos","~$1.392M\u20131.670M"],["Alojamiento","~$1.810M\u20132.042M"],["Trenes+Ferry","~$399k\u2013501k"],["Comidas","~$2.478M"],["Imprevistos","~$603k"]].map(([l,c],i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"5px 0",borderBottom:"1px solid rgba(255,255,255,0.07)",fontSize:12}}>
-            <span style={{color:"#b0c4d8"}}>{l}</span>
+            <span style={{color:"rgba(255,255,255,0.7)"}}>{l}</span>
             <span style={{color:"white",fontWeight:600}}>{c}</span>
           </div>
         ))}
@@ -641,8 +642,8 @@ return (
           <span style={{color:gold,fontWeight:700,fontSize:13}}>~$6,7M\u20137,4M CLP</span>
         </div>
         <div style={{display:"flex",justifyContent:"space-between",fontSize:11}}>
-          <span style={{color:"#90caf9"}}>Por persona</span>
-          <span style={{color:"#90caf9",fontWeight:600}}>~$3,3M\u20133,7M CLP</span>
+          <span style={{color:"rgba(255,255,255,0.55)"}}>Por persona</span>
+          <span style={{color:"rgba(255,255,255,0.55)",fontWeight:600}}>~$3,3M\u20133,7M CLP</span>
         </div>
       </div>
     </div>
@@ -651,12 +652,12 @@ return (
   {/* PENDIENTES */}
   {tab==="pending"&&(
     <div style={{padding:"16px",maxWidth:860,margin:"0 auto"}}>
-      <div style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",padding:"14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",padding:"14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
           <div style={{fontWeight:700,fontSize:13,color:navy}}>Progreso</div>
-          <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1.2rem",fontWeight:700,color:done===allTasks.length?"#2e7d32":gold}}>{done}/{allTasks.length}</div>
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.2rem",fontWeight:700,color:done===allTasks.length?"#2e7d32":gold}}>{done}/{allTasks.length}</div>
         </div>
-        <div style={{background:"#f0ece4",borderRadius:20,height:9,overflow:"hidden"}}>
+        <div style={{background:"#f0ebe5",borderRadius:20,height:9,overflow:"hidden"}}>
           <div style={{background:done===allTasks.length?"#43a047":gold,height:"100%",borderRadius:20,width:`${(done/allTasks.length)*100}%`,transition:"width 0.4s"}}/>
         </div>
         <div style={{fontSize:10,color:"#888",marginTop:5}}>{allTasks.length-done} tareas pendientes \u00B7 toca para marcar</div>
@@ -670,7 +671,7 @@ return (
         const hC=isR?"#c62828":isY?"#e65100":isT?"#01579b":"#6a1b9a";
         const hB=isR?"#f48fb1":isY?"#ffd54f":isT?"#90caf9":"#ce93d8";
         return(
-          <div key={cat} style={{background:"white",borderRadius:14,border:"1px solid #e0d8cc",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+          <div key={cat} style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
             <div style={{background:hBg,padding:"10px 14px",borderBottom:`1px solid ${hB}`,display:"flex",justifyContent:"space-between"}}>
               <div style={{fontSize:11,fontWeight:700,color:hC}}>{cat}</div>
               <div style={{fontSize:10,color:hC,opacity:0.8}}>{catDone}/{tasks.length}</div>
@@ -686,7 +687,7 @@ return (
                     <div style={{fontWeight:700,fontSize:12,color:isDone?"#888":navy,textDecoration:isDone?"line-through":"none"}}>{t.label}</div>
                     <div style={{fontSize:10,color:isDone?"#bbb":"#666",marginTop:2,lineHeight:1.5}}>{t.detail}</div>
                     <div style={{display:"flex",alignItems:"center",gap:6,marginTop:5,flexWrap:"wrap"}}>
-                      {t.clp!=="\u2014"&&<span style={{background:"#f8f4ec",border:"1px solid #e0d0a0",borderRadius:10,padding:"1px 7px",fontSize:9,fontWeight:600,color:"#7a5a00"}}>{t.clp}</span>}
+                      {t.clp!=="\u2014"&&<span style={{background:"#f8f4ec",border:"1px solid #e0d0a0",borderRadius:10,padding:"1px 7px",fontSize:9,fontWeight:600,color:"#8b6b68"}}>{t.clp}</span>}
                       {t.link&&!isDone&&(
                         <a href={t.link} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()} style={{background:isR?"#fce4ec":isT?"#e3f2fd":"#e8f5e9",border:`1px solid ${isR?"#f48fb1":isT?"#90caf9":"#81c784"}`,color:isR?"#c62828":isT?"#0277bd":"#2e7d32",borderRadius:6,padding:"2px 7px",fontSize:10,fontWeight:600,textDecoration:"none"}}>{t.ll} {"\u2192"}</a>
                       )}
@@ -699,9 +700,9 @@ return (
         );
       })}
       <div style={{background:navy,borderRadius:12,padding:"14px",textAlign:"center"}}>
-        <div style={{fontSize:11,color:"#b0c4d8",marginBottom:3}}>Airbnb Oslo se cobra el</div>
-        <div style={{fontFamily:"'Playfair Display',serif",fontSize:"1.2rem",fontWeight:700,color:gold}}>1 de junio 2026</div>
-        <div style={{fontSize:10,color:"#90caf9",marginTop:2}}>~$650 USD {"\u00B7"} ~$603k CLP {"\u00B7"} HMF3TJ4NPS</div>
+        <div style={{fontSize:11,color:"rgba(255,255,255,0.7)",marginBottom:3}}>Airbnb Oslo se cobra el</div>
+        <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.2rem",fontWeight:700,color:gold}}>1 de junio 2026</div>
+        <div style={{fontSize:10,color:"rgba(255,255,255,0.55)",marginTop:2}}>~$650 USD {"\u00B7"} ~$603k CLP {"\u00B7"} HMF3TJ4NPS</div>
       </div>
     </div>
   )}

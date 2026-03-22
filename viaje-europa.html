@@ -30,7 +30,7 @@
 <div id="root"></div>
 <script type="text/babel">
 const { useState } = React;
-const navy="#4a554c", gold="#dea5a4", cream="#f8f6f3";
+const navy="#3d4a3f", gold="#dea5a4", cream="#f8f6f3";
 
 const itinerary=[
 {icon:"\u2708\uFE0F",date:"Mar 2 jun",city:"Santiago \u2192 Madrid",detail:"LATAM LA706 \u00B7 SCL 19:00 \u2192 MAD 13:55 (+1) \u00B7 C\u00F3d JLCDKB",status:"confirmed",tag:"VUELO"},
@@ -354,7 +354,7 @@ return (
 <div style={{background:cream,minHeight:"100vh"}}>
 
   {/* HERO */}
-  <div style={{background:`linear-gradient(135deg,#8a9e8d,#a3b5a6)`,padding:"40px 20px 34px",textAlign:"center",position:"relative"}}>
+  <div style={{background:`linear-gradient(135deg,#5a6b5e,#7a8e7d)`,padding:"40px 20px 34px",textAlign:"center",position:"relative"}}>
     <div style={{position:"absolute",bottom:0,left:0,right:0,height:4,background:`linear-gradient(90deg,transparent,${gold},transparent)`}}/>
     <div style={{fontSize:10,fontWeight:600,letterSpacing:4,textTransform:"uppercase",color:gold,marginBottom:8}}>{"✈"} Itinerario · Junio 2026</div>
     <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(1.8rem,6vw,3rem)",fontWeight:900,color:"white",marginBottom:6}}>Europa del <span style={{color:gold}}>Norte</span></div>

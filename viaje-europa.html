@@ -362,7 +362,7 @@ const filteredMaps=mapPlaces.filter(p=>{
   if(filterCountry==="all")return true;
   return matchesCountry(p.city+p.flag,filterCountry);
 });
-const showFilters=["full","maps"].includes(tab);
+const showFilters=["quick","full","maps"].includes(tab);
 
 return (
 <div style={{background:cream,minHeight:"100vh"}}>
@@ -408,21 +408,14 @@ return (
 
   {/* FILTERS */}
   {showFilters&&(
-    <div style={{background:"white",borderBottom:"1px solid #e4ddd6",padding:"8px 12px"}}>
+    <div style={{background:"white",borderBottom:"1px solid #e4ddd6",padding:"6px 12px"}}>
       <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
-        <span style={{fontSize:12,fontWeight:600,color:"#999",letterSpacing:0.5}}>Pa{"í"}s</span>
+        <span style={{fontSize:13,fontWeight:600,color:"#999"}}>Pa{"í"}s</span>
         {countries.map(c=>(
-          <button key={c.id} onClick={()=>{setFilterCountry(c.id);setFilterDay("all");}} style={{padding:"3px 8px",fontSize:c.id==="all"?10:14,borderRadius:8,border:filterCountry===c.id?`2px solid ${c.color}`:"2px solid transparent",background:filterCountry===c.id?"#f4f0e8":"transparent",cursor:"pointer",lineHeight:1}}>{c.flag}</button>
+          <button key={c.id} onClick={()=>{setFilterCountry(c.id);setFilterDay("all");setCalDay(null);}} style={{padding:"3px 8px",fontSize:c.id==="all"?12:18,borderRadius:8,border:filterCountry===c.id?`2px solid ${c.color}`:"2px solid transparent",background:filterCountry===c.id?"#f5e8e0":"transparent",cursor:"pointer",lineHeight:1}}>{c.flag}</button>
         ))}
-        {tab==="days"&&<>
-          <span style={{fontSize:12,fontWeight:600,color:"#999",letterSpacing:0.5,marginLeft:8}}>D{"í"}a</span>
-          <select value={filterDay} onChange={e=>setFilterDay(e.target.value)} style={{fontSize:10,padding:"3px 6px",borderRadius:6,border:"1px solid #ddd",background:"white",color:navy,fontWeight:600}}>
-            <option value="all">Todos</option>
-            {dayDates.map(d=><option key={d} value={d}>{d}</option>)}
-          </select>
-        </>}
         {(filterCountry!=="all"||filterDay!=="all")&&(
-          <button onClick={()=>{setFilterCountry("all");setFilterDay("all");}} style={{fontSize:11,padding:"3px 8px",borderRadius:8,background:"#fce8e8",border:"1px solid #f48fb1",color:"#8b5e5e",cursor:"pointer",fontWeight:600}}>Limpiar</button>
+          <button onClick={()=>{setFilterCountry("all");setFilterDay("all");setCalDay(null);}} style={{fontSize:12,padding:"4px 10px",borderRadius:8,background:"#fce8e8",border:"1px solid #dea5a4",color:"#8b5e5e",cursor:"pointer",fontWeight:600}}>Limpiar</button>
         )}
       </div>
     </div>
@@ -466,19 +459,9 @@ return (
 
         return(<>
           <div style={{fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:700,color:navy,textAlign:"center",marginBottom:2}}>Junio 2026</div>
-          {/* Filtros */}
-          <div style={{display:"flex",gap:5,justifyContent:"flex-start",marginBottom:8,flexWrap:"wrap",alignItems:"center"}}>
-            <span style={{fontSize:11,fontWeight:600,color:"#999"}}>Pa{"í"}s</span>
-            {countries.map(c=>(
-              <button key={c.id} onClick={()=>{setFilterCountry(c.id);setCalDay(null);}} style={{padding:"3px 7px",fontSize:c.id==="all"?10:14,borderRadius:8,border:filterCountry===c.id?`2px solid ${c.color}`:"1px solid #ddd",background:filterCountry===c.id?"#f5e8e0":"white",cursor:"pointer",lineHeight:1}}>{c.flag}</button>
-            ))}
-            {filterCountry!=="all"&&(
-              <button onClick={()=>{setFilterCountry("all");setCalDay(null);}} style={{fontSize:10,padding:"3px 8px",borderRadius:8,background:"#fce8e8",border:"1px solid #dea5a4",color:"#8b5e5e",cursor:"pointer",fontWeight:600}}>Limpiar</button>
-            )}
-          </div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2}}>
             {weekDays.map(d=>(
-              <div key={d} style={{textAlign:"center",fontSize:12,fontWeight:700,color:"#999",padding:"0 0 1px"}}>{d}</div>
+              <div key={d} style={{textAlign:"center",fontSize:14,fontWeight:700,color:"#999",padding:"0 0 1px"}}>{d}</div>
             ))}
           </div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2}}>

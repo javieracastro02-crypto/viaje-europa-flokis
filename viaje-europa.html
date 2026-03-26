@@ -367,15 +367,31 @@ return (
 <div style={{background:cream,minHeight:"100vh"}}>
 
   {/* HERO */}
-  <div style={{background:`linear-gradient(135deg,#3d4a3f,#5a6b5e)`,padding:"40px 20px 34px",textAlign:"center",position:"relative"}}>
-    <div style={{position:"absolute",bottom:0,left:0,right:0,height:4,background:`linear-gradient(90deg,transparent,${gold},transparent)`}}/>
-    <div style={{fontSize:14,fontWeight:600,letterSpacing:4,textTransform:"uppercase",color:gold,marginBottom:8}}>{"✈"} Itinerario · Junio 2026</div>
-    <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(1.8rem,6vw,3rem)",fontWeight:900,color:"white",marginBottom:6}}>Europa del <span style={{color:gold}}>Norte</span></div>
-    <div style={{fontSize:12,color:"rgba(255,255,255,0.7)",marginBottom:16}}>21 días · 6 países · 2 personas</div>
-    <div style={{display:"flex",justifyContent:"center",gap:5,flexWrap:"wrap"}}>
-      {["SCL","Madrid","CPH","STK","\u26F4HEL","Oslo","Madrid","SCL"].map((c,i,a)=>(
-        <span key={i} style={{fontSize:14,fontWeight:600,color:c.includes("\u26F4")?"#dea5a4":"rgba(255,255,255,0.8)"}}>{c}{i<a.length-1&&<span style={{color:gold,margin:"0 3px"}}>{"\u2192"}</span>}</span>
-      ))}
+  <div style={{position:"relative",textAlign:"center",overflow:"hidden"}}>
+    <div style={{position:"absolute",top:0,left:0,right:0,bottom:0,display:"grid",gridTemplateColumns:"1fr 1fr 1fr"}}>
+      <div style={{background:"url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&q=75') center/cover"}}/>
+      <div style={{background:"url('https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=600&q=75') center/cover"}}/>
+      <div style={{background:"url('https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=600&q=75') center 30%/cover"}}/>
+    </div>
+    <div style={{position:"absolute",top:0,left:0,right:0,bottom:0,background:"linear-gradient(180deg,rgba(20,25,30,0.7) 0%,rgba(20,25,30,0.88) 100%)"}}/>
+    <div style={{position:"absolute",bottom:0,left:0,right:0,height:4,background:`linear-gradient(90deg,transparent,${gold},transparent)`,zIndex:2}}/>
+    <div style={{position:"relative",zIndex:1,padding:"44px 20px 34px"}}>
+      <div style={{fontSize:10,fontWeight:500,letterSpacing:5,textTransform:"uppercase",color:gold,marginBottom:10}}>{"\u2708"} Itinerario · Junio 2026</div>
+      <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(2rem,7vw,3.2rem)",fontWeight:700,color:"white",marginBottom:4}}>Europa del <span style={{color:gold}}>Norte</span></div>
+      <div style={{fontSize:12,color:"rgba(255,255,255,0.75)",marginBottom:6}}>21 d{"í"}as · 6 pa{"í"}ses · 2 personas</div>
+      <div style={{display:"flex",justifyContent:"center",gap:6,marginBottom:10}}>
+        {[{f:"\uD83C\uDDEA\uD83C\uDDF8",n:"Madrid"},{f:"\uD83C\uDDE9\uD83C\uDDF0",n:"Copenhague"},{f:"\uD83C\uDDF8\uD83C\uDDEA",n:"Estocolmo"},{f:"\uD83C\uDDEB\uD83C\uDDEE",n:"Helsinki"},{f:"\uD83C\uDDF3\uD83C\uDDF4",n:"Oslo"}].map((c,i)=>(
+          <div key={i} style={{textAlign:"center"}}>
+            <div style={{fontSize:20}}>{c.f}</div>
+            <div style={{fontSize:9,color:"rgba(255,255,255,0.6)",fontWeight:500,marginTop:2}}>{c.n}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{display:"flex",justifyContent:"center",gap:4,flexWrap:"wrap"}}>
+        {["SCL","Madrid","CPH","STK","\u26F4HEL","Oslo","Madrid","SCL"].map((c,i,a)=>(
+          <span key={i} style={{fontSize:10,fontWeight:500,color:c.includes("\u26F4")?gold:"rgba(255,255,255,0.5)"}}>{c}{i<a.length-1&&<span style={{color:gold,margin:"0 2px"}}>{"\u2192"}</span>}</span>
+        ))}
+      </div>
     </div>
   </div>
 

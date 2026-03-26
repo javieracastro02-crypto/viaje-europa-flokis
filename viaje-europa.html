@@ -368,12 +368,12 @@ return (
 
   {/* HERO */}
   <div style={{position:"relative",textAlign:"center",overflow:"hidden"}}>
-    <div style={{position:"absolute",top:0,left:0,right:0,bottom:0,display:"grid",gridTemplateColumns:"1fr 1fr 1fr"}}>
-      <div style={{background:"url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&q=75') center/cover",borderRight:"2px solid rgba(20,25,30,0.5)"}}/>
-      <div style={{background:"url('https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=600&q=75') center/cover",borderRight:"2px solid rgba(20,25,30,0.5)"}}/>
-      <div style={{background:"url('https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=600&q=75') center 30%/cover"}}/>
+    <div style={{position:"absolute",top:0,left:0,right:0,bottom:0}}>
+      <div style={{position:"absolute",top:0,left:0,width:"45%",bottom:0,background:"url('https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=600&q=75') center/cover"}}/>
+      <div style={{position:"absolute",top:0,left:"30%",width:"45%",bottom:0,background:"url('https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=600&q=75') center/cover",maskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent)",WebkitMaskImage:"linear-gradient(to right,transparent,black 30%,black 70%,transparent)"}}/>
+      <div style={{position:"absolute",top:0,right:0,width:"45%",bottom:0,background:"url('https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?w=600&q=75') center 30%/cover",maskImage:"linear-gradient(to right,transparent,black 40%)",WebkitMaskImage:"linear-gradient(to right,transparent,black 40%)"}}/>
     </div>
-    <div style={{position:"absolute",top:0,left:0,right:0,bottom:0,background:"linear-gradient(180deg,rgba(20,25,30,0.55) 0%,rgba(20,25,30,0.85) 100%)"}}/>
+    <div style={{position:"absolute",top:0,left:0,right:0,bottom:0,background:"linear-gradient(180deg,rgba(20,25,30,0.5) 0%,rgba(20,25,30,0.85) 100%)"}}/>
     <div style={{position:"absolute",bottom:0,left:0,right:0,height:4,background:`linear-gradient(90deg,transparent,${gold},transparent)`,zIndex:2}}/>
     <div style={{position:"relative",zIndex:1,padding:"44px 20px 34px"}}>
       <div style={{fontSize:10,fontWeight:500,letterSpacing:5,textTransform:"uppercase",color:gold,marginBottom:10}}>{"\u2708"} Itinerario · Junio 2026</div>

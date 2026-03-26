@@ -1,4 +1,4 @@
-const CACHE_NAME = 'europa2026-v26';
+const CACHE_NAME = 'europa2026-v27';
 const ASSETS_TO_CACHE = [
   './',
   './viaje-europa.html',

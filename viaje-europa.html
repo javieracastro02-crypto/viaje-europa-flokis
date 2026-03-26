@@ -108,22 +108,26 @@ const allTasks=[
 ];
 
 const paid=[
-{item:"\u2708\uFE0F Vuelos LATAM (ida+vuelta)",when:"Javi",clp:184270},
-{item:"\u2708\uFE0F SAS MAD \u2192 CPH",when:"Javi",clp:190000},
-{item:"\uD83C\uDFE8 ILUNION Madrid ida",when:"Javi",clp:275811},
-{item:"\uD83C\uDFE8 Wakeup Copenhague",when:"Bryan",clp:561831},
-{item:"\uD83C\uDFE8 Livington Estocolmo",when:"Bryan",clp:554711},
-{item:"\uD83D\uDEA2 Ferry STK \u2192 HEL",when:"Javi",clp:190000},
-{item:"\uD83C\uDFE0 Hotel AX Helsinki",when:"Javi",clp:323851},
-{item:"\u2708\uFE0F Norwegian HEL \u2192 OSL (Javi)",when:"Javi",clp:89000},
-{item:"\u2708\uFE0F Norwegian OSL \u2192 MAD (Javi)",when:"Javi",clp:276000},
-{item:"\uD83C\uDFE0 Airbnb Oslo",when:"Bryan",clp:344696},
-{item:"\uD83C\uDFE8 ILUNION Madrid regreso",when:"Javi",clp:269000},
-{item:"\uD83D\uDCB3 Transferencia Bryan",when:"Javi",clp:500000},
+{item:"Vuelo Santiago \u2192 Madrid \u2192 Santiago / LATAM",when:"Javi",clp:184270,cat:"Vuelos"},
+{item:"Vuelo Madrid \u2192 Copenhague / SAS",when:"Javi",clp:190000,cat:"Vuelos"},
+{item:"Vuelo Helsinki \u2192 Oslo / Norwegian (Javi)",when:"Javi",clp:89000,cat:"Vuelos"},
+{item:"Vuelo Oslo \u2192 Madrid / Norwegian (Javi)",when:"Javi",clp:276000,cat:"Vuelos"},
+{item:"Hotel Madrid ida / ILUNION P\u00EDo XII",when:"Javi",clp:275811,cat:"Alojamiento"},
+{item:"Hotel Copenhague / Wakeup Copenhagen",when:"Bryan",clp:561831,cat:"Alojamiento"},
+{item:"Hotel Estocolmo / Livington Hotel",when:"Bryan",clp:554711,cat:"Alojamiento"},
+{item:"Hotel Helsinki / Hotel AX",when:"Javi",clp:323851,cat:"Alojamiento"},
+{item:"Airbnb Oslo / Sandakerveien 68A",when:"Bryan",clp:344696,cat:"Alojamiento"},
+{item:"Hotel Madrid regreso / ILUNION P\u00EDo XII",when:"Javi",clp:269000,cat:"Alojamiento"},
+{item:"Ferry Estocolmo \u2192 Helsinki / Viking Line",when:"Javi",clp:190000,cat:"Transporte"},
+{item:"Transferencia a Bryan",when:"Javi",clp:500000,cat:"Otro"},
 ];
+const finCats=["Todos","Vuelos","Alojamiento","Transporte","Otro"];
+const filteredPaid=filterFinCat==="Todos"?paid:paid.filter(r=>r.cat===filterFinCat);
+const filteredPending=filterFinCat==="Todos"?pending:pending.filter(r=>r.cat===filterFinCat);
 const totalPaid=paid.reduce((s,r)=>s+r.clp,0);
 const paidJavi=paid.filter(r=>r.when==="Javi").reduce((s,r)=>s+r.clp,0);
 const paidBryan=paid.filter(r=>r.when==="Bryan").reduce((s,r)=>s+r.clp,0);
+const filteredTotal=filteredPaid.reduce((s,r)=>s+r.clp,0);
 const pendingMin=89000+276000+148000+30000;
 const pendingMax=89000+276000+222000+80000;
 const totalComidas=dt*928;
@@ -131,10 +135,10 @@ const granTotalMin=totalPaid+pendingMin+totalComidas;
 const granTotalMax=totalPaid+pendingMax+totalComidas;
 
 const pending=[
-{item:"\u2708\uFE0F Bryan HEL \u2192 OSL",when:"\uD83D\uDD34 Urgente",clp:"~$89.000",link:"https://www.norwegian.com"},
-{item:"\u2708\uFE0F Bryan OSL \u2192 MAD",when:"\uD83D\uDD34 Urgente",clp:"~$276.000",link:"https://www.norwegian.com"},
-{item:"\uD83D\uDE82 Tren CPH \u2192 STK x2",when:"\uD83D\uDD34 Urgente",clp:"$74.000\u2013111.000 x2",link:"https://www.raileurope.com"},
-{item:"\uD83D\uDEE1\uFE0F Seguro de viaje",when:"\uD83D\uDFE1 Antes mayo",clp:"$30.000\u201380.000",link:"https://www.assistcard.com/cl"},
+{item:"Vuelo Helsinki \u2192 Oslo / Norwegian (Bryan)",when:"\uD83D\uDD34 Urgente",clp:"~$89.000",link:"https://www.norwegian.com",cat:"Vuelos"},
+{item:"Vuelo Oslo \u2192 Madrid / Norwegian (Bryan)",when:"\uD83D\uDD34 Urgente",clp:"~$276.000",link:"https://www.norwegian.com",cat:"Vuelos"},
+{item:"Tren Copenhague \u2192 Estocolmo x2",when:"\uD83D\uDD34 Urgente",clp:"$74.000\u2013111.000 x2",link:"https://www.raileurope.com",cat:"Transporte"},
+{item:"Seguro de viaje",when:"\uD83D\uDFE1 Antes mayo",clp:"$30.000\u201380.000",link:"https://www.assistcard.com/cl",cat:"Otro"},
 ];
 
 const daily=[
@@ -307,6 +311,7 @@ function App(){
 const [tab,setTab]=useState("quick");
 const [filterCountry,setFilterCountry]=useState("all");
 const [filterDay,setFilterDay]=useState("all");
+const [filterFinCat,setFilterFinCat]=useState("Todos");
 const [checked,setChecked]=useState(()=>{
   try { return JSON.parse(localStorage.getItem("europa2026_checked")||"{}"); } catch(e){ return {}; }
 });
@@ -583,8 +588,14 @@ return (
   {/* FINANZAS */}
   {tab==="finance"&&(
     <div style={{padding:"16px",maxWidth:900,margin:"0 auto"}}>
-      <div style={{background:"#f8f4ec",border:"1px solid #e0d0a0",borderRadius:10,padding:"8px 13px",marginBottom:14,fontSize:11,color:"#555"}}>
+      <div style={{background:"#f8f4ec",border:"1px solid #e0d0a0",borderRadius:10,padding:"8px 13px",marginBottom:10,fontSize:11,color:"#555"}}>
         {"\uD83D\uDCB1"} <strong>1 USD = $928 CLP</strong> {"\u00B7"} actualizado 21 mar 2026
+      </div>
+      <div style={{display:"flex",gap:6,marginBottom:14,flexWrap:"wrap",alignItems:"center"}}>
+        <span style={{fontSize:9,fontWeight:700,color:"#999",textTransform:"uppercase",letterSpacing:1}}>Filtrar</span>
+        {finCats.map(c=>(
+          <button key={c} onClick={()=>setFilterFinCat(c)} style={{padding:"4px 10px",fontSize:10,fontWeight:filterFinCat===c?600:400,borderRadius:8,border:filterFinCat===c?`2px solid ${navy}`:"1px solid #ddd",background:filterFinCat===c?"#e8f5e9":"white",color:filterFinCat===c?navy:"#888",cursor:"pointer"}}>{c}</button>
+        ))}
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:16}}>
         {[{l:"Ya pagado",c:`$${totalPaid.toLocaleString("es-CL")}`,u:`Javi $${paidJavi.toLocaleString("es-CL")} \u00B7 Bryan $${paidBryan.toLocaleString("es-CL")}`,bg:navy},{l:"Por pagar (est.)",c:`~$${pendingMin.toLocaleString("es-CL")}\u2013${pendingMax.toLocaleString("es-CL")}`,u:"Vuelos Bryan + tren + seguro",bg:"#8b6050"},{l:"Comidas (est.)",c:`~$${totalComidas.toLocaleString("es-CL")}`,u:`~US$${dt} \u00B7 $150/d\u00EDa x2`,bg:"#01579b"},{l:"Total viaje",c:`~$${granTotalMin.toLocaleString("es-CL")}\u2013${granTotalMax.toLocaleString("es-CL")}`,u:`~$${Math.round(granTotalMin/2).toLocaleString("es-CL")}\u2013${Math.round(granTotalMax/2).toLocaleString("es-CL")} c/u`,bg:"#6b7c6e"}].map((t,i)=>(
@@ -598,25 +609,30 @@ return (
 
       <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
         <div style={{background:"#e8f5e9",padding:"9px 14px",borderBottom:"1px solid #c8e6c9",fontSize:11,fontWeight:700,textTransform:"uppercase",color:"#2e7d32"}}>{"\u2705"} Ya pagado</div>
-        {paid.map((r,i)=>(
-          <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<paid.length-1?"1px solid #f4f0e8":"none",background:r.alert?"#fffde7":"white",gap:8,flexWrap:"wrap"}}>
-            <div style={{fontSize:12,color:navy,fontWeight:500,flex:1}}>{r.item}</div>
-            <div style={{display:"flex",gap:8,alignItems:"center"}}>
-              <span style={{background:r.when==="Javi"?"#fce8e8":r.when==="Bryan"?"#e3f2fd":"#e8f5e9",border:`1px solid ${r.when==="Javi"?"#f0c0bf":r.when==="Bryan"?"#90caf9":"#81c784"}`,color:r.when==="Javi"?"#8b4040":r.when==="Bryan"?"#01579b":"#2e7d32",borderRadius:12,padding:"1px 7px",fontSize:10,fontWeight:600,whiteSpace:"nowrap"}}>{r.when}</span>
-              <span style={{fontWeight:700,color:navy,fontSize:12,minWidth:50,textAlign:"right"}}>${r.clp.toLocaleString("es-CL")}</span>
+        {filteredPaid.map((r,i)=>(
+          <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPaid.length-1?"1px solid #f4f0e8":"none",background:"white",gap:8,flexWrap:"wrap"}}>
+            <div style={{flex:1}}>
+              <div style={{fontSize:12,color:navy,fontWeight:500}}>{r.item}</div>
+              <div style={{display:"flex",gap:4,marginTop:3}}>
+                <span style={{background:r.cat==="Vuelos"?"#e3f2fd":r.cat==="Alojamiento"?"#fff8e1":r.cat==="Transporte"?"#f3e5f5":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#90caf9":r.cat==="Alojamiento"?"#ffe082":r.cat==="Transporte"?"#ce93d8":"#ddd"}`,color:r.cat==="Vuelos"?"#01579b":r.cat==="Alojamiento"?"#f57f17":r.cat==="Transporte"?"#6a1b9a":"#666",borderRadius:8,padding:"0px 5px",fontSize:8,fontWeight:600}}>{r.cat}</span>
+                <span style={{background:r.when==="Javi"?"#fce8e8":"#e3f2fd",border:`1px solid ${r.when==="Javi"?"#f0c0bf":"#90caf9"}`,color:r.when==="Javi"?"#8b4040":"#01579b",borderRadius:8,padding:"0px 5px",fontSize:8,fontWeight:600}}>{r.when}</span>
+              </div>
+            </div>
+            <div style={{display:"flex",alignItems:"center"}}>
+              <span style={{fontWeight:700,color:navy,fontSize:12,textAlign:"right"}}>${r.clp.toLocaleString("es-CL")}</span>
             </div>
           </div>
         ))}
         <div style={{display:"flex",justifyContent:"space-between",padding:"10px 14px",background:"#e8f5e9",borderTop:"1px solid #c8e6c9"}}>
           <span style={{fontWeight:700,color:"#2e7d32",fontSize:12}}>Total pagado</span>
-          <span style={{fontWeight:700,color:"#2e7d32",fontSize:13}}>${totalPaid.toLocaleString("es-CL")}</span>
+          <span style={{fontWeight:700,color:"#2e7d32",fontSize:13}}>${filteredTotal.toLocaleString("es-CL")}{filterFinCat!=="Todos"&&` (${filterFinCat})`}</span>
         </div>
       </div>
 
       <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
         <div style={{background:"#fff3e0",padding:"9px 14px",borderBottom:"1px solid #ffe0b2",fontSize:11,fontWeight:700,textTransform:"uppercase",color:"#e65100"}}>{"\u23F3"} Por pagar</div>
-        {pending.map((r,i)=>(
-          <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<pending.length-1?"1px solid #f4f0e8":"none",gap:8,flexWrap:"wrap"}}>
+        {filteredPending.map((r,i)=>(
+          <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPending.length-1?"1px solid #f4f0e8":"none",gap:8,flexWrap:"wrap"}}>
             <div style={{flex:1}}>
               <div style={{fontSize:12,color:navy,fontWeight:500}}>{r.item}</div>
               <span style={{background:r.when.includes("\uD83D\uDD34")?"#fce4ec":"#fff8e1",border:`1px solid ${r.when.includes("\uD83D\uDD34")?"#f48fb1":"#ffd54f"}`,color:r.when.includes("\uD83D\uDD34")?"#c62828":"#e65100",borderRadius:10,padding:"1px 6px",fontSize:9,fontWeight:600}}>{r.when}</span>

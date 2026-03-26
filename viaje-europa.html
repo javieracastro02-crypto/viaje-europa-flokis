@@ -131,7 +131,7 @@ const pending=[
 {item:"Vuelo Oslo \u2192 Madrid (Bryan)",detail:"Norwegian DY1718 o similar \u00B7 20 jun",when:"\uD83D\uDD34 Urgente",clp:"~$276.000",link:"https://www.norwegian.com",cat:"Vuelos"},
 {item:"Tren Copenhague \u2192 Estocolmo",detail:"9 jun \u00B7 ~5h \u00B7 x2 pasajeros",when:"\uD83D\uDD34 Urgente",clp:"~$74.000\u2013111.000 x2",link:"https://www.raileurope.com",cat:"Transporte"},
 {item:"Seguro de viaje",detail:"2\u201322 jun \u00B7 Assist Card, MAPFRE o AXA",when:"\uD83D\uDFE1 Antes mayo",clp:"~$30.000\u201380.000",link:"https://www.assistcard.com/cl",cat:"Otro"},
-{item:"Comidas y actividades",detail:"~US$150/d\u00EDa x2 personas \u00B7 18 d\u00EDas en Europa",when:"\uD83D\uDFE1 Durante el viaje",clp:`~$${(dt*928).toLocaleString("es-CL")}`,link:null,cat:"Comidas"},
+{item:"Comidas y actividades",detail:"~US$150/d\u00EDa x2 personas \u00B7 18 d\u00EDas en Europa",when:"\uD83D\uDFE1 Durante el viaje",clp:"comidas",link:null,cat:"Comidas"},
 ];
 
 const daily=[
@@ -659,8 +659,8 @@ return (
             </div>
             <div style={{display:"flex",gap:6,alignItems:"center"}}>
               <span style={{background:r.cat==="Vuelos"?"#e3f2fd":r.cat==="Transporte"?"#f3e5f5":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#90caf9":r.cat==="Transporte"?"#ce93d8":"#ddd"}`,color:r.cat==="Vuelos"?"#01579b":r.cat==="Transporte"?"#6a1b9a":"#666",borderRadius:8,padding:"1px 6px",fontSize:14,fontWeight:600}}>{r.cat}</span>
-              <span style={{fontWeight:700,color:"#c62828",fontSize:12}}>{r.clp}</span>
-              <a href={r.link} target="_blank" rel="noreferrer" style={{background:"#e3f2fd",border:"1px solid #4a9fc4",color:"#0277bd",borderRadius:6,padding:"3px 8px",fontSize:15,fontWeight:600,textDecoration:"none"}}>{"\u2192"}</a>
+              <span style={{fontWeight:700,color:"#c62828",fontSize:12}}>{r.clp==="comidas"?`~$${totalComidas.toLocaleString("es-CL")}`:r.clp}</span>
+              {r.link&&<a href={r.link} target="_blank" rel="noreferrer" style={{background:"#e3f2fd",border:"1px solid #4a9fc4",color:"#0277bd",borderRadius:6,padding:"3px 8px",fontSize:15,fontWeight:600,textDecoration:"none"}}>{"\u2192"}</a>}
             </div>
           </div>
         ))}

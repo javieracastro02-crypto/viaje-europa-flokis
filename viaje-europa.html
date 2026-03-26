@@ -41,9 +41,9 @@ const itinerary=[
 {icon:"\uD83C\uDDF8\uD83C\uDDEA",date:"9\u201313 jun",city:"Estocolmo \u00B7 4 noches",detail:"Livington Hotel \u00B7 Gamla Stan \u00B7 Museo Vasa \u26A0\uFE0F1 noche perdida",status:"confirmed",tag:"HOTEL"},
 {icon:"\uD83D\uDEA2",date:"S\u00E1b 13 jun 17:00",city:"Ferry \u2192 Helsinki",detail:"Viking Line \u00B7 llega 14 jun ~10:00 \u00B7 Ref DFP194722507",status:"confirmed",tag:"FERRY"},
 {icon:"\uD83C\uDDEB\uD83C\uDDEE",date:"14\u201317 jun",city:"Helsinki \u00B7 3 noches",detail:"Hotel AX \u2B50\u2B50\u2B50\u2B50 \u00B7 Suomenlinna \uD83C\uDFF0 \u00B7 Sauna \uD83E\uDDD6",status:"confirmed",tag:"HOTEL"},
-{icon:"\u2708\uFE0F",date:"Mar 17 jun",city:"Helsinki \u2192 Oslo",detail:"Finnair / Norwegian \u00B7 ~1h 25min \u00B7 por comprar",status:"pending",tag:"VUELO"},
+{icon:"\u2708\uFE0F",date:"Mi\u00E9 17 jun",city:"Helsinki \u2192 Oslo",detail:"Norwegian DY1191 \u00B7 13:55\u201314:25 \u00B7 1h 30min \u00B7 Ref 40-922184511",status:"confirmed",tag:"VUELO"},
 {icon:"\uD83C\uDDF3\uD83C\uDDF4",date:"17\u201320 jun",city:"Oslo \u00B7 3 noches",detail:"Airbnb Sandakerveien 68A \u00B7 HMF3TJ4NPS",status:"confirmed",tag:"AIRBNB"},
-{icon:"\u2708\uFE0F",date:"S\u00E1b 20 jun",city:"Oslo \u2192 Madrid",detail:"Por comprar \u00B7 Google Flights \u00B7 ~3h",status:"pending",tag:"VUELO"},
+{icon:"\u2708\uFE0F",date:"S\u00E1b 20 jun",city:"Oslo \u2192 Madrid",detail:"Norwegian DY1718 \u00B7 15:45\u201319:30 \u00B7 3h 45min \u00B7 Ref 40-922233067",status:"confirmed",tag:"VUELO"},
 {icon:"\uD83C\uDDEA\uD83C\uDDF8",date:"20\u201322 jun",city:"Madrid \u00B7 2 noches",detail:"Hotel ILUNION P\u00EDo XII \u00B7 US$312",status:"confirmed",tag:"HOTEL"},
 {icon:"\u2708\uFE0F",date:"Lun 22 jun 01:45",city:"Madrid \u2192 Lima \u2192 Santiago",detail:"LATAM LA2485+LA2697 \u00B7 llega SCL 14:05 \u00B7 C\u00F3d JLCDKB",status:"confirmed",tag:"VUELO"},
 ];
@@ -96,8 +96,8 @@ const mapPlaces=[
 const allTasks=[
 {id:1,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\uD83D\uDE82 Tren Copenhague \u2192 Estocolmo",detail:"9 jun \u00B7 ~5h \u00B7 precio sube con el tiempo",link:"https://www.raileurope.com",ll:"raileurope.com",clp:"~$74k\u2013111k CLP"},
 {id:2,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\uD83C\uDFE8 Hotel Helsinki \u2014 Hotel AX",detail:"14\u201317 jun \u00B7 3 noches \u00B7 \u2705 CONFIRMADO \u00B7 Conf 5849137955",link:null,ll:"",clp:"\u2014"},
-{id:3,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\u2708\uFE0F Vuelo Helsinki \u2192 Oslo",detail:"17 jun \u00B7 Finnair o Norwegian \u00B7 directo ~1h 25min",link:"https://www.finnair.com",ll:"finnair.com",clp:"~$278k\u2013371k CLP"},
-{id:5,cat:"\uD83D\uDFE1 Antes de mayo",label:"\u2708\uFE0F Vuelo Oslo \u2192 Madrid",detail:"20 jun \u00B7 Google Flights \u00B7 ~3h",link:"https://www.google.com/flights",ll:"google.com/flights",clp:"~$186k\u2013278k CLP"},
+{id:3,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\u2708\uFE0F Vuelo Helsinki \u2192 Oslo \u2014 Norwegian DY1191",detail:"17 jun \u00B7 13:55\u201314:25 \u00B7 \u2705 CONFIRMADO \u00B7 Ref 40-922184511",link:null,ll:"",clp:"~$89k CLP"},
+{id:5,cat:"\uD83D\uDFE1 Antes de mayo",label:"\u2708\uFE0F Vuelo Oslo \u2192 Madrid \u2014 Norwegian DY1718",detail:"20 jun \u00B7 15:45\u201319:30 \u00B7 \u2705 CONFIRMADO \u00B7 Ref 40-922233067",link:null,ll:"",clp:"~$276k CLP"},
 {id:6,cat:"\uD83C\uDF9F\uFE0F Entradas con reserva anticipada",label:"\uD83C\uDFA1 Parque Tivoli \u2014 Copenhague",detail:"5\u20139 jun \u00B7 Reservar online evita colas. Pack atracciones ~\u20AC66.",link:"https://shop.tivoli.dk/en/billetter-og-tivolikort",ll:"shop.tivoli.dk",clp:"~$18k\u201361k CLP x2"},
 {id:7,cat:"\uD83C\uDF9F\uFE0F Entradas con reserva anticipada",label:"\uD83D\uDEA2 Museo Vasa \u2014 Estocolmo",detail:"9\u201313 jun \u00B7 Uno de los m\u00E1s visitados, filas largas sin reserva.",link:"https://www.vasamuseet.se/en/visit/tickets",ll:"vasamuseet.se",clp:"~$16k\u201318k CLP x2"},
 {id:8,cat:"\uD83C\uDF9F\uFE0F Entradas con reserva anticipada",label:"\uD83E\uDDD6 Sauna L\u00F6yly \u2014 Helsinki",detail:"14\u201317 jun \u00B7 Requiere reserva online, especialmente en verano.",link:"https://www.loyly.fi/en/",ll:"loyly.fi",clp:"~$20k\u201335k CLP x2"},
@@ -116,14 +116,14 @@ const paid=[
 {item:"\uD83C\uDFE8 Livington Estocolmo",when:"Ya cobrado",clp:"\u2014*"},
 {item:"\uD83D\uDEA2 Ferry STK \u2192 HEL",when:"Ya cobrado",clp:"~$178k"},
 {item:"\uD83C\uDFE8 Hotel AX Helsinki",when:"Ya cobrado",clp:"\u2014*"},
+{item:"\u2708\uFE0F Norwegian HEL \u2192 OSL",when:"Ya cobrado",clp:"~$89k"},
+{item:"\u2708\uFE0F Norwegian OSL \u2192 MAD",when:"Ya cobrado",clp:"~$276k"},
 {item:"\uD83C\uDFE0 Airbnb Oslo",when:"\uD83D\uDCC5 1 jun 2026",clp:"~$603k",alert:true},
 {item:"\uD83C\uDFE8 ILUNION Madrid regreso",when:"Ya cobrado",clp:"$290k"},
 ];
 
 const pending=[
 {item:"\uD83D\uDE82 Tren CPH \u2192 STK",when:"\uD83D\uDD34 Urgente",clp:"$74k\u2013111k",link:"https://www.raileurope.com"},
-{item:"\u2708\uFE0F HEL \u2192 OSL",when:"\uD83D\uDD34 Urgente",clp:"$278k\u2013371k",link:"https://www.finnair.com"},
-{item:"\u2708\uFE0F Oslo \u2192 Madrid",when:"\uD83D\uDFE1 Antes mayo",clp:"$186k\u2013278k",link:"https://www.google.com/flights"},
 {item:"\uD83D\uDEE1\uFE0F Seguro de viaje",when:"\uD83D\uDFE1 Antes mayo",clp:"$30k\u201380k",link:"https://www.assistcard.com/cl"},
 ];
 
@@ -250,8 +250,8 @@ const dayByDay=[
 {date:"Mar 17 jun",flag:"\uD83C\uDDEB\uD83C\uDDEE\u2192\uD83C\uDDF3\uD83C\uDDF4",city:"Helsinki \u2192 Oslo",color:"#00695c",items:[
 {time:"09:00",icon:"\uD83C\uDFE8",text:"Check-out Hotel AX",note:"CO 12:00 \u00B7 salir temprano"},
 {time:"~10:00",icon:"\uD83D\uDE95",text:"Traslado al aeropuerto Helsinki-Vantaa",note:"Tren ~30 min desde estaci\u00F3n central"},
-{time:"--:--",icon:"\u2708\uFE0F",text:"Vuelo Helsinki \u2192 Oslo",note:"Finnair / Norwegian \u00B7 ~1h 25min \u00B7 \u26A0 por comprar"},
-{time:"~15:00",icon:"\uD83C\uDFE0",text:"Check-in Airbnb Oslo",note:"Sandakerveien 68A \u00B7 HMF3TJ4NPS"},
+{time:"13:55",icon:"\u2708\uFE0F",text:"Vuelo Norwegian DY1191 HEL \u2192 OSL",note:"Llega 14:25 \u00B7 1h 30min \u00B7 Ref 40-922184511 \u00B7 PIN 3534"},
+{time:"15:00",icon:"\uD83C\uDFE0",text:"Check-in Airbnb Oslo",note:"Sandakerveien 68A \u00B7 HMF3TJ4NPS"},
 {time:"16:30",icon:"\uD83D\uDEB6",text:"Paseo por Aker Brygge + Tj\u00F8rholmen",note:"Puerto moderno \u00B7 restaurantes \u00B7 vista al fiordo"},
 {time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Aker Brygge",note:"Mariscos noruegos \u00B7 vista al fiordo de Oslo"},
 ]},
@@ -275,10 +275,10 @@ const dayByDay=[
 {date:"S\u00E1b 20 jun",flag:"\uD83C\uDDF3\uD83C\uDDF4\u2192\uD83C\uDDEA\uD83C\uDDF8",city:"Oslo \u2192 Madrid",color:"#e65100",items:[
 {time:"09:00",icon:"\uD83D\uDEB6",text:"Paseo final por Oslo",note:"Caf\u00E9 de despedida \u00B7 \u00FAltimas fotos"},
 {time:"11:00",icon:"\uD83C\uDFE0",text:"Check-out Airbnb Oslo",note:""},
-{time:"12:00",icon:"\uD83D\uDE95",text:"Traslado al aeropuerto Gardermoen",note:"Flytoget (tren express) ~20 min desde Oslo S"},
-{time:"--:--",icon:"\u2708\uFE0F",text:"Vuelo Oslo \u2192 Madrid",note:"~3h \u00B7 \u26A0 por comprar"},
-{time:"--:--",icon:"\uD83C\uDFE8",text:"Check-in ILUNION P\u00EDo XII",note:"Av. de P\u00EDo XII, 77"},
-{time:"20:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena de bienvenida en Madrid",note:"Algo ligero cerca del hotel"},
+{time:"13:00",icon:"\uD83D\uDE95",text:"Traslado al aeropuerto Gardermoen",note:"Flytoget (tren express) ~20 min desde Oslo S"},
+{time:"15:45",icon:"\u2708\uFE0F",text:"Vuelo Norwegian DY1718 OSL \u2192 MAD",note:"Llega 19:30 \u00B7 3h 45min \u00B7 Ref 40-922233067 \u00B7 PIN 7226"},
+{time:"~20:30",icon:"\uD83C\uDFE8",text:"Check-in ILUNION P\u00EDo XII",note:"Av. de P\u00EDo XII, 77"},
+{time:"21:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena ligera cerca del hotel",note:"Llegada tarde \u00B7 algo r\u00E1pido"},
 ]},
 {date:"Dom 21 jun",flag:"\uD83C\uDDEA\uD83C\uDDF8",city:"Madrid",color:"#c62828",items:[
 {time:"10:00",icon:"\uD83D\uDEB6",text:"Barrio de Malasa\u00F1a",note:"Barrio alternativo \u00B7 brunch \u00B7 tiendas vintage \u00B7 Plaza del 2 de Mayo"},

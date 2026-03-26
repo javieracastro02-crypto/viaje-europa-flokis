@@ -470,7 +470,7 @@ return (
         return(<>
           <div style={{fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:700,color:navy,textAlign:"center",marginBottom:6}}>Junio 2026</div>
           {/* Filtros */}
-          <div style={{display:"flex",gap:5,justifyContent:"center",marginBottom:8,flexWrap:"wrap",alignItems:"center"}}>
+          <div style={{display:"flex",gap:5,justifyContent:"flex-start",marginBottom:8,flexWrap:"wrap",alignItems:"center"}}>
             <span style={{fontSize:11,fontWeight:600,color:"#999"}}>Pa{"í"}s</span>
             {countries.map(c=>(
               <button key={c.id} onClick={()=>{setFilterCountry(c.id);setCalDay(null);}} style={{padding:"3px 7px",fontSize:c.id==="all"?10:14,borderRadius:8,border:filterCountry===c.id?`2px solid ${c.color}`:"1px solid #ddd",background:filterCountry===c.id?"#f5e8e0":"white",cursor:"pointer",lineHeight:1}}>{c.flag}</button>

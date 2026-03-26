@@ -23,7 +23,7 @@
    _warn(...args);
  };
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#f8f6f3; font-family:'Outfit',sans-serif; font-size:15px; }</style>
 </head>
 <body>
@@ -450,7 +450,7 @@ return (
                   <div style={{background:"white",borderRadius:10,border:"1px solid #e8e2d8",padding:"8px 10px",marginLeft:8,boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
                     <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:3}}>
                       <span style={{fontSize:14}}>{row.icon}</span>
-                      <span style={{fontWeight:700,fontSize:12,color:navy,flex:1,lineHeight:1.2}}>{row.city}</span>
+                      <span style={{fontWeight:700,fontSize:14,color:navy,flex:1,lineHeight:1.2}}>{row.city}</span>
                       <span style={{background:tc.bg,border:`1px solid ${tc.b}`,color:tc.t,borderRadius:8,padding:"1px 5px",fontSize:7,fontWeight:700,whiteSpace:"nowrap",letterSpacing:0.5}}>{row.tag}</span>
                     </div>
                     <div style={{display:"flex",alignItems:"center",gap:6}}>
@@ -507,7 +507,7 @@ return (
                     {it.time&&<div style={{minWidth:40,fontSize:14,fontWeight:700,color:it.time==="--:--"?"#bbb":navy,marginTop:2,fontFamily:"monospace"}}>{it.time}</div>}
                     <div style={{fontSize:16,flexShrink:0}}>{it.icon}</div>
                     <div style={{flex:1}}>
-                      <div style={{fontWeight:isFree?500:600,fontSize:12,color:isFree?"#999":navy}}>{it.text}</div>
+                      <div style={{fontWeight:isFree?500:600,fontSize:14,color:isFree?"#999":navy}}>{it.text}</div>
                       {it.note&&<div style={{fontSize:10,color:isPending?"#e65100":"#888",marginTop:2,lineHeight:1.4}}>{it.note}</div>}
                     </div>
                   </div>
@@ -534,7 +534,7 @@ return (
               <div style={{background:gold+"22",border:`1px solid ${gold}`,borderRadius:20,padding:"2px 8px",fontSize:14,fontWeight:600,color:"#7a5a58"}}>{h.nights} noches</div>
             </div>
             <div style={{padding:"11px 14px"}}>
-              <div style={{fontWeight:600,fontSize:12,color:navy,marginBottom:4}}>{h.name}</div>
+              <div style={{fontWeight:600,fontSize:14,color:navy,marginBottom:4}}>{h.name}</div>
               <div style={{fontSize:11,color:"#555",marginBottom:3}}>{"\uD83D\uDCCD"} {h.addr}</div>
               {h.phone!=="\u2014"&&<div style={{fontSize:11,color:"#555",marginBottom:3}}>{"\uD83D\uDCDE"} {h.phone}</div>}
               <div style={{fontSize:11,color:"#555",marginBottom:3}}>{"\u23F0"} CI {h.ci} \u00B7 CO {h.co}</div>
@@ -632,7 +632,7 @@ return (
         {filteredPaid.map((r,i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPaid.length-1?"1px solid #f4f0e8":"none",background:"white",gap:8,flexWrap:"wrap"}}>
             <div style={{flex:1}}>
-              <div style={{fontSize:12,color:navy,fontWeight:600}}>{r.item}</div>
+              <div style={{fontSize:14,color:navy,fontWeight:600}}>{r.item}</div>
               {r.detail&&<div style={{fontSize:10,color:"#999",marginTop:1}}>{r.detail}</div>}
             </div>
             <div style={{display:"flex",alignItems:"center",gap:6}}>
@@ -652,7 +652,7 @@ return (
         {filteredPending.map((r,i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPending.length-1?"1px solid #f4f0e8":"none",gap:8,flexWrap:"wrap"}}>
             <div style={{flex:1}}>
-              <div style={{fontSize:12,color:navy,fontWeight:600}}>{r.item}</div>
+              <div style={{fontSize:14,color:navy,fontWeight:600}}>{r.item}</div>
               {r.detail&&<div style={{fontSize:10,color:"#999",marginTop:1}}>{r.detail}</div>}
               <span style={{background:r.when.includes("\uD83D\uDD34")?"#fce4ec":"#fff8e1",border:`1px solid ${r.when.includes("\uD83D\uDD34")?"#f48fb1":"#ffd54f"}`,color:r.when.includes("\uD83D\uDD34")?"#c62828":"#e65100",borderRadius:10,padding:"1px 6px",fontSize:15,fontWeight:600,display:"inline-block",marginTop:4}}>{r.when}</span>
             </div>
@@ -719,7 +719,7 @@ return (
                     {isDone&&<span style={{color:"white",fontSize:14,fontWeight:700}}>{"\u2713"}</span>}
                   </div>
                   <div style={{flex:1}}>
-                    <div style={{fontWeight:700,fontSize:12,color:isDone?"#888":navy,textDecoration:isDone?"line-through":"none"}}>{t.label}</div>
+                    <div style={{fontWeight:700,fontSize:14,color:isDone?"#888":navy,textDecoration:isDone?"line-through":"none"}}>{t.label}</div>
                     <div style={{fontSize:10,color:isDone?"#bbb":"#666",marginTop:2,lineHeight:1.5}}>{t.detail}</div>
                     <div style={{display:"flex",alignItems:"center",gap:6,marginTop:5,flexWrap:"wrap"}}>
                       {t.clp!=="\u2014"&&<span style={{background:"#f8f4ec",border:"1px solid #e0d0a0",borderRadius:10,padding:"1px 7px",fontSize:15,fontWeight:600,color:"#8b6b68"}}>{t.clp}</span>}

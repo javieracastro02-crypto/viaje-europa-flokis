@@ -399,7 +399,7 @@ return (
   {/* TABS */}
   <div style={{display:"flex",background:"linear-gradient(135deg,#4a3540,#5a4550)",borderBottom:`3px solid ${gold}`,overflowX:"auto"}}>
     {[{id:"quick",l:"\u26A1 Itinerario"},{id:"days",l:"\uD83D\uDCC5 D\u00EDa a d\u00EDa"},{id:"full",l:"\uD83D\uDCCB Hoteles"},{id:"maps",l:"\uD83D\uDCCD Mapas"},{id:"finance",l:"\uD83D\uDCB0 Finanzas"},{id:"pending",l:"\u2611\uFE0F Pendientes"}].map(t=>(
-      <button key={t.id} onClick={()=>setTab(t.id)} style={{flex:"0 0 auto",padding:"11px 12px",fontSize:15,fontWeight:600,textTransform:"uppercase",color:tab===t.id?gold:"#a8b8aa",background:tab===t.id?"rgba(212,160,23,0.1)":"none",border:"none",borderBottom:tab===t.id?`3px solid ${gold}`:"3px solid transparent",marginBottom:-3,cursor:"pointer",whiteSpace:"nowrap"}}>
+      <button key={t.id} onClick={()=>setTab(t.id)} style={{flex:"0 0 auto",padding:"11px 12px",fontSize:13,fontWeight:600,textTransform:"capitalize",color:tab===t.id?gold:"rgba(255,255,255,0.5)",background:tab===t.id?"rgba(232,192,176,0.1)":"none",border:"none",borderBottom:tab===t.id?`3px solid ${gold}`:"3px solid transparent",marginBottom:-3,cursor:"pointer",whiteSpace:"nowrap",letterSpacing:0.5}}>
         {t.l}
       </button>
     ))}

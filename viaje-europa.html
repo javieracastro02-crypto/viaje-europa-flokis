@@ -479,18 +479,18 @@ return (
               <button onClick={()=>{setFilterCountry("all");setCalDay(null);}} style={{fontSize:10,padding:"3px 8px",borderRadius:8,background:"#fce8e8",border:"1px solid #dea5a4",color:"#8b5e5e",cursor:"pointer",fontWeight:600}}>Limpiar</button>
             )}
           </div>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:3}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2}}>
             {weekDays.map(d=>(
-              <div key={d} style={{textAlign:"center",fontSize:13,fontWeight:700,color:"#999",padding:"2px 0 4px"}}>{d}</div>
+              <div key={d} style={{textAlign:"center",fontSize:13,fontWeight:700,color:"#999",padding:"1px 0 2px"}}>{d}</div>
             ))}
           </div>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:3}}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2}}>
             {weeks.flat().map((day,i)=>{
-              if(!day) return <div key={i} style={{minHeight:80}}/>;
+              if(!day) return <div key={i} style={{minHeight:74}}/>;
               const isEmpty=!day.city;
               const matchFilter=filterCountry==="all"||matchesCountry((day.city||"")+(day.flag||""),filterCountry);
               return(
-                <div key={i} onClick={()=>{if(day.city&&matchFilter)setCalDay(calDay===day.d?null:day.d);}} style={{background:day.bg,border:calDay===day.d?`2.5px solid ${navy}`:`1.5px solid ${day.border}`,borderRadius:10,padding:"5px 4px",minHeight:80,cursor:(isEmpty||!matchFilter)?"default":"pointer",opacity:isEmpty?0.3:matchFilter?1:0.2,display:"flex",flexDirection:"column",alignItems:"center",gap:2,boxShadow:calDay===day.d?"0 2px 8px rgba(0,0,0,0.15)":"none",transition:"all 0.2s"}}>
+                <div key={i} onClick={()=>{if(day.city&&matchFilter)setCalDay(calDay===day.d?null:day.d);}} style={{background:day.bg,border:calDay===day.d?`2.5px solid ${navy}`:`1.5px solid ${day.border}`,borderRadius:8,padding:"4px 3px",minHeight:74,cursor:(isEmpty||!matchFilter)?"default":"pointer",opacity:isEmpty?0.3:matchFilter?1:0.2,display:"flex",flexDirection:"column",alignItems:"center",gap:2,boxShadow:calDay===day.d?"0 2px 8px rgba(0,0,0,0.15)":"none",transition:"all 0.2s"}}>
                   <div style={{fontSize:13,fontWeight:700,color:day.text}}>{day.d}</div>
                   {day.flag&&<div style={{fontSize:18}}>{day.flag}</div>}
                   {day.city&&<div style={{fontSize:10,fontWeight:600,color:navy,textAlign:"center",lineHeight:1.2}}>{day.city}</div>}

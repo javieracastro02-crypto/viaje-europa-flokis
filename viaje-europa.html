@@ -433,7 +433,6 @@ return (
     <div style={{padding:"12px 6px",maxWidth:960,margin:"0 auto"}}>
       {(()=>{
         const calDays=[
-          {d:1,city:"",flag:"",bg:"transparent",border:"transparent",text:"#ccc"},
           {d:2,city:"Santiago",flag:"\uD83C\uDDE8\uD83C\uDDF1",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"\u2708 SCL\u2192MAD"},
           {d:3,city:"Madrid",flag:"\uD83C\uDDEA\uD83C\uDDF8",bg:"#fce8e8",border:"#dea5a4",text:navy,note:"Llegada"},
           {d:4,city:"Madrid",flag:"\uD83C\uDDEA\uD83C\uDDF8",bg:"#fce8e8",border:"#dea5a4",text:navy,note:"Prado"},
@@ -459,16 +458,14 @@ return (
         const weekDays=["Lun","Mar","Mi\u00E9","Jue","Vie","S\u00E1b","Dom"];
         const weeks=[];
         let week=[];
-        calDays.forEach((day,i)=>{
-          const dow=(day.d===1)?6:(day.d)%7; // Jun 1 2026 = domingo (idx 6)
-          if(day.d===1){for(let j=0;j<6;j++)week.push(null);} // Jun 1 is Sunday, fill Mon-Sat
+        calDays.forEach((day)=>{
           week.push(day);
           if(week.length===7){weeks.push(week);week=[];}
         });
         if(week.length>0){while(week.length<7)week.push(null);weeks.push(week);}
 
         return(<>
-          <div style={{fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:700,color:navy,textAlign:"center",marginBottom:6}}>Junio 2026</div>
+          <div style={{fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:700,color:navy,textAlign:"center",marginBottom:2}}>Junio 2026</div>
           {/* Filtros */}
           <div style={{display:"flex",gap:5,justifyContent:"flex-start",marginBottom:8,flexWrap:"wrap",alignItems:"center"}}>
             <span style={{fontSize:11,fontWeight:600,color:"#999"}}>Pa{"í"}s</span>
@@ -481,7 +478,7 @@ return (
           </div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2}}>
             {weekDays.map(d=>(
-              <div key={d} style={{textAlign:"center",fontSize:13,fontWeight:700,color:"#999",padding:"1px 0 2px"}}>{d}</div>
+              <div key={d} style={{textAlign:"center",fontSize:12,fontWeight:700,color:"#999",padding:"0 0 1px"}}>{d}</div>
             ))}
           </div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2}}>

@@ -663,6 +663,22 @@ return (
             </div>
           </div>
         ))}
+        <div style={{display:"flex",justifyContent:"space-between",padding:"10px 14px",background:"#fff3e0",borderTop:"1px solid #ffe0b2"}}>
+          <span style={{fontWeight:700,color:"#e65100",fontSize:13}}>Total por pagar</span>
+          <span style={{fontWeight:700,color:"#e65100",fontSize:13}}>~${(pendingMin+totalComidas).toLocaleString("es-CL")} a ${(pendingMax+totalComidas).toLocaleString("es-CL")}</span>
+        </div>
+      </div>
+
+      {/* TOTAL GENERAL */}
+      <div style={{background:`linear-gradient(135deg,#3d4a3f,#5a6b5e)`,borderRadius:14,padding:"14px 16px"}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+          <span style={{fontWeight:700,color:gold,fontSize:14,textTransform:"uppercase",letterSpacing:1}}>Total del viaje</span>
+          <span style={{fontFamily:"'Outfit',sans-serif",fontWeight:700,color:"white",fontSize:"1.2rem"}}>~${granTotalMin.toLocaleString("es-CL")} a ${granTotalMax.toLocaleString("es-CL")}</span>
+        </div>
+        <div style={{display:"flex",justifyContent:"space-between",marginTop:4}}>
+          <span style={{fontSize:12,color:"rgba(255,255,255,0.5)"}}>Por persona</span>
+          <span style={{fontSize:12,color:gold,fontWeight:600}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")} a ${Math.round(granTotalMax/2).toLocaleString("es-CL")}</span>
+        </div>
       </div>
 
     </div>

@@ -108,8 +108,8 @@ const allTasks=[
 ];
 
 const paid=[
-{item:"Vuelo Santiago \u2192 Madrid \u2192 Santiago",detail:"LATAM LA706 + LA2485/LA2697 \u00B7 C\u00F3d JLCDKB",clp:850000,cat:"Vuelos"},
-{item:"Vuelo Madrid \u2192 Copenhague",detail:"SAS \u00B7 5 jun 18:30 \u00B7 Ref X3V4DN",clp:190000,cat:"Vuelos"},
+{item:"Vuelo Santiago \u2192 Madrid \u2192 Santiago (x2)",detail:"LATAM LA706 + LA2485/LA2697 \u00B7 C\u00F3d JLCDKB",clp:1700000,cat:"Vuelos"},
+{item:"Vuelo Madrid \u2192 Copenhague (x2)",detail:"SAS \u00B7 5 jun 18:30 \u00B7 Ref X3V4DN",clp:380000,cat:"Vuelos"},
 {item:"Vuelo Helsinki \u2192 Oslo (Javi)",detail:"Norwegian DY1191 \u00B7 17 jun 13:55",clp:89000,cat:"Vuelos"},
 {item:"Vuelo Oslo \u2192 Madrid (Javi)",detail:"Norwegian DY1718 \u00B7 20 jun 15:45",clp:276000,cat:"Vuelos"},
 {item:"Hotel Madrid (ida)",detail:"ILUNION P\u00EDo XII \u00B7 3\u20135 jun \u00B7 2 noches",clp:275811,cat:"Alojamiento"},
@@ -600,29 +600,29 @@ return (
       <div style={{background:`linear-gradient(135deg,#3d4a3f,#5a6b5e)`,borderRadius:14,padding:"18px 16px",marginBottom:14}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
           <div style={{fontSize:11,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:gold}}>Total del viaje</div>
-          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.5rem",fontWeight:700,color:"white"}}>~${granTotalMin.toLocaleString("es-CL")} a ${granTotalMax.toLocaleString("es-CL")}</div>
+          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.3rem",fontWeight:700,color:"white"}}>~${granTotalMin.toLocaleString("es-CL")} a ${granTotalMax.toLocaleString("es-CL")}</div>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
           <div style={{background:"rgba(255,255,255,0.1)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Pagado</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.2rem",fontWeight:700,color:"#81c784"}}>${totalPaid.toLocaleString("es-CL")}</div>
+            <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.1rem",fontWeight:700,color:"#81c784"}}>${totalPaid.toLocaleString("es-CL")}</div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>${Math.round(totalPaid/2).toLocaleString("es-CL")} c/u</div>
           </div>
           <div style={{background:"rgba(255,255,255,0.1)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Por pagar</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.2rem",fontWeight:700,color:"#ffb74d"}}>~${pendingMin.toLocaleString("es-CL")}</div>
+            <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.1rem",fontWeight:700,color:"#ffb74d"}}>~${pendingMin.toLocaleString("es-CL")}</div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>a ~${pendingMax.toLocaleString("es-CL")}</div>
           </div>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
           <div style={{background:"rgba(255,255,255,0.08)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Javi</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
+            <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>a ~${Math.round(granTotalMax/2).toLocaleString("es-CL")}</div>
           </div>
           <div style={{background:"rgba(255,255,255,0.08)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Bryan</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
+            <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>a ~${Math.round(granTotalMax/2).toLocaleString("es-CL")}</div>
           </div>
         </div>
@@ -675,7 +675,7 @@ return (
       <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",padding:"14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
           <div style={{fontWeight:700,fontSize:13,color:navy}}>Progreso</div>
-          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.2rem",fontWeight:700,color:done===allTasks.length?"#2e7d32":gold}}>{done}/{allTasks.length}</div>
+          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.1rem",fontWeight:700,color:done===allTasks.length?"#2e7d32":gold}}>{done}/{allTasks.length}</div>
         </div>
         <div style={{background:"#f0ebe5",borderRadius:20,height:9,overflow:"hidden"}}>
           <div style={{background:done===allTasks.length?"#43a047":gold,height:"100%",borderRadius:20,width:`${(done/allTasks.length)*100}%`,transition:"width 0.4s"}}/>
@@ -721,7 +721,7 @@ return (
       })}
       <div style={{background:navy,borderRadius:12,padding:"14px",textAlign:"center"}}>
         <div style={{fontSize:11,color:"rgba(255,255,255,0.7)",marginBottom:3}}>Airbnb Oslo se cobra el</div>
-        <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.2rem",fontWeight:700,color:gold}}>1 de junio 2026</div>
+        <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.1rem",fontWeight:700,color:gold}}>1 de junio 2026</div>
         <div style={{fontSize:10,color:"rgba(255,255,255,0.55)",marginTop:2}}>~US$650 {"\u00B7"} ~$603.000 CLP {"\u00B7"} HMF3TJ4NPS</div>
       </div>
     </div>

@@ -304,6 +304,7 @@ const [tab,setTab]=useState("quick");
 const [filterCountry,setFilterCountry]=useState("all");
 const [filterDay,setFilterDay]=useState("all");
 const [filterFinCat,setFilterFinCat]=useState("Todos");
+const [calDay,setCalDay]=useState(null);
 const filteredPaid=filterFinCat==="Todos"?paid:paid.filter(r=>r.cat===filterFinCat);
 const filteredPending=filterFinCat==="Todos"?pending:pending.filter(r=>r.cat===filterFinCat);
 const filteredTotal=filteredPaid.reduce((s,r)=>s+r.clp,0);
@@ -478,7 +479,7 @@ return (
               if(!day) return <div key={i} style={{minHeight:90}}/>;
               const isEmpty=!day.city;
               return(
-                <div key={i} onClick={()=>{if(day.city){const dayObj=dayByDay.find(dd=>dd.date.includes(`${day.d} jun`));if(dayObj){setFilterDay(dayObj.date);setTab("days");}}}} style={{background:day.bg,border:`1.5px solid ${day.border}`,borderRadius:10,padding:"6px 4px",minHeight:90,cursor:isEmpty?"default":"pointer",opacity:isEmpty?0.4:1,display:"flex",flexDirection:"column",alignItems:"center",gap:2}}>
+                <div key={i} onClick={()=>{if(day.city)setCalDay(calDay===day.d?null:day.d);}} style={{background:day.bg,border:calDay===day.d?`2.5px solid ${navy}`:`1.5px solid ${day.border}`,borderRadius:10,padding:"6px 4px",minHeight:90,cursor:isEmpty?"default":"pointer",opacity:isEmpty?0.4:1,display:"flex",flexDirection:"column",alignItems:"center",gap:2,boxShadow:calDay===day.d?"0 2px 8px rgba(0,0,0,0.15)":"none",transition:"all 0.2s"}}>
                   <div style={{fontSize:13,fontWeight:700,color:day.text}}>{day.d}</div>
                   {day.flag&&<div style={{fontSize:18}}>{day.flag}</div>}
                   {day.city&&<div style={{fontSize:10,fontWeight:600,color:navy,textAlign:"center",lineHeight:1.2}}>{day.city}</div>}
@@ -495,7 +496,37 @@ return (
               </div>
             ))}
           </div>
-          <div style={{textAlign:"center",fontSize:10,color:"#bbb",marginTop:8}}>Toca un d{"í"}a para ver el detalle</div>
+          {!calDay&&<div style={{textAlign:"center",fontSize:11,color:"#bbb",marginTop:8}}>Toca un d{"í"}a para ver el detalle</div>}
+
+          {/* DETALLE DEL DIA */}
+          {calDay&&(()=>{
+            const selDay=dayByDay.find(dd=>dd.date.includes(`${calDay} jun`));
+            if(!selDay) return null;
+            return(
+              <div style={{marginTop:14,background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",boxShadow:"0 2px 8px rgba(0,0,0,0.06)"}}>
+                <div style={{background:selDay.color,padding:"10px 14px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+                  <div style={{display:"flex",alignItems:"center",gap:8}}>
+                    <span style={{fontSize:20}}>{selDay.flag}</span>
+                    <div>
+                      <div style={{fontSize:14,fontWeight:700,color:"white"}}>{selDay.date}</div>
+                      <div style={{fontSize:11,color:"rgba(255,255,255,0.8)"}}>{selDay.city}</div>
+                    </div>
+                  </div>
+                  <button onClick={()=>setCalDay(null)} style={{background:"rgba(255,255,255,0.2)",border:"none",color:"white",borderRadius:6,padding:"4px 10px",fontSize:12,cursor:"pointer",fontWeight:600}}>{"✕"}</button>
+                </div>
+                {selDay.items.map((it,ii)=>(
+                  <div key={ii} style={{display:"flex",alignItems:"flex-start",gap:10,padding:"10px 14px",borderBottom:ii<selDay.items.length-1?"1px solid #f0ebe5":"none"}}>
+                    {it.time&&<div style={{minWidth:42,fontSize:11,fontWeight:600,color:it.time==="--:--"?"#ccc":navy,fontFamily:"monospace"}}>{it.time}</div>}
+                    <div style={{fontSize:16,flexShrink:0}}>{it.icon}</div>
+                    <div style={{flex:1}}>
+                      <div style={{fontSize:13,fontWeight:600,color:navy}}>{it.text}</div>
+                      {it.note&&<div style={{fontSize:11,color:"#999",marginTop:1}}>{it.note}</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
         </>);
       })()}
     </div>

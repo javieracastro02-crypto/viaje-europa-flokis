@@ -121,7 +121,7 @@ const paid=[
 {item:"Ferry Estocolmo \u2192 Helsinki",detail:"Viking Line \u00B7 13 jun 17:00 \u00B7 Ref DFP194722507",clp:190000,cat:"Transporte"},
 {item:"Transferencia",detail:"Traspaso entre cuentas",clp:500000,cat:"Otro"},
 ];
-const finCats=["Todos","Vuelos","Alojamiento","Transporte","Otro"];
+const finCats=["Todos","Vuelos","Alojamiento","Transporte","Comidas","Otro"];
 const totalPaid=paid.reduce((s,r)=>s+r.clp,0);
 const pendingMin=89000+276000+148000+30000;
 const pendingMax=89000+276000+222000+80000;
@@ -131,6 +131,7 @@ const pending=[
 {item:"Vuelo Oslo \u2192 Madrid (Bryan)",detail:"Norwegian DY1718 o similar \u00B7 20 jun",when:"\uD83D\uDD34 Urgente",clp:"~$276.000",link:"https://www.norwegian.com",cat:"Vuelos"},
 {item:"Tren Copenhague \u2192 Estocolmo",detail:"9 jun \u00B7 ~5h \u00B7 x2 pasajeros",when:"\uD83D\uDD34 Urgente",clp:"~$74.000\u2013111.000 x2",link:"https://www.raileurope.com",cat:"Transporte"},
 {item:"Seguro de viaje",detail:"2\u201322 jun \u00B7 Assist Card, MAPFRE o AXA",when:"\uD83D\uDFE1 Antes mayo",clp:"~$30.000\u201380.000",link:"https://www.assistcard.com/cl",cat:"Otro"},
+{item:"Comidas y actividades",detail:"~US$150/d\u00EDa x2 personas \u00B7 18 d\u00EDas en Europa",when:"\uD83D\uDFE1 Durante el viaje",clp:`~$${(dt*928).toLocaleString("es-CL")}`,link:null,cat:"Comidas"},
 ];
 
 const daily=[
@@ -597,37 +598,32 @@ return (
       </div>
       {/* CARD TOTAL */}
       <div style={{background:`linear-gradient(135deg,#3d4a3f,#5a6b5e)`,borderRadius:14,padding:"18px 16px",marginBottom:14}}>
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
           <div style={{fontSize:11,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:gold}}>Total del viaje</div>
-          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.5rem",fontWeight:700,color:"white"}}>~${granTotalMin.toLocaleString("es-CL")}{"\u2013"}${granTotalMax.toLocaleString("es-CL")}</div>
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.5rem",fontWeight:700,color:"white"}}>~${granTotalMin.toLocaleString("es-CL")} a ${granTotalMax.toLocaleString("es-CL")}</div>
         </div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:12}}>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
           <div style={{background:"rgba(255,255,255,0.1)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
-            <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Por persona</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Pagado</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.2rem",fontWeight:700,color:"#81c784"}}>${totalPaid.toLocaleString("es-CL")}</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>${Math.round(totalPaid/2).toLocaleString("es-CL")} c/u</div>
+          </div>
+          <div style={{background:"rgba(255,255,255,0.1)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Por pagar</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.2rem",fontWeight:700,color:"#ffb74d"}}>~${pendingMin.toLocaleString("es-CL")}</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>a ~${pendingMax.toLocaleString("es-CL")}</div>
+          </div>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+          <div style={{background:"rgba(255,255,255,0.08)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Javi</div>
             <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>a ~${Math.round(granTotalMax/2).toLocaleString("es-CL")}</div>
           </div>
-          <div style={{background:"rgba(255,255,255,0.1)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
-            <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Ya gastado</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.1rem",fontWeight:700,color:"#81c784"}}>${totalPaid.toLocaleString("es-CL")}</div>
-            <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>${Math.round(totalPaid/2).toLocaleString("es-CL")} c/u</div>
-          </div>
-        </div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:8}}>
-          <div style={{background:"rgba(255,255,255,0.07)",borderRadius:8,padding:"8px",textAlign:"center"}}>
-            <div style={{fontSize:9,color:"rgba(255,255,255,0.45)",textTransform:"uppercase",letterSpacing:1}}>Por pagar</div>
-            <div style={{fontSize:13,fontWeight:700,color:"#ffb74d",marginTop:2}}>~${pendingMin.toLocaleString("es-CL")}</div>
-            <div style={{fontSize:9,color:"rgba(255,255,255,0.35)"}}>a ~${pendingMax.toLocaleString("es-CL")}</div>
-          </div>
-          <div style={{background:"rgba(255,255,255,0.07)",borderRadius:8,padding:"8px",textAlign:"center"}}>
-            <div style={{fontSize:9,color:"rgba(255,255,255,0.45)",textTransform:"uppercase",letterSpacing:1}}>Comidas est.</div>
-            <div style={{fontSize:13,fontWeight:700,color:"#90caf9",marginTop:2}}>${totalComidas.toLocaleString("es-CL")}</div>
-            <div style={{fontSize:9,color:"rgba(255,255,255,0.35)"}}>${Math.round(totalComidas/2).toLocaleString("es-CL")} c/u</div>
-          </div>
-          <div style={{background:"rgba(255,255,255,0.07)",borderRadius:8,padding:"8px",textAlign:"center"}}>
-            <div style={{fontSize:9,color:"rgba(255,255,255,0.45)",textTransform:"uppercase",letterSpacing:1}}>Falta pagar</div>
-            <div style={{fontSize:13,fontWeight:700,color:"#ef9a9a",marginTop:2}}>~${(pendingMin+totalComidas).toLocaleString("es-CL")}</div>
-            <div style={{fontSize:9,color:"rgba(255,255,255,0.35)"}}>a ~${(pendingMax+totalComidas).toLocaleString("es-CL")}</div>
+          <div style={{background:"rgba(255,255,255,0.08)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Bryan</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
+            <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>a ~${Math.round(granTotalMax/2).toLocaleString("es-CL")}</div>
           </div>
         </div>
       </div>
@@ -641,7 +637,7 @@ return (
               {r.detail&&<div style={{fontSize:10,color:"#999",marginTop:1}}>{r.detail}</div>}
             </div>
             <div style={{display:"flex",alignItems:"center",gap:6}}>
-              <span style={{background:r.cat==="Vuelos"?"#e3f2fd":r.cat==="Alojamiento"?"#fff8e1":r.cat==="Transporte"?"#f3e5f5":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#90caf9":r.cat==="Alojamiento"?"#ffe082":r.cat==="Transporte"?"#ce93d8":"#ddd"}`,color:r.cat==="Vuelos"?"#01579b":r.cat==="Alojamiento"?"#f57f17":r.cat==="Transporte"?"#6a1b9a":"#666",borderRadius:8,padding:"1px 6px",fontSize:14,fontWeight:600}}>{r.cat}</span>
+              <span style={{background:r.cat==="Vuelos"?"#e3f2fd":r.cat==="Alojamiento"?"#fff8e1":r.cat==="Transporte"?"#f3e5f5":r.cat==="Comidas"?"#e8f5e9":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#90caf9":r.cat==="Alojamiento"?"#ffe082":r.cat==="Transporte"?"#ce93d8":r.cat==="Comidas"?"#a5d6a7":"#ddd"}`,color:r.cat==="Vuelos"?"#01579b":r.cat==="Alojamiento"?"#f57f17":r.cat==="Transporte"?"#6a1b9a":r.cat==="Comidas"?"#2e7d32":"#666",borderRadius:8,padding:"1px 6px",fontSize:14,fontWeight:600}}>{r.cat}</span>
               <span style={{fontWeight:700,color:navy,fontSize:12,textAlign:"right"}}>${r.clp.toLocaleString("es-CL")}</span>
             </div>
           </div>
@@ -670,49 +666,6 @@ return (
         ))}
       </div>
 
-      <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
-        <div style={{background:"#e3f2fd",padding:"9px 14px",borderBottom:"1px solid #bbdefb",fontSize:15,fontWeight:700,textTransform:"uppercase",color:"#0277bd"}}>{"\uD83C\uDF7D\uFE0F"} Comidas & actividades {"\u00B7"} ~$150 USD/d{"\u00ED"}a</div>
-        {daily.map((r,i)=>(
-          <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"8px 14px",borderBottom:i<daily.length-1?"1px solid #f4f0e8":"none"}}>
-            <span style={{fontSize:12,color:navy}}>{r.city} {"\u00B7"} {r.days} d{"\u00ED"}as</span>
-            <span style={{fontWeight:600,color:navy,fontSize:12}}>${(r.total*928).toLocaleString("es-CL")}</span>
-          </div>
-        ))}
-        <div style={{display:"flex",justifyContent:"space-between",padding:"10px 14px",background:"#e3f2fd"}}>
-          <span style={{fontWeight:700,color:"#0277bd",fontSize:12}}>Total comidas</span>
-          <span style={{fontWeight:700,color:"#0277bd",fontSize:13}}>${(dt*928).toLocaleString("es-CL")} CLP</span>
-        </div>
-      </div>
-
-      <div style={{background:`linear-gradient(135deg,#3d4a3f,#5a6b5e)`,borderRadius:14,padding:"16px"}}>
-        <div style={{fontSize:11,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:gold,marginBottom:10}}>Resumen total del viaje</div>
-        {[
-          ["Ya pagado",`$${totalPaid.toLocaleString("es-CL")}`,"#81c784"],
-          ["Por pagar (est.)",`~$${pendingMin.toLocaleString("es-CL")} a $${pendingMax.toLocaleString("es-CL")}`,"#ffb74d"],
-          ["Comidas (est.)",`~$${totalComidas.toLocaleString("es-CL")}`,"#90caf9"],
-        ].map(([l,c,col],i)=>(
-          <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"6px 0",borderBottom:"1px solid rgba(255,255,255,0.07)",fontSize:13}}>
-            <span style={{color:"rgba(255,255,255,0.7)"}}>{l}</span>
-            <span style={{color:col,fontWeight:600}}>{c}</span>
-          </div>
-        ))}
-        <div style={{display:"flex",justifyContent:"space-between",padding:"12px 0 4px",borderTop:"2px solid rgba(255,255,255,0.2)",marginTop:6}}>
-          <span style={{color:gold,fontWeight:700,fontSize:15}}>TOTAL</span>
-          <span style={{fontFamily:"'Cormorant Garamond',serif",color:gold,fontWeight:700,fontSize:"1.3rem"}}>~${granTotalMin.toLocaleString("es-CL")} a ${granTotalMax.toLocaleString("es-CL")}</span>
-        </div>
-        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginTop:10}}>
-          <div style={{background:"rgba(255,255,255,0.08)",borderRadius:8,padding:"8px 10px",textAlign:"center"}}>
-            <div style={{fontSize:10,color:"rgba(255,255,255,0.45)",textTransform:"uppercase",letterSpacing:1}}>Javi</div>
-            <div style={{fontSize:14,fontWeight:700,color:gold,marginTop:2}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
-            <div style={{fontSize:10,color:"rgba(255,255,255,0.35)"}}>a ~${Math.round(granTotalMax/2).toLocaleString("es-CL")}</div>
-          </div>
-          <div style={{background:"rgba(255,255,255,0.08)",borderRadius:8,padding:"8px 10px",textAlign:"center"}}>
-            <div style={{fontSize:10,color:"rgba(255,255,255,0.45)",textTransform:"uppercase",letterSpacing:1}}>Bryan</div>
-            <div style={{fontSize:14,fontWeight:700,color:gold,marginTop:2}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
-            <div style={{fontSize:10,color:"rgba(255,255,255,0.35)"}}>a ~${Math.round(granTotalMax/2).toLocaleString("es-CL")}</div>
-          </div>
-        </div>
-      </div>
     </div>
   )}
 

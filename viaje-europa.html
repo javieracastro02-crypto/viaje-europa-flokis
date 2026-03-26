@@ -108,25 +108,23 @@ const allTasks=[
 ];
 
 const paid=[
-{item:"Vuelo Santiago \u2192 Madrid \u2192 Santiago / LATAM",when:"Javi",clp:850000,cat:"Vuelos"},
-{item:"Vuelo Madrid \u2192 Copenhague / SAS",when:"Javi",clp:190000,cat:"Vuelos"},
-{item:"Vuelo Helsinki \u2192 Oslo / Norwegian (Javi)",when:"Javi",clp:89000,cat:"Vuelos"},
-{item:"Vuelo Oslo \u2192 Madrid / Norwegian (Javi)",when:"Javi",clp:276000,cat:"Vuelos"},
-{item:"Hotel Madrid ida / ILUNION P\u00EDo XII",when:"Javi",clp:275811,cat:"Alojamiento"},
-{item:"Hotel Copenhague / Wakeup Copenhagen",when:"Bryan",clp:561831,cat:"Alojamiento"},
-{item:"Hotel Estocolmo / Livington Hotel",when:"Bryan",clp:554711,cat:"Alojamiento"},
-{item:"Hotel Helsinki / Hotel AX",when:"Javi",clp:323851,cat:"Alojamiento"},
-{item:"Airbnb Oslo / Sandakerveien 68A",when:"Bryan",clp:344696,cat:"Alojamiento"},
-{item:"Hotel Madrid regreso / ILUNION P\u00EDo XII",when:"Javi",clp:269000,cat:"Alojamiento"},
-{item:"Ferry Estocolmo \u2192 Helsinki / Viking Line",when:"Javi",clp:190000,cat:"Transporte"},
-{item:"Transferencia a Bryan",when:"Javi",clp:500000,cat:"Otro"},
+{item:"Vuelo Santiago \u2192 Madrid \u2192 Santiago",detail:"LATAM LA706 + LA2485/LA2697 \u00B7 C\u00F3d JLCDKB",clp:850000,cat:"Vuelos"},
+{item:"Vuelo Madrid \u2192 Copenhague",detail:"SAS \u00B7 5 jun 18:30 \u00B7 Ref X3V4DN",clp:190000,cat:"Vuelos"},
+{item:"Vuelo Helsinki \u2192 Oslo (Javi)",detail:"Norwegian DY1191 \u00B7 17 jun 13:55",clp:89000,cat:"Vuelos"},
+{item:"Vuelo Oslo \u2192 Madrid (Javi)",detail:"Norwegian DY1718 \u00B7 20 jun 15:45",clp:276000,cat:"Vuelos"},
+{item:"Hotel Madrid (ida)",detail:"ILUNION P\u00EDo XII \u00B7 3\u20135 jun \u00B7 2 noches",clp:275811,cat:"Alojamiento"},
+{item:"Hotel Copenhague",detail:"Wakeup Copenhagen \u00B7 5\u20139 jun \u00B7 4 noches",clp:561831,cat:"Alojamiento"},
+{item:"Hotel Estocolmo",detail:"Livington Hotel \u00B7 9\u201313 jun \u00B7 4 noches",clp:554711,cat:"Alojamiento"},
+{item:"Hotel Helsinki",detail:"Hotel AX \u00B7 14\u201317 jun \u00B7 3 noches",clp:323851,cat:"Alojamiento"},
+{item:"Airbnb Oslo",detail:"Sandakerveien 68A \u00B7 17\u201320 jun \u00B7 3 noches",clp:344696,cat:"Alojamiento"},
+{item:"Hotel Madrid (regreso)",detail:"ILUNION P\u00EDo XII \u00B7 20\u201322 jun \u00B7 2 noches",clp:269000,cat:"Alojamiento"},
+{item:"Ferry Estocolmo \u2192 Helsinki",detail:"Viking Line \u00B7 13 jun 17:00 \u00B7 Ref DFP194722507",clp:190000,cat:"Transporte"},
+{item:"Transferencia",detail:"Traspaso entre cuentas",clp:500000,cat:"Otro"},
 ];
 const finCats=["Todos","Vuelos","Alojamiento","Transporte","Otro"];
 const filteredPaid=filterFinCat==="Todos"?paid:paid.filter(r=>r.cat===filterFinCat);
 const filteredPending=filterFinCat==="Todos"?pending:pending.filter(r=>r.cat===filterFinCat);
 const totalPaid=paid.reduce((s,r)=>s+r.clp,0);
-const paidJavi=paid.filter(r=>r.when==="Javi").reduce((s,r)=>s+r.clp,0);
-const paidBryan=paid.filter(r=>r.when==="Bryan").reduce((s,r)=>s+r.clp,0);
 const filteredTotal=filteredPaid.reduce((s,r)=>s+r.clp,0);
 const pendingMin=89000+276000+148000+30000;
 const pendingMax=89000+276000+222000+80000;
@@ -135,10 +133,10 @@ const granTotalMin=totalPaid+pendingMin+totalComidas;
 const granTotalMax=totalPaid+pendingMax+totalComidas;
 
 const pending=[
-{item:"Vuelo Helsinki \u2192 Oslo / Norwegian (Bryan)",when:"\uD83D\uDD34 Urgente",clp:"~$89.000",link:"https://www.norwegian.com",cat:"Vuelos"},
-{item:"Vuelo Oslo \u2192 Madrid / Norwegian (Bryan)",when:"\uD83D\uDD34 Urgente",clp:"~$276.000",link:"https://www.norwegian.com",cat:"Vuelos"},
-{item:"Tren Copenhague \u2192 Estocolmo x2",when:"\uD83D\uDD34 Urgente",clp:"$74.000\u2013111.000 x2",link:"https://www.raileurope.com",cat:"Transporte"},
-{item:"Seguro de viaje",when:"\uD83D\uDFE1 Antes mayo",clp:"$30.000\u201380.000",link:"https://www.assistcard.com/cl",cat:"Otro"},
+{item:"Vuelo Helsinki \u2192 Oslo (Bryan)",detail:"Norwegian DY1191 o similar \u00B7 17 jun",when:"\uD83D\uDD34 Urgente",clp:"~$89.000",link:"https://www.norwegian.com",cat:"Vuelos"},
+{item:"Vuelo Oslo \u2192 Madrid (Bryan)",detail:"Norwegian DY1718 o similar \u00B7 20 jun",when:"\uD83D\uDD34 Urgente",clp:"~$276.000",link:"https://www.norwegian.com",cat:"Vuelos"},
+{item:"Tren Copenhague \u2192 Estocolmo",detail:"9 jun \u00B7 ~5h \u00B7 x2 pasajeros",when:"\uD83D\uDD34 Urgente",clp:"~$74.000\u2013111.000 x2",link:"https://www.raileurope.com",cat:"Transporte"},
+{item:"Seguro de viaje",detail:"2\u201322 jun \u00B7 Assist Card, MAPFRE o AXA",when:"\uD83D\uDFE1 Antes mayo",clp:"~$30.000\u201380.000",link:"https://www.assistcard.com/cl",cat:"Otro"},
 ];
 
 const daily=[
@@ -598,7 +596,7 @@ return (
         ))}
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:16}}>
-        {[{l:"Ya pagado",c:`$${totalPaid.toLocaleString("es-CL")}`,u:`Javi $${paidJavi.toLocaleString("es-CL")} \u00B7 Bryan $${paidBryan.toLocaleString("es-CL")}`,bg:navy},{l:"Por pagar (est.)",c:`~$${pendingMin.toLocaleString("es-CL")}\u2013${pendingMax.toLocaleString("es-CL")}`,u:"Vuelos Bryan + tren + seguro",bg:"#8b6050"},{l:"Comidas (est.)",c:`~$${totalComidas.toLocaleString("es-CL")}`,u:`~US$${dt} \u00B7 $150/d\u00EDa x2`,bg:"#01579b"},{l:"Total viaje",c:`~$${granTotalMin.toLocaleString("es-CL")}\u2013${granTotalMax.toLocaleString("es-CL")}`,u:`~$${Math.round(granTotalMin/2).toLocaleString("es-CL")}\u2013${Math.round(granTotalMax/2).toLocaleString("es-CL")} c/u`,bg:"#6b7c6e"}].map((t,i)=>(
+        {[{l:"Ya pagado",c:`$${totalPaid.toLocaleString("es-CL")}`,u:"Total entre los dos",bg:navy},{l:"Por pagar (est.)",c:`~$${pendingMin.toLocaleString("es-CL")}\u2013${pendingMax.toLocaleString("es-CL")}`,u:"Vuelos Bryan + tren + seguro",bg:"#8b6050"},{l:"Comidas (est.)",c:`~$${totalComidas.toLocaleString("es-CL")}`,u:`~US$150/d\u00EDa x2 personas`,bg:"#01579b"},{l:"Total viaje",c:`~$${granTotalMin.toLocaleString("es-CL")}\u2013${granTotalMax.toLocaleString("es-CL")}`,u:`~$${Math.round(granTotalMin/2).toLocaleString("es-CL")}\u2013${Math.round(granTotalMax/2).toLocaleString("es-CL")} por persona`,bg:"#6b7c6e"}].map((t,i)=>(
           <div key={i} style={{background:t.bg,borderRadius:12,padding:"13px 10px",textAlign:"center"}}>
             <div style={{fontSize:9,fontWeight:600,letterSpacing:1,textTransform:"uppercase",color:"rgba(255,255,255,0.65)",marginBottom:3}}>{t.l}</div>
             <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1rem",fontWeight:700,color:"white",lineHeight:1.1}}>{t.c}</div>
@@ -612,13 +610,11 @@ return (
         {filteredPaid.map((r,i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPaid.length-1?"1px solid #f4f0e8":"none",background:"white",gap:8,flexWrap:"wrap"}}>
             <div style={{flex:1}}>
-              <div style={{fontSize:12,color:navy,fontWeight:500}}>{r.item}</div>
-              <div style={{display:"flex",gap:4,marginTop:3}}>
-                <span style={{background:r.cat==="Vuelos"?"#e3f2fd":r.cat==="Alojamiento"?"#fff8e1":r.cat==="Transporte"?"#f3e5f5":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#90caf9":r.cat==="Alojamiento"?"#ffe082":r.cat==="Transporte"?"#ce93d8":"#ddd"}`,color:r.cat==="Vuelos"?"#01579b":r.cat==="Alojamiento"?"#f57f17":r.cat==="Transporte"?"#6a1b9a":"#666",borderRadius:8,padding:"0px 5px",fontSize:8,fontWeight:600}}>{r.cat}</span>
-                <span style={{background:r.when==="Javi"?"#fce8e8":"#e3f2fd",border:`1px solid ${r.when==="Javi"?"#f0c0bf":"#90caf9"}`,color:r.when==="Javi"?"#8b4040":"#01579b",borderRadius:8,padding:"0px 5px",fontSize:8,fontWeight:600}}>{r.when}</span>
-              </div>
+              <div style={{fontSize:12,color:navy,fontWeight:600}}>{r.item}</div>
+              {r.detail&&<div style={{fontSize:10,color:"#999",marginTop:1}}>{r.detail}</div>}
             </div>
-            <div style={{display:"flex",alignItems:"center"}}>
+            <div style={{display:"flex",alignItems:"center",gap:6}}>
+              <span style={{background:r.cat==="Vuelos"?"#e3f2fd":r.cat==="Alojamiento"?"#fff8e1":r.cat==="Transporte"?"#f3e5f5":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#90caf9":r.cat==="Alojamiento"?"#ffe082":r.cat==="Transporte"?"#ce93d8":"#ddd"}`,color:r.cat==="Vuelos"?"#01579b":r.cat==="Alojamiento"?"#f57f17":r.cat==="Transporte"?"#6a1b9a":"#666",borderRadius:8,padding:"1px 6px",fontSize:8,fontWeight:600}}>{r.cat}</span>
               <span style={{fontWeight:700,color:navy,fontSize:12,textAlign:"right"}}>${r.clp.toLocaleString("es-CL")}</span>
             </div>
           </div>
@@ -634,10 +630,12 @@ return (
         {filteredPending.map((r,i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPending.length-1?"1px solid #f4f0e8":"none",gap:8,flexWrap:"wrap"}}>
             <div style={{flex:1}}>
-              <div style={{fontSize:12,color:navy,fontWeight:500}}>{r.item}</div>
-              <span style={{background:r.when.includes("\uD83D\uDD34")?"#fce4ec":"#fff8e1",border:`1px solid ${r.when.includes("\uD83D\uDD34")?"#f48fb1":"#ffd54f"}`,color:r.when.includes("\uD83D\uDD34")?"#c62828":"#e65100",borderRadius:10,padding:"1px 6px",fontSize:9,fontWeight:600}}>{r.when}</span>
+              <div style={{fontSize:12,color:navy,fontWeight:600}}>{r.item}</div>
+              {r.detail&&<div style={{fontSize:10,color:"#999",marginTop:1}}>{r.detail}</div>}
+              <span style={{background:r.when.includes("\uD83D\uDD34")?"#fce4ec":"#fff8e1",border:`1px solid ${r.when.includes("\uD83D\uDD34")?"#f48fb1":"#ffd54f"}`,color:r.when.includes("\uD83D\uDD34")?"#c62828":"#e65100",borderRadius:10,padding:"1px 6px",fontSize:9,fontWeight:600,display:"inline-block",marginTop:4}}>{r.when}</span>
             </div>
-            <div style={{display:"flex",gap:8,alignItems:"center"}}>
+            <div style={{display:"flex",gap:6,alignItems:"center"}}>
+              <span style={{background:r.cat==="Vuelos"?"#e3f2fd":r.cat==="Transporte"?"#f3e5f5":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#90caf9":r.cat==="Transporte"?"#ce93d8":"#ddd"}`,color:r.cat==="Vuelos"?"#01579b":r.cat==="Transporte"?"#6a1b9a":"#666",borderRadius:8,padding:"1px 6px",fontSize:8,fontWeight:600}}>{r.cat}</span>
               <span style={{fontWeight:700,color:"#c62828",fontSize:12}}>{r.clp}</span>
               <a href={r.link} target="_blank" rel="noreferrer" style={{background:"#e3f2fd",border:"1px solid #4a9fc4",color:"#0277bd",borderRadius:6,padding:"3px 8px",fontSize:11,fontWeight:600,textDecoration:"none"}}>{"\u2192"}</a>
             </div>
@@ -663,14 +661,12 @@ return (
         <div style={{fontSize:10,fontWeight:600,letterSpacing:3,textTransform:"uppercase",color:gold,marginBottom:12}}>Resumen total</div>
         {[
           ["Ya pagado",`$${totalPaid.toLocaleString("es-CL")}`],
-          ["  \u00B7 Javi pag\u00F3",`$${paidJavi.toLocaleString("es-CL")}`],
-          ["  \u00B7 Bryan pag\u00F3",`$${paidBryan.toLocaleString("es-CL")}`],
           ["Por pagar (est.)",`~$${pendingMin.toLocaleString("es-CL")}\u2013${pendingMax.toLocaleString("es-CL")}`],
           ["Comidas (est.)",`~$${totalComidas.toLocaleString("es-CL")}`],
         ].map(([l,c],i)=>(
-          <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"5px 0",borderBottom:"1px solid rgba(255,255,255,0.07)",fontSize:l.startsWith("  ")?11:12}}>
-            <span style={{color:l.startsWith("  ")?"rgba(255,255,255,0.5)":"rgba(255,255,255,0.7)"}}>{l}</span>
-            <span style={{color:l.startsWith("  ")?"rgba(255,255,255,0.5)":"white",fontWeight:600}}>{c}</span>
+          <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"5px 0",borderBottom:"1px solid rgba(255,255,255,0.07)",fontSize:12}}>
+            <span style={{color:"rgba(255,255,255,0.7)"}}>{l}</span>
+            <span style={{color:"white",fontWeight:600}}>{c}</span>
           </div>
         ))}
         <div style={{display:"flex",justifyContent:"space-between",padding:"10px 0 2px",borderTop:"2px solid rgba(255,255,255,0.2)",marginTop:4}}>

@@ -108,19 +108,27 @@ const allTasks=[
 ];
 
 const paid=[
-{item:"\u2708\uFE0F Vuelos LATAM (ida+vuelta)",when:"Javi",clp:"$184.270"},
-{item:"\u2708\uFE0F SAS MAD \u2192 CPH",when:"Javi",clp:"$190.000"},
-{item:"\uD83C\uDFE8 ILUNION Madrid ida",when:"Javi",clp:"$275.811"},
-{item:"\uD83C\uDFE8 Wakeup Copenhague",when:"Bryan",clp:"$561.831"},
-{item:"\uD83C\uDFE8 Livington Estocolmo",when:"Bryan",clp:"$554.711"},
-{item:"\uD83D\uDEA2 Ferry STK \u2192 HEL",when:"Javi",clp:"$190.000"},
-{item:"\uD83C\uDFE0 Airbnb Helsinki",when:"Javi",clp:"$323.851"},
-{item:"\u2708\uFE0F Norwegian HEL \u2192 OSL (Javi)",when:"Javi",clp:"$89.000"},
-{item:"\u2708\uFE0F Norwegian OSL \u2192 MAD (Javi)",when:"Javi",clp:"$276.000"},
-{item:"\uD83C\uDFE0 Airbnb Oslo",when:"Bryan",clp:"$344.696"},
-{item:"\uD83C\uDFE8 ILUNION Madrid regreso",when:"Javi",clp:"$269.000"},
-{item:"\uD83D\uDCB3 Transferencia Bryan",when:"Javi",clp:"$500.000"},
+{item:"\u2708\uFE0F Vuelos LATAM (ida+vuelta)",when:"Javi",clp:184270},
+{item:"\u2708\uFE0F SAS MAD \u2192 CPH",when:"Javi",clp:190000},
+{item:"\uD83C\uDFE8 ILUNION Madrid ida",when:"Javi",clp:275811},
+{item:"\uD83C\uDFE8 Wakeup Copenhague",when:"Bryan",clp:561831},
+{item:"\uD83C\uDFE8 Livington Estocolmo",when:"Bryan",clp:554711},
+{item:"\uD83D\uDEA2 Ferry STK \u2192 HEL",when:"Javi",clp:190000},
+{item:"\uD83C\uDFE0 Hotel AX Helsinki",when:"Javi",clp:323851},
+{item:"\u2708\uFE0F Norwegian HEL \u2192 OSL (Javi)",when:"Javi",clp:89000},
+{item:"\u2708\uFE0F Norwegian OSL \u2192 MAD (Javi)",when:"Javi",clp:276000},
+{item:"\uD83C\uDFE0 Airbnb Oslo",when:"Bryan",clp:344696},
+{item:"\uD83C\uDFE8 ILUNION Madrid regreso",when:"Javi",clp:269000},
+{item:"\uD83D\uDCB3 Transferencia Bryan",when:"Javi",clp:500000},
 ];
+const totalPaid=paid.reduce((s,r)=>s+r.clp,0);
+const paidJavi=paid.filter(r=>r.when==="Javi").reduce((s,r)=>s+r.clp,0);
+const paidBryan=paid.filter(r=>r.when==="Bryan").reduce((s,r)=>s+r.clp,0);
+const pendingMin=89000+276000+148000+30000;
+const pendingMax=89000+276000+222000+80000;
+const totalComidas=dt*928;
+const granTotalMin=totalPaid+pendingMin+totalComidas;
+const granTotalMax=totalPaid+pendingMax+totalComidas;
 
 const pending=[
 {item:"\u2708\uFE0F Bryan HEL \u2192 OSL",when:"\uD83D\uDD34 Urgente",clp:"~$89.000",link:"https://www.norwegian.com"},
@@ -579,7 +587,7 @@ return (
         {"\uD83D\uDCB1"} <strong>1 USD = $928 CLP</strong> {"\u00B7"} actualizado 21 mar 2026
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:16}}>
-        {[{l:"Ya pagado",c:"~$1.722.000+",u:"~US$1.856+",bg:navy},{l:"Por pagar",c:"~$1.011.000\u20131.383.000",u:"~US$1.090\u20131.490",bg:"#8b6050"},{l:"Comidas",c:`~$${(dt*928).toLocaleString("es-CL")}`,u:`~US$${dt}`,bg:"#01579b"},{l:"Total",c:"~$6.700.000\u20137.400.000",u:"~US$7.200\u20138.000",bg:"#6b7c6e"}].map((t,i)=>(
+        {[{l:"Ya pagado",c:`$${totalPaid.toLocaleString("es-CL")}`,u:`Javi $${paidJavi.toLocaleString("es-CL")} \u00B7 Bryan $${paidBryan.toLocaleString("es-CL")}`,bg:navy},{l:"Por pagar (est.)",c:`~$${pendingMin.toLocaleString("es-CL")}\u2013${pendingMax.toLocaleString("es-CL")}`,u:"Vuelos Bryan + tren + seguro",bg:"#8b6050"},{l:"Comidas (est.)",c:`~$${totalComidas.toLocaleString("es-CL")}`,u:`~US$${dt} \u00B7 $150/d\u00EDa x2`,bg:"#01579b"},{l:"Total viaje",c:`~$${granTotalMin.toLocaleString("es-CL")}\u2013${granTotalMax.toLocaleString("es-CL")}`,u:`~$${Math.round(granTotalMin/2).toLocaleString("es-CL")}\u2013${Math.round(granTotalMax/2).toLocaleString("es-CL")} c/u`,bg:"#6b7c6e"}].map((t,i)=>(
           <div key={i} style={{background:t.bg,borderRadius:12,padding:"13px 10px",textAlign:"center"}}>
             <div style={{fontSize:9,fontWeight:600,letterSpacing:1,textTransform:"uppercase",color:"rgba(255,255,255,0.65)",marginBottom:3}}>{t.l}</div>
             <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1rem",fontWeight:700,color:"white",lineHeight:1.1}}>{t.c}</div>
@@ -594,11 +602,15 @@ return (
           <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<paid.length-1?"1px solid #f4f0e8":"none",background:r.alert?"#fffde7":"white",gap:8,flexWrap:"wrap"}}>
             <div style={{fontSize:12,color:navy,fontWeight:500,flex:1}}>{r.item}</div>
             <div style={{display:"flex",gap:8,alignItems:"center"}}>
-              <span style={{background:r.alert?"#fff3e0":"#e8f5e9",border:`1px solid ${r.alert?"#ffb74d":"#81c784"}`,color:r.alert?"#e65100":"#2e7d32",borderRadius:12,padding:"1px 7px",fontSize:10,fontWeight:600,whiteSpace:"nowrap"}}>{r.when}</span>
-              <span style={{fontWeight:700,color:navy,fontSize:12,minWidth:50,textAlign:"right"}}>{r.clp}</span>
+              <span style={{background:r.when==="Javi"?"#fce8e8":r.when==="Bryan"?"#e3f2fd":"#e8f5e9",border:`1px solid ${r.when==="Javi"?"#f0c0bf":r.when==="Bryan"?"#90caf9":"#81c784"}`,color:r.when==="Javi"?"#8b4040":r.when==="Bryan"?"#01579b":"#2e7d32",borderRadius:12,padding:"1px 7px",fontSize:10,fontWeight:600,whiteSpace:"nowrap"}}>{r.when}</span>
+              <span style={{fontWeight:700,color:navy,fontSize:12,minWidth:50,textAlign:"right"}}>${r.clp.toLocaleString("es-CL")}</span>
             </div>
           </div>
         ))}
+        <div style={{display:"flex",justifyContent:"space-between",padding:"10px 14px",background:"#e8f5e9",borderTop:"1px solid #c8e6c9"}}>
+          <span style={{fontWeight:700,color:"#2e7d32",fontSize:12}}>Total pagado</span>
+          <span style={{fontWeight:700,color:"#2e7d32",fontSize:13}}>${totalPaid.toLocaleString("es-CL")}</span>
+        </div>
       </div>
 
       <div style={{background:"white",borderRadius:14,border:"1px solid #e4ddd6",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
@@ -633,19 +645,25 @@ return (
 
       <div style={{background:navy,borderRadius:14,padding:"16px"}}>
         <div style={{fontSize:10,fontWeight:600,letterSpacing:3,textTransform:"uppercase",color:gold,marginBottom:12}}>Resumen total</div>
-        {[["Vuelos","~$1.392.000\u20131.670.000"],["Alojamiento","~$1.810.000\u20132.042.000"],["Trenes+Ferry","~$399.000\u2013501.000"],["Comidas","~$2.478.000"],["Imprevistos","~$603.000"]].map(([l,c],i)=>(
-          <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"5px 0",borderBottom:"1px solid rgba(255,255,255,0.07)",fontSize:12}}>
-            <span style={{color:"rgba(255,255,255,0.7)"}}>{l}</span>
-            <span style={{color:"white",fontWeight:600}}>{c}</span>
+        {[
+          ["Ya pagado",`$${totalPaid.toLocaleString("es-CL")}`],
+          ["  \u00B7 Javi pag\u00F3",`$${paidJavi.toLocaleString("es-CL")}`],
+          ["  \u00B7 Bryan pag\u00F3",`$${paidBryan.toLocaleString("es-CL")}`],
+          ["Por pagar (est.)",`~$${pendingMin.toLocaleString("es-CL")}\u2013${pendingMax.toLocaleString("es-CL")}`],
+          ["Comidas (est.)",`~$${totalComidas.toLocaleString("es-CL")}`],
+        ].map(([l,c],i)=>(
+          <div key={i} style={{display:"flex",justifyContent:"space-between",padding:"5px 0",borderBottom:"1px solid rgba(255,255,255,0.07)",fontSize:l.startsWith("  ")?11:12}}>
+            <span style={{color:l.startsWith("  ")?"rgba(255,255,255,0.5)":"rgba(255,255,255,0.7)"}}>{l}</span>
+            <span style={{color:l.startsWith("  ")?"rgba(255,255,255,0.5)":"white",fontWeight:600}}>{c}</span>
           </div>
         ))}
         <div style={{display:"flex",justifyContent:"space-between",padding:"10px 0 2px",borderTop:"2px solid rgba(255,255,255,0.2)",marginTop:4}}>
-          <span style={{color:gold,fontWeight:700,fontSize:13}}>TOTAL</span>
-          <span style={{color:gold,fontWeight:700,fontSize:13}}>~$6.700.000\u20137.400.000</span>
+          <span style={{color:gold,fontWeight:700,fontSize:13}}>TOTAL VIAJE</span>
+          <span style={{color:gold,fontWeight:700,fontSize:13}}>~${granTotalMin.toLocaleString("es-CL")}{"\u2013"}${granTotalMax.toLocaleString("es-CL")}</span>
         </div>
         <div style={{display:"flex",justifyContent:"space-between",fontSize:11}}>
           <span style={{color:"rgba(255,255,255,0.55)"}}>Por persona</span>
-          <span style={{color:"rgba(255,255,255,0.55)",fontWeight:600}}>~$3.350.000\u20133.700.000 c/u</span>
+          <span style={{color:"rgba(255,255,255,0.55)",fontWeight:600}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}{"\u2013"}${Math.round(granTotalMax/2).toLocaleString("es-CL")} c/u</span>
         </div>
       </div>
     </div>

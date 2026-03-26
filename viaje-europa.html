@@ -122,15 +122,9 @@ const paid=[
 {item:"Transferencia",detail:"Traspaso entre cuentas",clp:500000,cat:"Otro"},
 ];
 const finCats=["Todos","Vuelos","Alojamiento","Transporte","Otro"];
-const filteredPaid=filterFinCat==="Todos"?paid:paid.filter(r=>r.cat===filterFinCat);
-const filteredPending=filterFinCat==="Todos"?pending:pending.filter(r=>r.cat===filterFinCat);
 const totalPaid=paid.reduce((s,r)=>s+r.clp,0);
-const filteredTotal=filteredPaid.reduce((s,r)=>s+r.clp,0);
 const pendingMin=89000+276000+148000+30000;
 const pendingMax=89000+276000+222000+80000;
-const totalComidas=dt*928;
-const granTotalMin=totalPaid+pendingMin+totalComidas;
-const granTotalMax=totalPaid+pendingMax+totalComidas;
 
 const pending=[
 {item:"Vuelo Helsinki \u2192 Oslo (Bryan)",detail:"Norwegian DY1191 o similar \u00B7 17 jun",when:"\uD83D\uDD34 Urgente",clp:"~$89.000",link:"https://www.norwegian.com",cat:"Vuelos"},
@@ -310,6 +304,9 @@ const [tab,setTab]=useState("quick");
 const [filterCountry,setFilterCountry]=useState("all");
 const [filterDay,setFilterDay]=useState("all");
 const [filterFinCat,setFilterFinCat]=useState("Todos");
+const filteredPaid=filterFinCat==="Todos"?paid:paid.filter(r=>r.cat===filterFinCat);
+const filteredPending=filterFinCat==="Todos"?pending:pending.filter(r=>r.cat===filterFinCat);
+const filteredTotal=filteredPaid.reduce((s,r)=>s+r.clp,0);
 const [checked,setChecked]=useState(()=>{
   try { return JSON.parse(localStorage.getItem("europa2026_checked")||"{}"); } catch(e){ return {}; }
 });
@@ -323,6 +320,9 @@ const toggle=id=>{
 const done=Object.values(checked).filter(Boolean).length;
 const cats=[...new Set(allTasks.map(t=>t.cat))];
 const dt=daily.reduce((s,d)=>s+d.total,0);
+const totalComidas=dt*928;
+const granTotalMin=totalPaid+pendingMin+totalComidas;
+const granTotalMax=totalPaid+pendingMax+totalComidas;
 
 const countries=[
   {id:"all",flag:"Todos",color:"#888"},

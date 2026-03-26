@@ -396,7 +396,7 @@ return (
   </div>
 
   {/* TABS */}
-  <div style={{display:"flex",background:navy,borderBottom:`3px solid ${gold}`,overflowX:"auto"}}>
+  <div style={{display:"flex",background:"linear-gradient(135deg,#2a332b,#3d4a3f)",borderBottom:`3px solid ${gold}`,overflowX:"auto"}}>
     {[{id:"quick",l:"\u26A1 Itinerario"},{id:"days",l:"\uD83D\uDCC5 D\u00EDa a d\u00EDa"},{id:"full",l:"\uD83D\uDCCB Hoteles"},{id:"maps",l:"\uD83D\uDCCD Mapas"},{id:"finance",l:"\uD83D\uDCB0 Finanzas"},{id:"pending",l:"\u2611\uFE0F Pendientes"}].map(t=>(
       <button key={t.id} onClick={()=>setTab(t.id)} style={{flex:"0 0 auto",padding:"11px 12px",fontSize:15,fontWeight:600,textTransform:"uppercase",color:tab===t.id?gold:"#a8b8aa",background:tab===t.id?"rgba(212,160,23,0.1)":"none",border:"none",borderBottom:tab===t.id?`3px solid ${gold}`:"3px solid transparent",marginBottom:-3,cursor:"pointer",whiteSpace:"nowrap"}}>
         {t.l}
@@ -439,7 +439,7 @@ return (
         const total=filteredItinerary.length;
         return(<>
           {/* Progress bar */}
-          <div style={{background:"#e8f5e9",borderRadius:12,border:"1px solid #c8e6c9",padding:"12px 14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+          <div style={{background:"white",borderRadius:12,border:"1px solid #e0ddd8",padding:"12px 14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
               <span style={{fontSize:15,fontWeight:700,color:navy}}>Confirmados</span>
               <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:14,fontWeight:700,color:confirmed===total?"#2e7d32":gold}}>{confirmed}/{total}</span>
@@ -463,7 +463,7 @@ return (
                   <div style={{position:"absolute",left:-16,top:12,width:12,height:12,borderRadius:"50%",background:isConfirmed?"#43a047":"#c9908e",border:"2px solid white",boxShadow:"0 1px 3px rgba(0,0,0,0.2)",zIndex:1}}/>
 
                   {/* Card */}
-                  <div style={{background:"#e8f5e9",borderRadius:10,border:"1px solid #c8e6c9",padding:"8px 10px",marginLeft:8,boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
+                  <div style={{background:"white",borderRadius:10,border:"1px solid #e0ddd8",padding:"8px 10px",marginLeft:8,boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
                     <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:3}}>
                       <span style={{fontSize:14}}>{row.icon}</span>
                       <span style={{fontWeight:700,fontSize:14,color:navy,flex:1,lineHeight:1.2}}>{row.city}</span>
@@ -514,12 +514,12 @@ return (
               <div style={{flex:1,height:1,background:"#ddd"}}/>
             </div>
             {/* Day items */}
-            <div style={{background:"#e8f5e9",borderRadius:14,border:"1px solid #c8e6c9",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.04)",marginLeft:8}}>
+            <div style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.04)",marginLeft:8}}>
               {day.items.map((it,ii)=>{
                 const isFree=it.text.includes("D\u00EDa libre");
                 const isPending=it.note&&it.note.includes("\u26A0");
                 return(
-                  <div key={ii} style={{display:"flex",alignItems:"flex-start",gap:10,padding:"10px 14px",borderBottom:ii<day.items.length-1?"1px solid #f4f0e8":"none",background:isFree?"#f0f9f0":"#e8f5e9"}}>
+                  <div key={ii} style={{display:"flex",alignItems:"flex-start",gap:10,padding:"10px 14px",borderBottom:ii<day.items.length-1?"1px solid #f4f0e8":"none",background:isFree?"#fafaf8":"white"}}>
                     {it.time&&<div style={{minWidth:40,fontSize:14,fontWeight:700,color:it.time==="--:--"?"#bbb":navy,marginTop:2,fontFamily:"monospace"}}>{it.time}</div>}
                     <div style={{fontSize:16,flexShrink:0}}>{it.icon}</div>
                     <div style={{flex:1}}>
@@ -541,7 +541,7 @@ return (
     <div style={{padding:"16px",maxWidth:860,margin:"0 auto"}}>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
         {filteredHotels.map((h,i)=>(
-          <div key={i} style={{background:"#e8f5e9",borderRadius:14,border:"1px solid #c8e6c9",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
+          <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
             <div style={{background:h.status==="confirmed"?"#e8f5e9":"#fff3e0",padding:"10px 14px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div>
                 <div style={{fontSize:14,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:gold}}>{h.flag} {h.dates}</div>
@@ -573,7 +573,7 @@ return (
     <div style={{padding:"16px",maxWidth:960,margin:"0 auto"}}>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
         {filteredMaps.map((p,i)=>(
-          <div key={i} style={{background:"#e8f5e9",borderRadius:14,border:"1px solid #c8e6c9",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
+          <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
             <div style={{background:navy,padding:"10px 14px",display:"flex",alignItems:"center",gap:10}}>
               <div style={{fontSize:20}}>{p.flag}</div>
               <div>
@@ -643,10 +643,10 @@ return (
         </div>
       </div>
 
-      <div style={{background:"#e8f5e9",borderRadius:14,border:"1px solid #c8e6c9",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
-        <div style={{background:"#e8f5e9",padding:"9px 14px",borderBottom:"1px solid #c8e6c9",fontSize:15,fontWeight:700,textTransform:"uppercase",color:"#2e7d32"}}>{"\u2705"} Ya pagado</div>
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+        <div style={{background:"#e8f5e9",padding:"9px 14px",borderBottom:"1px solid #c8e6c9",fontSize:13,fontWeight:700,textTransform:"uppercase",color:"#5a6b5e"}}>{"\u2705"} Ya pagado</div>
         {filteredPaid.map((r,i)=>(
-          <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPaid.length-1?"1px solid #f4f0e8":"none",background:"#e8f5e9",gap:8,flexWrap:"wrap"}}>
+          <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPaid.length-1?"1px solid #f4f0e8":"none",background:"white",gap:8,flexWrap:"wrap"}}>
             <div style={{flex:1}}>
               <div style={{fontSize:14,color:navy,fontWeight:600}}>{r.item}</div>
               {r.detail&&<div style={{fontSize:10,color:"#999",marginTop:1}}>{r.detail}</div>}
@@ -658,13 +658,13 @@ return (
           </div>
         ))}
         <div style={{display:"flex",justifyContent:"space-between",padding:"10px 14px",background:"#e8f5e9",borderTop:"1px solid #c8e6c9"}}>
-          <span style={{fontWeight:700,color:"#2e7d32",fontSize:12}}>Total pagado</span>
-          <span style={{fontWeight:700,color:"#2e7d32",fontSize:13}}>${filteredTotal.toLocaleString("es-CL")}{filterFinCat!=="Todos"&&` (${filterFinCat})`}</span>
+          <span style={{fontWeight:700,color:"#5a6b5e",fontSize:13}}>Total pagado</span>
+          <span style={{fontWeight:700,color:"#5a6b5e",fontSize:14}}>${filteredTotal.toLocaleString("es-CL")}{filterFinCat!=="Todos"&&` (${filterFinCat})`}</span>
         </div>
       </div>
 
-      <div style={{background:"#e8f5e9",borderRadius:14,border:"1px solid #c8e6c9",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
-        <div style={{background:"#fff3e0",padding:"9px 14px",borderBottom:"1px solid #ffe0b2",fontSize:15,fontWeight:700,textTransform:"uppercase",color:"#8b6b5e"}}>{"\u23F3"} Por pagar</div>
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+        <div style={{background:"#fce8e8",padding:"9px 14px",borderBottom:"1px solid #dea5a4",fontSize:13,fontWeight:700,textTransform:"uppercase",color:"#8b5e5e"}}>{"\u23F3"} Por pagar</div>
         {filteredPending.map((r,i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPending.length-1?"1px solid #f4f0e8":"none",gap:8,flexWrap:"wrap"}}>
             <div style={{flex:1}}>
@@ -680,8 +680,8 @@ return (
           </div>
         ))}
         <div style={{display:"flex",justifyContent:"space-between",padding:"10px 14px",background:"#fff3e0",borderTop:"1px solid #ffe0b2"}}>
-          <span style={{fontWeight:700,color:"#8b6b5e",fontSize:13}}>Total por pagar</span>
-          <span style={{fontWeight:700,color:"#8b6b5e",fontSize:13}}>~${(pendingMin+totalComidas).toLocaleString("es-CL")} a ${(pendingMax+totalComidas).toLocaleString("es-CL")}</span>
+          <span style={{fontWeight:700,color:"#8b5e5e",fontSize:13}}>Total por pagar</span>
+          <span style={{fontWeight:700,color:"#8b5e5e",fontSize:14}}>~${(pendingMin+totalComidas).toLocaleString("es-CL")} a ${(pendingMax+totalComidas).toLocaleString("es-CL")}</span>
         </div>
       </div>
 
@@ -703,26 +703,26 @@ return (
   {/* PENDIENTES */}
   {tab==="pending"&&(
     <div style={{padding:"16px",maxWidth:860,margin:"0 auto"}}>
-      <div style={{background:"#e8f5e9",borderRadius:14,border:"1px solid #c8e6c9",padding:"14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+      <div style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",padding:"14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
-          <div style={{fontWeight:700,fontSize:13,color:navy}}>Progreso</div>
-          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.1rem",fontWeight:700,color:done===allTasks.length?"#2e7d32":gold}}>{done}/{allTasks.length}</div>
+          <div style={{fontWeight:700,fontSize:15,color:navy}}>Progreso</div>
+          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.2rem",fontWeight:700,color:done===allTasks.length?"#5a6b5e":gold}}>{done}/{allTasks.length}</div>
         </div>
-        <div style={{background:"#f0ebe5",borderRadius:20,height:9,overflow:"hidden"}}>
-          <div style={{background:done===allTasks.length?"#43a047":gold,height:"100%",borderRadius:20,width:`${(done/allTasks.length)*100}%`,transition:"width 0.4s"}}/>
+        <div style={{background:"#f0ebe5",borderRadius:20,height:10,overflow:"hidden"}}>
+          <div style={{background:done===allTasks.length?"#8a9e8d":gold,height:"100%",borderRadius:20,width:`${(done/allTasks.length)*100}%`,transition:"width 0.4s"}}/>
         </div>
-        <div style={{fontSize:10,color:"#888",marginTop:5}}>{allTasks.length-done} tareas pendientes \u00B7 toca para marcar</div>
+        <div style={{fontSize:12,color:"#999",marginTop:6}}>{allTasks.length-done} tareas pendientes {"·"} toca para marcar</div>
       </div>
 
       {cats.map(cat=>{
         const tasks=allTasks.filter(t=>t.cat===cat);
         const catDone=tasks.filter(t=>checked[t.id]).length;
         const isR=cat.includes("\uD83D\uDD34"),isY=cat.includes("\uD83D\uDFE1"),isT=cat.includes("\uD83C\uDF9F");
-        const hBg=isR?"#fce8e8":isY?"#fff8e1":isT?"#e8f5e9":"#f0f5f0";
+        const hBg=isR?"#fce8e8":isY?"#faf5ee":isT?"#e8f5e9":"#f0f5f0";
         const hC=isR?"#8b5e5e":isY?"#8b6b5e":isT?"#5a6b5e":"#5a6b5e";
-        const hB=isR?"#dea5a4":isY?"#ffd54f":isT?"#a5d6a7":"#a5d6a7";
+        const hB=isR?"#dea5a4":isY?"#e0d0a0":isT?"#a5d6a7":"#a5d6a7";
         return(
-          <div key={cat} style={{background:"#e8f5e9",borderRadius:14,border:"1px solid #c8e6c9",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
+          <div key={cat} style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
             <div style={{background:hBg,padding:"10px 14px",borderBottom:`1px solid ${hB}`,display:"flex",justifyContent:"space-between"}}>
               <div style={{fontSize:15,fontWeight:700,color:hC}}>{cat}</div>
               <div style={{fontSize:10,color:hC,opacity:0.8}}>{catDone}/{tasks.length}</div>
@@ -730,7 +730,7 @@ return (
             {tasks.map((t,i)=>{
               const isDone=!!checked[t.id];
               return(
-                <div key={t.id} onClick={()=>toggle(t.id)} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"12px 14px",borderBottom:i<tasks.length-1?"1px solid #f4f0e8":"none",background:isDone?"#f0f9f0":"#e8f5e9",cursor:"pointer"}}>
+                <div key={t.id} onClick={()=>toggle(t.id)} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"12px 14px",borderBottom:i<tasks.length-1?"1px solid #f4f0e8":"none",background:isDone?"#f8f8f6":"white",cursor:"pointer"}}>
                   <div style={{width:20,height:20,borderRadius:5,border:`2px solid ${isDone?"#43a047":gold}`,background:isDone?"#43a047":"white",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:1}}>
                     {isDone&&<span style={{color:"white",fontSize:14,fontWeight:700}}>{"\u2713"}</span>}
                   </div>

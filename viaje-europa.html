@@ -471,10 +471,10 @@ return (
               const matchFilter=filterCountry==="all"||matchesCountry((day.city||"")+(day.flag||""),filterCountry);
               return(
                 <div key={i} onClick={()=>{if(day.city&&matchFilter)setCalDay(calDay===day.d?null:day.d);}} style={{background:day.bg,border:calDay===day.d?`2.5px solid ${navy}`:`1.5px solid ${day.border}`,borderRadius:8,padding:"4px 3px",minHeight:74,cursor:(isEmpty||!matchFilter)?"default":"pointer",opacity:isEmpty?0.3:matchFilter?1:0.2,display:"flex",flexDirection:"column",alignItems:"center",gap:2,boxShadow:calDay===day.d?"0 2px 8px rgba(0,0,0,0.15)":"none",transition:"all 0.2s"}}>
-                  <div style={{fontSize:13,fontWeight:700,color:day.text}}>{day.d}</div>
-                  {day.flag&&<div style={{fontSize:18}}>{day.flag}</div>}
-                  {day.city&&<div style={{fontSize:10,fontWeight:600,color:navy,textAlign:"center",lineHeight:1.2}}>{day.city}</div>}
-                  {day.note&&<div style={{fontSize:9,color:"#999",textAlign:"center"}}>{day.note}</div>}
+                  <div style={{fontSize:15,fontWeight:700,color:day.text}}>{day.d}</div>
+                  {day.flag&&<div style={{fontSize:20}}>{day.flag}</div>}
+                  {day.city&&<div style={{fontSize:12,fontWeight:600,color:navy,textAlign:"center",lineHeight:1.2}}>{day.city}</div>}
+                  {day.note&&<div style={{fontSize:11,color:"#999",textAlign:"center"}}>{day.note}</div>}
                 </div>
               );
             })}

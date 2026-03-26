@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Europa Junio 2026 ✈️</title>
+<title>Flokis en Europa T2 ✈️</title>
 
 <!-- PWA Meta Tags -->
-<meta name="theme-color" content="#8a9e8d">
+<meta name="theme-color" content="#8b6b6b">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Europa 2026">
@@ -23,14 +23,14 @@
    _warn(...args);
  };
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#f8f6f3; font-family:'Outfit',sans-serif; font-size:15px; }</style>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>* { margin:0; padding:0; box-sizing:border-box; } body { background:#faf5f2; font-family:'Raleway',sans-serif; font-size:15px; }</style>
 </head>
 <body>
 <div id="root"></div>
 <script type="text/babel">
 const { useState } = React;
-const navy="#3d4a3f", gold="#dea5a4", cream="#f8f6f3";
+const navy="#4a3540", gold="#e8c0b0", cream="#faf5f2";
 
 const itinerary=[
 {icon:"\u2708\uFE0F",date:"Mar 2 jun",city:"Santiago \u2192 Madrid",detail:"LATAM LA706 \u00B7 SCL 19:00 \u2192 MAD 13:55 (+1) \u00B7 C\u00F3d JLCDKB",status:"confirmed",tag:"VUELO"},
@@ -49,12 +49,12 @@ const itinerary=[
 ];
 
 const tagC={
-VUELO:{bg:"#e8f5e9",b:"#a5d6a7",t:"#5a6b5e"},
-TREN:{bg:"#f0f5f0",b:"#a5d6a7",t:"#5a6b5e"},
+VUELO:{bg:"#f5e8e0",b:"#e0c8bb",t:"#6b5050"},
+TREN:{bg:"#f0f5f0",b:"#e0c8bb",t:"#6b5050"},
 FERRY:{bg:"#e0f7fa",b:"#80deea",t:"#00695c"},
 HOTEL:{bg:"#fff8e1",b:"#ffe082",t:"#f57f17"},
 AIRBNB:{bg:"#fce8e8",b:"#dea5a4",t:"#8b5e5e"},
-"EXCURSI\u00D3N":{bg:"#e8f5e9",b:"#a5d6a7",t:"#1b5e20"},
+"EXCURSI\u00D3N":{bg:"#f5e8e0",b:"#e0c8bb",t:"#1b5e20"},
 };
 
 const hotels=[
@@ -167,7 +167,7 @@ const dayByDay=[
 {time:"18:30",icon:"\u2708\uFE0F",text:"Vuelo SAS MAD \u2192 CPH",note:"Llega 21:45 \u00B7 Ref X3V4DN \u00B7 Ref cliente 40-889662559 \u00B7 PIN 6371"},
 {time:"22:30",icon:"\uD83C\uDFE8",text:"Check-in Wakeup Copenhagen",note:"Carsten Niebuhrs Gade 11 \u00B7 PIN 874138"},
 ]},
-{date:"Vie 6 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",color:"#5a6b5e",items:[
+{date:"Vie 6 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",color:"#6b5050",items:[
 {time:"09:00",icon:"\uD83D\uDEB6",text:"Nyhavn \u2192 Amalienborg",note:"Puerto colorido \u00B7 fotos cl\u00E1sicas \u00B7 luego palacio real (cambio de guardia 12:00)"},
 {time:"10:30",icon:"\uD83E\uDDDC",text:"La Sirenita + Kastellet",note:"Fortaleza en forma de estrella \u00B7 a 15 min caminando desde Amalienborg"},
 {time:"12:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Torvehallerne",note:"Mercado cubierto \u00B7 sm\u00F8rrebr\u00F8d \u00B7 pasteles daneses"},
@@ -175,21 +175,21 @@ const dayByDay=[
 {time:"16:30",icon:"\uD83D\uDEB6",text:"Barrio de Christiania",note:"Barrio libre \u00B7 arte callejero \u00B7 a 20 min en metro desde Rosenborg"},
 {time:"19:00",icon:"\uD83C\uDF7A",text:"Cena y cerveza en Vesterbro",note:"Barrio trendy cerca del hotel \u00B7 Mikkeller, Warpigs"},
 ]},
-{date:"S\u00E1b 7 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",color:"#5a6b5e",items:[
+{date:"S\u00E1b 7 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",color:"#6b5050",items:[
 {time:"10:00",icon:"\uD83C\uDFA1",text:"Parque Tivoli",note:"Abren a las 11 \u00B7 reservar online \u00B7 Pack atracciones ~\u20AC66"},
 {time:"14:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en zona Tivoli / Str\u00F8get",note:"Str\u00F8get = calle peatonal m\u00E1s larga de Europa \u00B7 shopping"},
 {time:"15:30",icon:"\u26EA",text:"Torre Redonda (Rundetaarn)",note:"Subida en espiral \u00B7 vista panor\u00E1mica 360\u00B0 \u00B7 sobre Str\u00F8get"},
 {time:"17:00",icon:"\uD83D\uDEB6",text:"Paseo por canal de Christianshavn",note:"Iglesia de Nuestro Salvador (torre en espiral) \u00B7 casas flotantes"},
 {time:"20:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Nyhavn",note:"Restaurantes con vista al canal \u00B7 atardecer largo (sol hasta ~22:00)"},
 ]},
-{date:"Dom 8 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",color:"#5a6b5e",items:[
+{date:"Dom 8 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0",city:"Copenhague",color:"#6b5050",items:[
 {time:"09:30",icon:"\uD83D\uDEB4",text:"Arriendo bicicletas \u2192 zona norte",note:"CPH es la ciudad m\u00E1s ciclable del mundo \u00B7 ~50 DKK/d\u00EDa"},
 {time:"10:30",icon:"\uD83C\uDFDB\uFE0F",text:"Museo Nacional de Dinamarca",note:"Gratis \u00B7 historia vikinga \u00B7 centro de CPH"},
 {time:"13:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Reffen Street Food",note:"Mercado al aire libre en isla de Refshale\u00F8en \u00B7 comida mundial"},
 {time:"15:00",icon:"\uD83C\uDF3F",text:"Jard\u00EDn Bot\u00E1nico + barrio N\u00F8rrebro",note:"Invernadero de palmeras gratis \u00B7 luego barrio multicultural con caf\u00E9s"},
 {time:"18:00",icon:"\uD83C\uDF7A",text:"Tarde libre / compras \u00FAltimo d\u00EDa en CPH",note:"Preparar maletas \u00B7 cena temprana cerca del hotel"},
 ]},
-{date:"Lun 9 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0\u2192\uD83C\uDDF8\uD83C\uDDEA",city:"CPH \u2192 Estocolmo",color:"#5a6b5e",items:[
+{date:"Lun 9 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0\u2192\uD83C\uDDF8\uD83C\uDDEA",city:"CPH \u2192 Estocolmo",color:"#6b5050",items:[
 {time:"08:00",icon:"\uD83C\uDFE8",text:"Check-out Wakeup Copenhagen",note:"CO 11:00 \u00B7 salir temprano"},
 {time:"~09:00",icon:"\uD83D\uDE82",text:"Tren Copenhague \u2192 Estocolmo",note:"~5h \u00B7 Puente \u00D8resund \u00B7 paisajes suecos \u00B7 \u26A0 por comprar"},
 {time:"~14:00",icon:"\uD83D\uDEEC",text:"Llegada a Estocolmo Central",note:""},
@@ -197,7 +197,7 @@ const dayByDay=[
 {time:"17:00",icon:"\uD83D\uDEB6",text:"Paseo por Gamla Stan",note:"Ciudad vieja \u00B7 callejones medievales \u00B7 Stortorget (plaza principal)"},
 {time:"19:30",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Gamla Stan",note:"Restaurantes con historia \u00B7 alb\u00F3ndigas suecas"},
 ]},
-{date:"Mar 10 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#5a6b5e",items:[
+{date:"Mar 10 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#6b5050",items:[
 {time:"09:30",icon:"\uD83D\uDEA2",text:"Museo Vasa",note:"Barco de guerra de 1628 \u00B7 el museo m\u00E1s visitado de Escandinavia \u00B7 isla Djurg\u00E5rden"},
 {time:"12:00",icon:"\uD83C\uDF3F",text:"Paseo por Djurg\u00E5rden",note:"Isla verde \u00B7 Skansen (museo al aire libre) o ABBA Museum"},
 {time:"13:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Djurg\u00E5rden",note:"Rosendals Tr\u00E4dg\u00E5rd \u00B7 caf\u00E9 org\u00E1nico en invernadero"},
@@ -205,7 +205,7 @@ const dayByDay=[
 {time:"18:00",icon:"\uD83C\uDF05",text:"Mirador de Monteliusv\u00E4gen",note:"Mejor atardecer de Estocolmo \u00B7 vista a Gamla Stan \u00B7 gratis"},
 {time:"19:30",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en S\u00F6dermalm",note:"Zona Medborgarplatsen \u00B7 restaurantes con terraza"},
 ]},
-{date:"Mi\u00E9 11 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#5a6b5e",items:[
+{date:"Mi\u00E9 11 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#6b5050",items:[
 {time:"09:00",icon:"\uD83C\uDFF0",text:"Palacio Real (Kungliga Slottet)",note:"Cambio de guardia ~12:15 \u00B7 en Gamla Stan"},
 {time:"10:30",icon:"\uD83C\uDFDB\uFE0F",text:"Nobel Prize Museum",note:"En Stortorget \u00B7 Gamla Stan \u00B7 a pasos del palacio"},
 {time:"12:00",icon:"\uD83C\uDF7D\uFE0F",text:"Fika (caf\u00E9 sueco) en Gamla Stan",note:"Caf\u00E9 Sten Sansen o Chokladkoppen \u00B7 kanelbulle (rol de canela)"},
@@ -213,14 +213,14 @@ const dayByDay=[
 {time:"16:30",icon:"\uD83D\uDEB6",text:"Barrio de \u00D6stermalm",note:"Mercado Saluhall (\u00F6stermalms) \u00B7 elegante \u00B7 quesos y salm\u00F3n sueco"},
 {time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en \u00D6stermalm",note:"Zona gastron\u00F3mica \u00B7 cocina n\u00F3rdica moderna"},
 ]},
-{date:"Jue 12 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#5a6b5e",items:[
+{date:"Jue 12 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#6b5050",items:[
 {time:"10:00",icon:"\u26F5",text:"Tour en barco por archipi\u00E9lago",note:"Str\u00F6mma o similares \u00B7 ~2-3h \u00B7 islas alrededor de Estocolmo"},
 {time:"13:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Norrmalm",note:"Zona centro \u00B7 K25 food court o Hötorgshallen"},
 {time:"15:00",icon:"\uD83D\uDEB6",text:"City Hall (Stadshuset)",note:"Donde se entregan los Nobel \u00B7 torre con vista panor\u00E1mica \u00B7 Kungsholmen"},
 {time:"17:00",icon:"\uD83D\uDED2",text:"Compras / souvenirs",note:"Drottninggatan (peatonal) \u00B7 Design District \u00B7 preparar para ferry ma\u00F1ana"},
 {time:"19:00",icon:"\uD83C\uDF7D\uFE0F",text:"\u00DAltima cena en Estocolmo",note:"Despedida \u00B7 elegir favorito de los d\u00EDas anteriores"},
 ]},
-{date:"Vie 13 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA\u2192\uD83C\uDDEB\uD83C\uDDEE",city:"Estocolmo \u2192 Ferry",color:"#5a6b5e",items:[
+{date:"Vie 13 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA\u2192\uD83C\uDDEB\uD83C\uDDEE",city:"Estocolmo \u2192 Ferry",color:"#6b5050",items:[
 {time:"10:00",icon:"\uD83C\uDFE8",text:"Check-out Livington Hotel",note:"CO 12:00 \u00B7 \u26A0 1 noche perdida"},
 {time:"11:00",icon:"\uD83D\uDEB6",text:"Paseo final por Gamla Stan",note:"\u00DAltimas fotos \u00B7 caf\u00E9 de despedida"},
 {time:"13:00",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo cerca del terminal",note:"Terminal Stadsg\u00E5rden est\u00E1 en S\u00F6dermalm"},
@@ -327,8 +327,8 @@ const granTotalMax=totalPaid+pendingMax+totalComidas;
 const countries=[
   {id:"all",flag:"Todos",color:"#888"},
   {id:"ES",flag:"\uD83C\uDDEA\uD83C\uDDF8",color:"#8b5e5e"},
-  {id:"DK",flag:"\uD83C\uDDE9\uD83C\uDDF0",color:"#5a6b5e"},
-  {id:"SE",flag:"\uD83C\uDDF8\uD83C\uDDEA",color:"#5a6b5e"},
+  {id:"DK",flag:"\uD83C\uDDE9\uD83C\uDDF0",color:"#6b5050"},
+  {id:"SE",flag:"\uD83C\uDDF8\uD83C\uDDEA",color:"#6b5050"},
   {id:"FI",flag:"\uD83C\uDDEB\uD83C\uDDEE",color:"#00695c"},
   {id:"NO",flag:"\uD83C\uDDF3\uD83C\uDDF4",color:"#8b6b5e"},
 ];
@@ -377,7 +377,8 @@ return (
     <div style={{position:"absolute",bottom:0,left:0,right:0,height:4,background:`linear-gradient(90deg,transparent,${gold},transparent)`,zIndex:2}}/>
     <div style={{position:"relative",zIndex:1,padding:"44px 20px 34px"}}>
       <div style={{fontSize:10,fontWeight:500,letterSpacing:5,textTransform:"uppercase",color:gold,marginBottom:10}}>{"\u2708"} Itinerario · Junio 2026</div>
-      <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"clamp(2rem,7vw,3.2rem)",fontWeight:700,color:"white",marginBottom:4}}>Europa del <span style={{color:gold}}>Norte</span></div>
+      <div style={{fontFamily:"'Nunito',sans-serif",fontSize:"clamp(1.8rem,6vw,2.8rem)",fontWeight:700,color:"white",marginBottom:4}}>Flokis en <span style={{color:gold}}>Europa</span></div>
+      <div style={{fontFamily:"'Raleway',sans-serif",fontSize:13,fontWeight:400,letterSpacing:3,color:"rgba(255,255,255,0.7)",textTransform:"uppercase"}}>Temporada 2</div>
       <div style={{fontSize:12,color:"rgba(255,255,255,0.75)",marginBottom:6}}>21 d{"í"}as · 6 pa{"í"}ses · 2 personas</div>
       <div style={{display:"flex",justifyContent:"center",gap:14,marginBottom:12}}>
         {[{f:"\uD83C\uDDEA\uD83C\uDDF8",n:"Madrid"},{f:"\uD83C\uDDE9\uD83C\uDDF0",n:"Copenhague"},{f:"\uD83C\uDDF8\uD83C\uDDEA",n:"Estocolmo"},{f:"\uD83C\uDDEB\uD83C\uDDEE",n:"Helsinki"},{f:"\uD83C\uDDF3\uD83C\uDDF4",n:"Oslo"}].map((c,i)=>(
@@ -396,7 +397,7 @@ return (
   </div>
 
   {/* TABS */}
-  <div style={{display:"flex",background:"linear-gradient(135deg,#2a332b,#3d4a3f)",borderBottom:`3px solid ${gold}`,overflowX:"auto"}}>
+  <div style={{display:"flex",background:"linear-gradient(135deg,#4a3540,#5a4550)",borderBottom:`3px solid ${gold}`,overflowX:"auto"}}>
     {[{id:"quick",l:"\u26A1 Itinerario"},{id:"days",l:"\uD83D\uDCC5 D\u00EDa a d\u00EDa"},{id:"full",l:"\uD83D\uDCCB Hoteles"},{id:"maps",l:"\uD83D\uDCCD Mapas"},{id:"finance",l:"\uD83D\uDCB0 Finanzas"},{id:"pending",l:"\u2611\uFE0F Pendientes"}].map(t=>(
       <button key={t.id} onClick={()=>setTab(t.id)} style={{flex:"0 0 auto",padding:"11px 12px",fontSize:15,fontWeight:600,textTransform:"uppercase",color:tab===t.id?gold:"#a8b8aa",background:tab===t.id?"rgba(212,160,23,0.1)":"none",border:"none",borderBottom:tab===t.id?`3px solid ${gold}`:"3px solid transparent",marginBottom:-3,cursor:"pointer",whiteSpace:"nowrap"}}>
         {t.l}
@@ -431,9 +432,9 @@ return (
     <div style={{padding:"16px 12px",maxWidth:520,margin:"0 auto"}}>
       {(()=>{
         const groups=[
-          {label:"VUELOS",color:"#5a6b5e",bg:"#e8f5e9",items:itinerary.filter(r=>r.tag==="VUELO")},
+          {label:"VUELOS",color:"#6b5050",bg:"#f5e8e0",items:itinerary.filter(r=>r.tag==="VUELO")},
           {label:"ALOJAMIENTO",color:"#f57f17",bg:"#fff8e1",items:itinerary.filter(r=>["HOTEL","AIRBNB"].includes(r.tag))},
-          {label:"TRANSPORTE",color:"#5a6b5e",bg:"#f0f5f0",items:itinerary.filter(r=>["TREN","FERRY"].includes(r.tag))},
+          {label:"TRANSPORTE",color:"#6b5050",bg:"#f0f5f0",items:itinerary.filter(r=>["TREN","FERRY"].includes(r.tag))},
         ];
         const confirmed=filteredItinerary.filter(r=>r.status==="confirmed").length;
         const total=filteredItinerary.length;
@@ -442,10 +443,10 @@ return (
           <div style={{background:"white",borderRadius:12,border:"1px solid #e0ddd8",padding:"12px 14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
               <span style={{fontSize:15,fontWeight:700,color:navy}}>Confirmados</span>
-              <span style={{fontFamily:"'Cormorant Garamond',serif",fontSize:14,fontWeight:700,color:confirmed===total?"#2e7d32":gold}}>{confirmed}/{total}</span>
+              <span style={{fontFamily:"'Nunito',sans-serif",fontSize:14,fontWeight:700,color:confirmed===total?"#6b5050":gold}}>{confirmed}/{total}</span>
             </div>
             <div style={{background:"#f0ebe5",borderRadius:20,height:6,overflow:"hidden"}}>
-              <div style={{background:confirmed===total?"#43a047":gold,height:"100%",borderRadius:20,width:`${(confirmed/total)*100}%`,transition:"width 0.4s"}}/>
+              <div style={{background:confirmed===total?"#8b6b6b":gold,height:"100%",borderRadius:20,width:`${(confirmed/total)*100}%`,transition:"width 0.4s"}}/>
             </div>
           </div>
 
@@ -460,7 +461,7 @@ return (
               return(
                 <div key={i} style={{position:"relative",marginBottom:i<filteredItinerary.length-1?2:0}}>
                   {/* Dot on timeline */}
-                  <div style={{position:"absolute",left:-16,top:12,width:12,height:12,borderRadius:"50%",background:isConfirmed?"#43a047":"#c9908e",border:"2px solid white",boxShadow:"0 1px 3px rgba(0,0,0,0.2)",zIndex:1}}/>
+                  <div style={{position:"absolute",left:-16,top:12,width:12,height:12,borderRadius:"50%",background:isConfirmed?"#8b6b6b":"#c9908e",border:"2px solid white",boxShadow:"0 1px 3px rgba(0,0,0,0.2)",zIndex:1}}/>
 
                   {/* Card */}
                   <div style={{background:"white",borderRadius:10,border:"1px solid #e0ddd8",padding:"8px 10px",marginLeft:8,boxShadow:"0 1px 4px rgba(0,0,0,0.04)"}}>
@@ -482,7 +483,7 @@ return (
           {/* Legend */}
           <div style={{display:"flex",gap:8,justifyContent:"center",marginTop:14,flexWrap:"wrap"}}>
             <div style={{display:"flex",alignItems:"center",gap:4}}>
-              <div style={{width:8,height:8,borderRadius:"50%",background:"#43a047"}}/>
+              <div style={{width:8,height:8,borderRadius:"50%",background:"#8b6b6b"}}/>
               <span style={{fontSize:11,color:"#666"}}>Confirmado</span>
             </div>
             <div style={{display:"flex",alignItems:"center",gap:4}}>
@@ -542,10 +543,10 @@ return (
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:12}}>
         {filteredHotels.map((h,i)=>(
           <div key={i} style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",boxShadow:"0 2px 6px rgba(0,0,0,0.05)"}}>
-            <div style={{background:h.status==="confirmed"?"#e8f5e9":"#fff3e0",padding:"10px 14px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <div style={{background:h.status==="confirmed"?"#f5e8e0":"#fff3e0",padding:"10px 14px",borderBottom:"1px solid #eee",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
               <div>
                 <div style={{fontSize:14,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:gold}}>{h.flag} {h.dates}</div>
-                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1.05rem",fontWeight:700,color:navy}}>{h.city}</div>
+                <div style={{fontFamily:"'Nunito',sans-serif",fontSize:"1.05rem",fontWeight:700,color:navy}}>{h.city}</div>
               </div>
               <div style={{background:gold+"22",border:`1px solid ${gold}`,borderRadius:20,padding:"2px 8px",fontSize:14,fontWeight:600,color:"#7a5a58"}}>{h.nights} noches</div>
             </div>
@@ -558,7 +559,7 @@ return (
               {h.codes.length>0&&<div style={{display:"flex",flexWrap:"wrap",gap:3,marginBottom:5}}>{h.codes.map((c,j)=><span key={j} style={{fontFamily:"monospace",background:"#f4f0e8",border:"1px solid #ddd",borderRadius:4,padding:"1px 5px",fontSize:9}}>{c}</span>)}</div>}
               {h.note&&<div style={{background:"#fff8e1",border:"1px solid #ffd54f",borderRadius:6,padding:"5px 8px",fontSize:10,color:"#5d4037",marginBottom:6}}>{"\u26A0\uFE0F"} {h.note}</div>}
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:8,paddingTop:8,borderTop:"1px solid #f0ebe5"}}>
-                <span style={{background:h.status==="confirmed"?"#e8f5e9":"#fff3e0",border:`1px solid ${h.status==="confirmed"?"#81c784":"#ffb74d"}`,color:h.status==="confirmed"?"#2e7d32":"#8b6b5e",borderRadius:12,padding:"2px 8px",fontSize:14,fontWeight:700}}>{h.status==="confirmed"?"\u2713 Confirmado":"\u26A0 Pendiente"}</span>
+                <span style={{background:h.status==="confirmed"?"#f5e8e0":"#fff3e0",border:`1px solid ${h.status==="confirmed"?"#e0c8bb":"#ffb74d"}`,color:h.status==="confirmed"?"#6b5050":"#8b6b5e",borderRadius:12,padding:"2px 8px",fontSize:14,fontWeight:700}}>{h.status==="confirmed"?"\u2713 Confirmado":"\u26A0 Pendiente"}</span>
                 <a href={h.maps} target="_blank" rel="noreferrer" style={{background:navy,color:"white",borderRadius:6,padding:"4px 8px",fontSize:14,fontWeight:600,textDecoration:"none"}}>{"\uD83D\uDDFA"} Maps</a>
               </div>
             </div>
@@ -577,7 +578,7 @@ return (
             <div style={{background:navy,padding:"10px 14px",display:"flex",alignItems:"center",gap:10}}>
               <div style={{fontSize:20}}>{p.flag}</div>
               <div>
-                <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:"1rem",fontWeight:700,color:"white"}}>{p.city}</div>
+                <div style={{fontFamily:"'Nunito',sans-serif",fontSize:"1rem",fontWeight:700,color:"white"}}>{p.city}</div>
                 <div style={{fontSize:10,color:"rgba(255,255,255,0.55)"}}>{p.dates}</div>
               </div>
             </div>
@@ -608,43 +609,43 @@ return (
       <div style={{display:"flex",gap:6,marginBottom:14,flexWrap:"wrap",alignItems:"center"}}>
         <span style={{fontSize:15,fontWeight:700,color:"#999",textTransform:"uppercase",letterSpacing:1}}>Filtrar</span>
         {finCats.map(c=>(
-          <button key={c} onClick={()=>setFilterFinCat(c)} style={{padding:"4px 10px",fontSize:14,fontWeight:filterFinCat===c?600:400,borderRadius:8,border:filterFinCat===c?`2px solid ${navy}`:"1px solid #ddd",background:filterFinCat===c?"#e8f5e9":"white",color:filterFinCat===c?navy:"#888",cursor:"pointer"}}>{c}</button>
+          <button key={c} onClick={()=>setFilterFinCat(c)} style={{padding:"4px 10px",fontSize:14,fontWeight:filterFinCat===c?600:400,borderRadius:8,border:filterFinCat===c?`2px solid ${navy}`:"1px solid #ddd",background:filterFinCat===c?"#f5e8e0":"white",color:filterFinCat===c?navy:"#888",cursor:"pointer"}}>{c}</button>
         ))}
       </div>
       {/* CARD TOTAL */}
-      <div style={{background:`linear-gradient(135deg,#3d4a3f,#5a6b5e)`,borderRadius:14,padding:"18px 16px",marginBottom:14}}>
+      <div style={{background:`linear-gradient(135deg,#4a3540,#5a4550)`,borderRadius:14,padding:"18px 16px",marginBottom:14}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
           <div style={{fontSize:11,fontWeight:600,letterSpacing:2,textTransform:"uppercase",color:gold}}>Total del viaje</div>
-          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.3rem",fontWeight:700,color:"white"}}>~${granTotalMin.toLocaleString("es-CL")} a ${granTotalMax.toLocaleString("es-CL")}</div>
+          <div style={{fontFamily:"'Raleway',sans-serif",fontSize:"1.3rem",fontWeight:700,color:"white"}}>~${granTotalMin.toLocaleString("es-CL")} a ${granTotalMax.toLocaleString("es-CL")}</div>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:14}}>
           <div style={{background:"rgba(255,255,255,0.1)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Pagado</div>
-            <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.1rem",fontWeight:700,color:"#81c784"}}>${totalPaid.toLocaleString("es-CL")}</div>
+            <div style={{fontFamily:"'Raleway',sans-serif",fontSize:"1.1rem",fontWeight:700,color:"#e0c8bb"}}>${totalPaid.toLocaleString("es-CL")}</div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>${Math.round(totalPaid/2).toLocaleString("es-CL")} c/u</div>
           </div>
           <div style={{background:"rgba(255,255,255,0.1)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Por pagar</div>
-            <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.1rem",fontWeight:700,color:"#ffb74d"}}>~${pendingMin.toLocaleString("es-CL")}</div>
+            <div style={{fontFamily:"'Raleway',sans-serif",fontSize:"1.1rem",fontWeight:700,color:"#ffb74d"}}>~${pendingMin.toLocaleString("es-CL")}</div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>a ~${pendingMax.toLocaleString("es-CL")}</div>
           </div>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
           <div style={{background:"rgba(255,255,255,0.08)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Javi</div>
-            <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
+            <div style={{fontFamily:"'Raleway',sans-serif",fontSize:"1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>a ~${Math.round(granTotalMax/2).toLocaleString("es-CL")}</div>
           </div>
           <div style={{background:"rgba(255,255,255,0.08)",borderRadius:10,padding:"10px 12px",textAlign:"center"}}>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.5)",textTransform:"uppercase",letterSpacing:1,marginBottom:4}}>Bryan</div>
-            <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
+            <div style={{fontFamily:"'Raleway',sans-serif",fontSize:"1rem",fontWeight:700,color:gold}}>~${Math.round(granTotalMin/2).toLocaleString("es-CL")}</div>
             <div style={{fontSize:10,color:"rgba(255,255,255,0.4)"}}>a ~${Math.round(granTotalMax/2).toLocaleString("es-CL")}</div>
           </div>
         </div>
       </div>
 
       <div style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
-        <div style={{background:"#e8f5e9",padding:"9px 14px",borderBottom:"1px solid #c8e6c9",fontSize:13,fontWeight:700,textTransform:"uppercase",color:"#5a6b5e"}}>{"\u2705"} Ya pagado</div>
+        <div style={{background:"#f5e8e0",padding:"9px 14px",borderBottom:"1px solid #c8e6c9",fontSize:13,fontWeight:700,textTransform:"uppercase",color:"#6b5050"}}>{"\u2705"} Ya pagado</div>
         {filteredPaid.map((r,i)=>(
           <div key={i} style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"8px 14px",borderBottom:i<filteredPaid.length-1?"1px solid #f4f0e8":"none",background:"white",gap:8,flexWrap:"wrap"}}>
             <div style={{flex:1}}>
@@ -652,14 +653,14 @@ return (
               {r.detail&&<div style={{fontSize:10,color:"#999",marginTop:1}}>{r.detail}</div>}
             </div>
             <div style={{display:"flex",alignItems:"center",gap:6}}>
-              <span style={{background:r.cat==="Vuelos"?"#e8f5e9":r.cat==="Alojamiento"?"#fff8e1":r.cat==="Transporte"?"#f0f5f0":r.cat==="Comidas"?"#e8f5e9":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#a5d6a7":r.cat==="Alojamiento"?"#ffe082":r.cat==="Transporte"?"#a5d6a7":r.cat==="Comidas"?"#a5d6a7":"#ddd"}`,color:r.cat==="Vuelos"?"#5a6b5e":r.cat==="Alojamiento"?"#f57f17":r.cat==="Transporte"?"#5a6b5e":r.cat==="Comidas"?"#2e7d32":"#666",borderRadius:8,padding:"1px 6px",fontSize:14,fontWeight:600}}>{r.cat}</span>
+              <span style={{background:r.cat==="Vuelos"?"#f5e8e0":r.cat==="Alojamiento"?"#fff8e1":r.cat==="Transporte"?"#f0f5f0":r.cat==="Comidas"?"#f5e8e0":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#e0c8bb":r.cat==="Alojamiento"?"#ffe082":r.cat==="Transporte"?"#e0c8bb":r.cat==="Comidas"?"#e0c8bb":"#ddd"}`,color:r.cat==="Vuelos"?"#6b5050":r.cat==="Alojamiento"?"#f57f17":r.cat==="Transporte"?"#6b5050":r.cat==="Comidas"?"#6b5050":"#666",borderRadius:8,padding:"1px 6px",fontSize:14,fontWeight:600}}>{r.cat}</span>
               <span style={{fontWeight:700,color:navy,fontSize:12,textAlign:"right"}}>${r.clp.toLocaleString("es-CL")}</span>
             </div>
           </div>
         ))}
-        <div style={{display:"flex",justifyContent:"space-between",padding:"10px 14px",background:"#e8f5e9",borderTop:"1px solid #c8e6c9"}}>
-          <span style={{fontWeight:700,color:"#5a6b5e",fontSize:13}}>Total pagado</span>
-          <span style={{fontWeight:700,color:"#5a6b5e",fontSize:14}}>${filteredTotal.toLocaleString("es-CL")}{filterFinCat!=="Todos"&&` (${filterFinCat})`}</span>
+        <div style={{display:"flex",justifyContent:"space-between",padding:"10px 14px",background:"#f5e8e0",borderTop:"1px solid #c8e6c9"}}>
+          <span style={{fontWeight:700,color:"#6b5050",fontSize:13}}>Total pagado</span>
+          <span style={{fontWeight:700,color:"#6b5050",fontSize:14}}>${filteredTotal.toLocaleString("es-CL")}{filterFinCat!=="Todos"&&` (${filterFinCat})`}</span>
         </div>
       </div>
 
@@ -673,9 +674,9 @@ return (
               <span style={{background:r.when.includes("\uD83D\uDD34")?"#fce8e8":"#fff8e1",border:`1px solid ${r.when.includes("\uD83D\uDD34")?"#dea5a4":"#ffd54f"}`,color:r.when.includes("\uD83D\uDD34")?"#8b5e5e":"#8b6b5e",borderRadius:10,padding:"1px 6px",fontSize:15,fontWeight:600,display:"inline-block",marginTop:4}}>{r.when}</span>
             </div>
             <div style={{display:"flex",gap:6,alignItems:"center"}}>
-              <span style={{background:r.cat==="Vuelos"?"#e8f5e9":r.cat==="Transporte"?"#f0f5f0":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#a5d6a7":r.cat==="Transporte"?"#a5d6a7":"#ddd"}`,color:r.cat==="Vuelos"?"#5a6b5e":r.cat==="Transporte"?"#5a6b5e":"#666",borderRadius:8,padding:"1px 6px",fontSize:14,fontWeight:600}}>{r.cat}</span>
+              <span style={{background:r.cat==="Vuelos"?"#f5e8e0":r.cat==="Transporte"?"#f0f5f0":"#f5f5f5",border:`1px solid ${r.cat==="Vuelos"?"#e0c8bb":r.cat==="Transporte"?"#e0c8bb":"#ddd"}`,color:r.cat==="Vuelos"?"#6b5050":r.cat==="Transporte"?"#6b5050":"#666",borderRadius:8,padding:"1px 6px",fontSize:14,fontWeight:600}}>{r.cat}</span>
               <span style={{fontWeight:700,color:"#8b5e5e",fontSize:12}}>{r.clp==="comidas"?`~$${totalComidas.toLocaleString("es-CL")}`:r.clp}</span>
-              {r.link&&<a href={r.link} target="_blank" rel="noreferrer" style={{background:"#e8f5e9",border:"1px solid #a5d6a7",color:"#5a6b5e",borderRadius:6,padding:"3px 8px",fontSize:15,fontWeight:600,textDecoration:"none"}}>{"\u2192"}</a>}
+              {r.link&&<a href={r.link} target="_blank" rel="noreferrer" style={{background:"#f5e8e0",border:"1px solid #a5d6a7",color:"#6b5050",borderRadius:6,padding:"3px 8px",fontSize:15,fontWeight:600,textDecoration:"none"}}>{"\u2192"}</a>}
             </div>
           </div>
         ))}
@@ -686,10 +687,10 @@ return (
       </div>
 
       {/* TOTAL GENERAL */}
-      <div style={{background:`linear-gradient(135deg,#3d4a3f,#5a6b5e)`,borderRadius:14,padding:"14px 16px"}}>
+      <div style={{background:`linear-gradient(135deg,#4a3540,#5a4550)`,borderRadius:14,padding:"14px 16px"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           <span style={{fontWeight:700,color:gold,fontSize:14,textTransform:"uppercase",letterSpacing:1}}>Total del viaje</span>
-          <span style={{fontFamily:"'Outfit',sans-serif",fontWeight:700,color:"white",fontSize:"1.2rem"}}>~${granTotalMin.toLocaleString("es-CL")} a ${granTotalMax.toLocaleString("es-CL")}</span>
+          <span style={{fontFamily:"'Raleway',sans-serif",fontWeight:700,color:"white",fontSize:"1.2rem"}}>~${granTotalMin.toLocaleString("es-CL")} a ${granTotalMax.toLocaleString("es-CL")}</span>
         </div>
         <div style={{display:"flex",justifyContent:"space-between",marginTop:4}}>
           <span style={{fontSize:12,color:"rgba(255,255,255,0.5)"}}>Por persona</span>
@@ -706,10 +707,10 @@ return (
       <div style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",padding:"14px",marginBottom:14,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}}>
           <div style={{fontWeight:700,fontSize:15,color:navy}}>Progreso</div>
-          <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.2rem",fontWeight:700,color:done===allTasks.length?"#5a6b5e":gold}}>{done}/{allTasks.length}</div>
+          <div style={{fontFamily:"'Raleway',sans-serif",fontSize:"1.2rem",fontWeight:700,color:done===allTasks.length?"#6b5050":gold}}>{done}/{allTasks.length}</div>
         </div>
         <div style={{background:"#f0ebe5",borderRadius:20,height:10,overflow:"hidden"}}>
-          <div style={{background:done===allTasks.length?"#8a9e8d":gold,height:"100%",borderRadius:20,width:`${(done/allTasks.length)*100}%`,transition:"width 0.4s"}}/>
+          <div style={{background:done===allTasks.length?"#8b6b6b":gold,height:"100%",borderRadius:20,width:`${(done/allTasks.length)*100}%`,transition:"width 0.4s"}}/>
         </div>
         <div style={{fontSize:12,color:"#999",marginTop:6}}>{allTasks.length-done} tareas pendientes {"·"} toca para marcar</div>
       </div>
@@ -718,9 +719,9 @@ return (
         const tasks=allTasks.filter(t=>t.cat===cat);
         const catDone=tasks.filter(t=>checked[t.id]).length;
         const isR=cat.includes("\uD83D\uDD34"),isY=cat.includes("\uD83D\uDFE1"),isT=cat.includes("\uD83C\uDF9F");
-        const hBg=isR?"#fce8e8":isY?"#faf5ee":isT?"#e8f5e9":"#f0f5f0";
-        const hC=isR?"#8b5e5e":isY?"#8b6b5e":isT?"#5a6b5e":"#5a6b5e";
-        const hB=isR?"#dea5a4":isY?"#e0d0a0":isT?"#a5d6a7":"#a5d6a7";
+        const hBg=isR?"#fce8e8":isY?"#faf5ee":isT?"#f5e8e0":"#f0f5f0";
+        const hC=isR?"#8b5e5e":isY?"#8b6b5e":isT?"#6b5050":"#6b5050";
+        const hB=isR?"#dea5a4":isY?"#e0d0a0":isT?"#e0c8bb":"#e0c8bb";
         return(
           <div key={cat} style={{background:"white",borderRadius:14,border:"1px solid #e0ddd8",overflow:"hidden",marginBottom:12,boxShadow:"0 2px 6px rgba(0,0,0,0.04)"}}>
             <div style={{background:hBg,padding:"10px 14px",borderBottom:`1px solid ${hB}`,display:"flex",justifyContent:"space-between"}}>
@@ -731,7 +732,7 @@ return (
               const isDone=!!checked[t.id];
               return(
                 <div key={t.id} onClick={()=>toggle(t.id)} style={{display:"flex",alignItems:"flex-start",gap:12,padding:"12px 14px",borderBottom:i<tasks.length-1?"1px solid #f4f0e8":"none",background:isDone?"#f8f8f6":"white",cursor:"pointer"}}>
-                  <div style={{width:20,height:20,borderRadius:5,border:`2px solid ${isDone?"#43a047":gold}`,background:isDone?"#43a047":"white",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:1}}>
+                  <div style={{width:20,height:20,borderRadius:5,border:`2px solid ${isDone?"#8b6b6b":gold}`,background:isDone?"#8b6b6b":"white",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,marginTop:1}}>
                     {isDone&&<span style={{color:"white",fontSize:14,fontWeight:700}}>{"\u2713"}</span>}
                   </div>
                   <div style={{flex:1}}>
@@ -740,7 +741,7 @@ return (
                     <div style={{display:"flex",alignItems:"center",gap:6,marginTop:5,flexWrap:"wrap"}}>
                       {t.clp!=="\u2014"&&<span style={{background:"#f8f4ec",border:"1px solid #e0d0a0",borderRadius:10,padding:"1px 7px",fontSize:15,fontWeight:600,color:"#8b6b68"}}>{t.clp}</span>}
                       {t.link&&!isDone&&(
-                        <a href={t.link} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()} style={{background:isR?"#fce8e8":isT?"#e8f5e9":"#e8f5e9",border:`1px solid ${isR?"#dea5a4":isT?"#a5d6a7":"#81c784"}`,color:isR?"#8b5e5e":isT?"#5a6b5e":"#2e7d32",borderRadius:6,padding:"2px 7px",fontSize:14,fontWeight:600,textDecoration:"none"}}>{t.ll} {"\u2192"}</a>
+                        <a href={t.link} target="_blank" rel="noreferrer" onClick={e=>e.stopPropagation()} style={{background:isR?"#fce8e8":isT?"#f5e8e0":"#f5e8e0",border:`1px solid ${isR?"#dea5a4":isT?"#e0c8bb":"#e0c8bb"}`,color:isR?"#8b5e5e":isT?"#6b5050":"#6b5050",borderRadius:6,padding:"2px 7px",fontSize:14,fontWeight:600,textDecoration:"none"}}>{t.ll} {"\u2192"}</a>
                       )}
                     </div>
                   </div>
@@ -752,7 +753,7 @@ return (
       })}
       <div style={{background:navy,borderRadius:12,padding:"14px",textAlign:"center"}}>
         <div style={{fontSize:11,color:"rgba(255,255,255,0.7)",marginBottom:3}}>Airbnb Oslo se cobra el</div>
-        <div style={{fontFamily:"'Outfit',sans-serif",fontSize:"1.1rem",fontWeight:700,color:gold}}>1 de junio 2026</div>
+        <div style={{fontFamily:"'Raleway',sans-serif",fontSize:"1.1rem",fontWeight:700,color:gold}}>1 de junio 2026</div>
         <div style={{fontSize:10,color:"rgba(255,255,255,0.55)",marginTop:2}}>~US$650 {"\u00B7"} ~$603.000 CLP {"\u00B7"} HMF3TJ4NPS</div>
       </div>
     </div>

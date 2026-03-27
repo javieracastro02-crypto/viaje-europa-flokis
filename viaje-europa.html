@@ -429,24 +429,24 @@ return (
           {d:2,city:"Santiago",flag:"\uD83C\uDDE8\uD83C\uDDF1",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"\u2708 SCL\u2192MAD"},
           {d:3,city:"Madrid",flag:"\uD83C\uDDEA\uD83C\uDDF8",bg:"#fce8e8",border:"#dea5a4",text:navy,note:"Llegada"},
           {d:4,city:"Madrid",flag:"\uD83C\uDDEA\uD83C\uDDF8",bg:"#fce8e8",border:"#dea5a4",text:navy,note:"Prado"},
-          {d:5,city:"MAD\u2192CPH",flag:"\u2708",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Vuelo 18:30"},
+          {d:5,city:"MAD\u2192CPH",flag:"\uD83C\uDDEA\uD83C\uDDF8\u2192\uD83C\uDDE9\uD83C\uDDF0",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Vuelo 18:30"},
           {d:6,city:"Copenhague",flag:"\uD83C\uDDE9\uD83C\uDDF0",bg:"#fff8f0",border:"#e8c0b0",text:navy,note:"Nyhavn"},
           {d:7,city:"Copenhague",flag:"\uD83C\uDDE9\uD83C\uDDF0",bg:"#fff8f0",border:"#e8c0b0",text:navy,note:"Tivoli"},
           {d:8,city:"Copenhague",flag:"\uD83C\uDDE9\uD83C\uDDF0",bg:"#fff8f0",border:"#e8c0b0",text:navy,note:"Bici"},
-          {d:9,city:"CPH\u2192STK",flag:"\uD83D\uDE82",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Tren ~5h"},
+          {d:9,city:"CPH\u2192STK",flag:"\uD83C\uDDE9\uD83C\uDDF0\u2192\uD83C\uDDF8\uD83C\uDDEA",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Tren ~5h"},
           {d:10,city:"Estocolmo",flag:"\uD83C\uDDF8\uD83C\uDDEA",bg:"#f5f0eb",border:"#d8ccc0",text:navy,note:"Vasa"},
           {d:11,city:"Estocolmo",flag:"\uD83C\uDDF8\uD83C\uDDEA",bg:"#f5f0eb",border:"#d8ccc0",text:navy,note:"Palacio"},
           {d:12,city:"Estocolmo",flag:"\uD83C\uDDF8\uD83C\uDDEA",bg:"#f5f0eb",border:"#d8ccc0",text:navy,note:"Barco"},
-          {d:13,city:"STK\u2192Ferry",flag:"\uD83D\uDEA2",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"17:00"},
+          {d:13,city:"STK\u2192HEL",flag:"\uD83C\uDDF8\uD83C\uDDEA\u2192\uD83C\uDDEB\uD83C\uDDEE",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Ferry 17:00"},
           {d:14,city:"Helsinki",flag:"\uD83C\uDDEB\uD83C\uDDEE",bg:"#f0ebe8",border:"#d0c0bb",text:navy,note:"Llegada"},
           {d:15,city:"Helsinki",flag:"\uD83C\uDDEB\uD83C\uDDEE",bg:"#f0ebe8",border:"#d0c0bb",text:navy,note:"Suomenlinna"},
           {d:16,city:"Helsinki",flag:"\uD83C\uDDEB\uD83C\uDDEE",bg:"#f0ebe8",border:"#d0c0bb",text:navy,note:"Oodi"},
-          {d:17,city:"HEL\u2192OSL",flag:"\u2708",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"13:55"},
+          {d:17,city:"HEL\u2192OSL",flag:"\uD83C\uDDEB\uD83C\uDDEE\u2192\uD83C\uDDF3\uD83C\uDDF4",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Vuelo 13:55"},
           {d:18,city:"Oslo",flag:"\uD83C\uDDF3\uD83C\uDDF4",bg:"#f8f0ed",border:"#d8c4bb",text:navy,note:"Vigeland"},
           {d:19,city:"Oslo",flag:"\uD83C\uDDF3\uD83C\uDDF4",bg:"#f8f0ed",border:"#d8c4bb",text:navy,note:"Vikingos"},
-          {d:20,city:"OSL\u2192MAD",flag:"\u2708",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"15:45"},
+          {d:20,city:"OSL\u2192MAD",flag:"\uD83C\uDDF3\uD83C\uDDF4\u2192\uD83C\uDDEA\uD83C\uDDF8",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Vuelo 15:45"},
           {d:21,city:"Madrid",flag:"\uD83C\uDDEA\uD83C\uDDF8",bg:"#fce8e8",border:"#dea5a4",text:navy,note:"Malasa\u00F1a"},
-          {d:22,city:"MAD\u2192SCL",flag:"\u2708",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"01:45"},
+          {d:22,city:"MAD\u2192SCL",flag:"\uD83C\uDDEA\uD83C\uDDF8\u2192\uD83C\uDDE8\uD83C\uDDF1",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Vuelo 01:45"},
         ];
         const weekDays=["Lun","Mar","Mi\u00E9","Jue","Vie","S\u00E1b","Dom"];
         const weeks=[];
@@ -468,7 +468,7 @@ return (
             {weeks.flat().map((day,i)=>{
               if(!day) return <div key={i}/>;
               const isEmpty=!day.city;
-              const matchFilter=filterCountry==="all"||matchesCountry((day.city||"")+(day.flag||""),filterCountry);
+              const matchFilter=filterCountry==="all"||matchesCountry((day.city||"")+(day.flag||"")+(day.note||""),filterCountry);
               return(
                 <div key={i} onClick={()=>{if(day.city&&matchFilter)setCalDay(calDay===day.d?null:day.d);}} style={{background:day.bg,border:calDay===day.d?`2.5px solid ${navy}`:`1.5px solid ${day.border}`,borderRadius:8,padding:"4px 2px",minHeight:0,cursor:(isEmpty||!matchFilter)?"default":"pointer",opacity:isEmpty?0.3:matchFilter?1:0.2,display:"flex",flexDirection:"column",alignItems:"center",gap:2,boxShadow:calDay===day.d?"0 2px 8px rgba(0,0,0,0.15)":"none",transition:"all 0.2s"}}>
                   <div style={{fontSize:"clamp(11px,3vw,15px)",fontWeight:700,color:day.text}}>{day.d}</div>

@@ -423,7 +423,7 @@ return (
 
   {/* CALENDARIO */}
   {tab==="quick"&&(
-    <div style={{padding:"12px 6px",maxWidth:960,margin:"0 auto"}}>
+    <div style={{padding:"12px 4px",margin:"0 auto"}}>
       {(()=>{
         const calDays=[
           {d:2,city:"Santiago",flag:"\uD83C\uDDE8\uD83C\uDDF1",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"\u2708 SCL\u2192MAD"},
@@ -461,20 +461,20 @@ return (
           <div style={{fontFamily:"'Nunito',sans-serif",fontSize:15,fontWeight:700,color:navy,textAlign:"center",marginBottom:2}}>Junio 2026</div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2}}>
             {weekDays.map(d=>(
-              <div key={d} style={{textAlign:"center",fontSize:14,fontWeight:700,color:"#999",padding:"0 0 1px"}}>{d}</div>
+              <div key={d} style={{textAlign:"center",fontSize:"clamp(10px,2.5vw,14px)",fontWeight:700,color:"#999",padding:"0 0 1px"}}>{d}</div>
             ))}
           </div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:2}}>
             {weeks.flat().map((day,i)=>{
-              if(!day) return <div key={i} style={{minHeight:74}}/>;
+              if(!day) return <div key={i}/>;
               const isEmpty=!day.city;
               const matchFilter=filterCountry==="all"||matchesCountry((day.city||"")+(day.flag||""),filterCountry);
               return(
-                <div key={i} onClick={()=>{if(day.city&&matchFilter)setCalDay(calDay===day.d?null:day.d);}} style={{background:day.bg,border:calDay===day.d?`2.5px solid ${navy}`:`1.5px solid ${day.border}`,borderRadius:8,padding:"4px 3px",minHeight:74,cursor:(isEmpty||!matchFilter)?"default":"pointer",opacity:isEmpty?0.3:matchFilter?1:0.2,display:"flex",flexDirection:"column",alignItems:"center",gap:2,boxShadow:calDay===day.d?"0 2px 8px rgba(0,0,0,0.15)":"none",transition:"all 0.2s"}}>
-                  <div style={{fontSize:15,fontWeight:700,color:day.text}}>{day.d}</div>
-                  {day.flag&&<div style={{fontSize:20}}>{day.flag}</div>}
-                  {day.city&&<div style={{fontSize:12,fontWeight:600,color:navy,textAlign:"center",lineHeight:1.2}}>{day.city}</div>}
-                  {day.note&&<div style={{fontSize:11,color:"#999",textAlign:"center"}}>{day.note}</div>}
+                <div key={i} onClick={()=>{if(day.city&&matchFilter)setCalDay(calDay===day.d?null:day.d);}} style={{background:day.bg,border:calDay===day.d?`2.5px solid ${navy}`:`1.5px solid ${day.border}`,borderRadius:8,padding:"4px 2px",minHeight:0,cursor:(isEmpty||!matchFilter)?"default":"pointer",opacity:isEmpty?0.3:matchFilter?1:0.2,display:"flex",flexDirection:"column",alignItems:"center",gap:2,boxShadow:calDay===day.d?"0 2px 8px rgba(0,0,0,0.15)":"none",transition:"all 0.2s"}}>
+                  <div style={{fontSize:"clamp(11px,3vw,15px)",fontWeight:700,color:day.text}}>{day.d}</div>
+                  {day.flag&&<div style={{fontSize:"clamp(14px,4vw,20px)"}}>{day.flag}</div>}
+                  {day.city&&<div style={{fontSize:"clamp(8px,2vw,12px)",fontWeight:600,color:navy,textAlign:"center",lineHeight:1.2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:"100%"}}>{day.city}</div>}
+                  {day.note&&<div style={{fontSize:"clamp(7px,1.8vw,11px)",color:"#999",textAlign:"center"}}>{day.note}</div>}
                 </div>
               );
             })}

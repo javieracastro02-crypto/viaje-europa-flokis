@@ -77,6 +77,11 @@ const mapPlaces=[
 {icon:"\uD83C\uDFA1",name:"Parque Tivoli",addr:"Vesterbrogade 3 \u00B7 \u2B50 4.5",url:"https://maps.google.com/?q=55.673684,12.5681471"},
 {icon:"\uD83E\uDDDC",name:"La Sirenita",addr:"Langelinie promenade",url:"https://maps.google.com/?q=La+Sirenita+Copenhague"},
 ]},
+{flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"G\u00F6teborg",dates:"9 jun (parada)",spots:[
+{icon:"\uD83D\uDE82",name:"Estaci\u00F3n Central G\u00F6teborg",addr:"Drottningtorget \u00B7 lockers para maletas",url:"https://maps.google.com/?q=G%C3%B6teborg+Central+Station"},
+{icon:"\uD83D\uDC1F",name:"Feskek\u00F4rka (mercado de pescado)",addr:"Rosenlundsgatan 4 \u00B7 mariscos frescos",url:"https://maps.google.com/?q=Feskek%C3%B4rka+G%C3%B6teborg"},
+{icon:"\uD83D\uDEB6",name:"Barrio Haga",addr:"Calles adoquinadas \u00B7 caf\u00E9s \u00B7 tiendas vintage",url:"https://maps.google.com/?q=Haga+G%C3%B6teborg"},
+]},
 {flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",dates:"9\u201313 jun",spots:[
 {icon:"\uD83C\uDFE8",name:"Livington Hotel",addr:"Siktgatan 7, 162 50 \u00B7 +46 8 99 88 88",url:"https://maps.google.com/?q=59.3704384,17.8601677"},
 {icon:"\uD83D\uDEA2",name:"Terminal Viking Line (ferry 13 jun)",addr:"Stadsg\u00E5rden 116 30 \u00B7 embarque ~16:00",url:"https://maps.google.com/?q=59.3161652,18.0966123"},
@@ -96,7 +101,8 @@ const mapPlaces=[
 const allTasks=[
 {id:14,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\u2708\uFE0F Bryan: Vuelo Helsinki \u2192 Oslo",detail:"17 jun \u00B7 Norwegian DY1191 o similar \u00B7 mismo vuelo que Javi",link:"https://www.norwegian.com",ll:"norwegian.com",clp:"~$89.000"},
 {id:15,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\u2708\uFE0F Bryan: Vuelo Oslo \u2192 Madrid",detail:"20 jun \u00B7 Norwegian DY1718 o similar \u00B7 mismo vuelo que Javi",link:"https://www.norwegian.com",ll:"norwegian.com",clp:"~$276.000"},
-{id:1,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\uD83D\uDE82 Tren Copenhague \u2192 Estocolmo",detail:"9 jun \u00B7 ~5h \u00B7 precio sube con el tiempo \u00B7 x2 pasajeros",link:"https://www.raileurope.com",ll:"raileurope.com",clp:"~$74.000\u2013111.000 x2"},
+{id:1,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\uD83D\uDE82 Tren CPH \u2192 G\u00F6teborg (tramo 1)",detail:"9 jun \u00B7 ~3h 30min \u00B7 x2 pasajeros \u00B7 comprar por separado sale m\u00E1s barato",link:"https://www.raileurope.com",ll:"raileurope.com",clp:"por cotizar"},
+{id:16,cat:"\uD83D\uDD34 Urgente \u2014 comprar ya",label:"\uD83D\uDE82 Tren G\u00F6teborg \u2192 Estocolmo (tramo 2)",detail:"9 jun \u00B7 ~3h \u00B7 x2 pasajeros \u00B7 buscar horarios baratos",link:"https://www.vy.no/en",ll:"vy.no",clp:"por cotizar"},
 {id:6,cat:"\uD83C\uDF9F\uFE0F Entradas con reserva anticipada",label:"\uD83C\uDFA1 Parque Tivoli \u2014 Copenhague",detail:"5\u20139 jun \u00B7 Reservar online evita colas. Pack atracciones ~\u20AC66.",link:"https://shop.tivoli.dk/en/billetter-og-tivolikort",ll:"shop.tivoli.dk",clp:"~$18.000\u201361.000 x2"},
 {id:7,cat:"\uD83C\uDF9F\uFE0F Entradas con reserva anticipada",label:"\uD83D\uDEA2 Museo Vasa \u2014 Estocolmo",detail:"9\u201313 jun \u00B7 Uno de los m\u00E1s visitados, filas largas sin reserva.",link:"https://www.vasamuseet.se/en/visit/tickets",ll:"vasamuseet.se",clp:"~$16.000\u201318.000 x2"},
 {id:8,cat:"\uD83C\uDF9F\uFE0F Entradas con reserva anticipada",label:"\uD83E\uDDD6 Sauna L\u00F6yly \u2014 Helsinki",detail:"14\u201317 jun \u00B7 Requiere reserva online, especialmente en verano.",link:"https://www.loyly.fi/en/",ll:"loyly.fi",clp:"~$20.000\u201335.000 x2"},
@@ -128,7 +134,8 @@ const pendingMax=89000+276000+222000+80000;
 const pending=[
 {item:"Vuelo Helsinki \u2192 Oslo (Bryan)",detail:"Norwegian DY1191 o similar \u00B7 17 jun",when:"\uD83D\uDD34 Urgente",clp:"~$89.000",link:"https://www.norwegian.com",cat:"Vuelos"},
 {item:"Vuelo Oslo \u2192 Madrid (Bryan)",detail:"Norwegian DY1718 o similar \u00B7 20 jun",when:"\uD83D\uDD34 Urgente",clp:"~$276.000",link:"https://www.norwegian.com",cat:"Vuelos"},
-{item:"Tren Copenhague \u2192 Estocolmo",detail:"9 jun \u00B7 ~5h \u00B7 x2 pasajeros",when:"\uD83D\uDD34 Urgente",clp:"~$74.000\u2013111.000 x2",link:"https://www.raileurope.com",cat:"Transporte"},
+{item:"Tren CPH \u2192 G\u00F6teborg (tramo 1)",detail:"9 jun \u00B7 ~3h 30min \u00B7 x2 pasajeros",when:"\uD83D\uDD34 Urgente",clp:"por cotizar",link:"https://www.raileurope.com",cat:"Transporte"},
+{item:"Tren G\u00F6teborg \u2192 Estocolmo (tramo 2)",detail:"9 jun \u00B7 ~3h \u00B7 x2 pasajeros",when:"\uD83D\uDD34 Urgente",clp:"por cotizar",link:"https://www.vy.no/en",cat:"Transporte"},
 {item:"Seguro de viaje",detail:"2\u201322 jun \u00B7 Assist Card, MAPFRE o AXA",when:"\uD83D\uDFE1 Antes mayo",clp:"~$30.000\u201380.000",link:"https://www.assistcard.com/cl",cat:"Otro"},
 {item:"Comidas y actividades",detail:"~US$150/d\u00EDa x2 personas \u00B7 18 d\u00EDas en Europa",when:"\uD83D\uDFE1 Durante el viaje",clp:"comidas",link:null,cat:"Comidas"},
 ];
@@ -189,13 +196,17 @@ const dayByDay=[
 {time:"15:00",icon:"\uD83C\uDF3F",text:"Jard\u00EDn Bot\u00E1nico + barrio N\u00F8rrebro",note:"Invernadero de palmeras gratis \u00B7 luego barrio multicultural con caf\u00E9s"},
 {time:"18:00",icon:"\uD83C\uDF7A",text:"Tarde libre / compras \u00FAltimo d\u00EDa en CPH",note:"Preparar maletas \u00B7 cena temprana cerca del hotel"},
 ]},
-{date:"Lun 9 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0\u2192\uD83C\uDDF8\uD83C\uDDEA",city:"CPH \u2192 Estocolmo",color:"#6b5050",items:[
+{date:"Lun 9 jun",flag:"\uD83C\uDDE9\uD83C\uDDF0\u2192\uD83C\uDDF8\uD83C\uDDEA",city:"CPH \u2192 G\u00F6teborg \u2192 Estocolmo",color:"#6b5050",items:[
 {time:"08:00",icon:"\uD83C\uDFE8",text:"Check-out Wakeup Copenhagen",note:"CO 11:00 \u00B7 salir temprano"},
-{time:"~09:00",icon:"\uD83D\uDE82",text:"Tren Copenhague \u2192 Estocolmo",note:"~5h \u00B7 Puente \u00D8resund \u00B7 paisajes suecos \u00B7 \u26A0 por comprar"},
-{time:"~14:00",icon:"\uD83D\uDEEC",text:"Llegada a Estocolmo Central",note:""},
-{time:"15:00",icon:"\uD83C\uDFE8",text:"Check-in Livington Hotel",note:"Siktgatan 7 \u00B7 CI 15:00\u201320:00"},
-{time:"17:00",icon:"\uD83D\uDEB6",text:"Paseo por Gamla Stan",note:"Ciudad vieja \u00B7 callejones medievales \u00B7 Stortorget (plaza principal)"},
-{time:"19:30",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Gamla Stan",note:"Restaurantes con historia \u00B7 alb\u00F3ndigas suecas"},
+{time:"~09:00",icon:"\uD83D\uDE82",text:"Tren Copenhague \u2192 G\u00F6teborg",note:"Puente \u00D8resund \u00B7 ~3h 30min \u00B7 \u26A0 por comprar tramo 1"},
+{time:"~12:30",icon:"\uD83D\uDEEC",text:"Llegada a G\u00F6teborg Central",note:"Dejar maletas en lockers de la estaci\u00F3n"},
+{time:"12:45",icon:"\uD83D\uDEB6",text:"Paseo por G\u00F6teborg",note:"Haga \u00B7 canales \u00B7 barrio Inom Vallgraven \u00B7 ~2h de recorrido"},
+{time:"13:30",icon:"\uD83C\uDF7D\uFE0F",text:"Almuerzo en Feskek\u00F4rka",note:"Mercado de pescado ic\u00F3nico \u00B7 mariscos frescos"},
+{time:"~15:00",icon:"\uD83D\uDE82",text:"Tren G\u00F6teborg \u2192 Estocolmo",note:"~3h \u00B7 \u26A0 por comprar tramo 2 \u00B7 m\u00E1s barato si se compran separados"},
+{time:"~18:00",icon:"\uD83D\uDEEC",text:"Llegada a Estocolmo Central",note:""},
+{time:"18:30",icon:"\uD83C\uDFE8",text:"Check-in Livington Hotel",note:"Siktgatan 7 \u00B7 CI 15:00\u201320:00"},
+{time:"19:30",icon:"\uD83D\uDEB6",text:"Paseo por Gamla Stan",note:"Ciudad vieja \u00B7 callejones medievales \u00B7 Stortorget"},
+{time:"20:30",icon:"\uD83C\uDF7D\uFE0F",text:"Cena en Gamla Stan",note:"Restaurantes con historia \u00B7 alb\u00F3ndigas suecas"},
 ]},
 {date:"Mar 10 jun",flag:"\uD83C\uDDF8\uD83C\uDDEA",city:"Estocolmo",color:"#6b5050",items:[
 {time:"09:30",icon:"\uD83D\uDEA2",text:"Museo Vasa",note:"Barco de guerra de 1628 \u00B7 el museo m\u00E1s visitado de Escandinavia \u00B7 isla Djurg\u00E5rden"},
@@ -433,7 +444,7 @@ return (
           {d:6,city:"Copenhague",flag:"\uD83C\uDDE9\uD83C\uDDF0",bg:"#fff8f0",border:"#e8c0b0",text:navy,note:"Nyhavn"},
           {d:7,city:"Copenhague",flag:"\uD83C\uDDE9\uD83C\uDDF0",bg:"#fff8f0",border:"#e8c0b0",text:navy,note:"Tivoli"},
           {d:8,city:"Copenhague",flag:"\uD83C\uDDE9\uD83C\uDDF0",bg:"#fff8f0",border:"#e8c0b0",text:navy,note:"Bici"},
-          {d:9,city:"CPH\u2192STK",flag:"\uD83C\uDDE9\uD83C\uDDF0\u2192\uD83C\uDDF8\uD83C\uDDEA",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Tren ~5h"},
+          {d:9,city:"CPH\u2192G\u00F6teborg\u2192STK",flag:"\uD83C\uDDE9\uD83C\uDDF0\u2192\uD83C\uDDF8\uD83C\uDDEA",bg:"#f5e8e0",border:"#e0c8bb",text:navy,note:"Parada G\u00F6teborg"},
           {d:10,city:"Estocolmo",flag:"\uD83C\uDDF8\uD83C\uDDEA",bg:"#f5f0eb",border:"#d8ccc0",text:navy,note:"Vasa"},
           {d:11,city:"Estocolmo",flag:"\uD83C\uDDF8\uD83C\uDDEA",bg:"#f5f0eb",border:"#d8ccc0",text:navy,note:"Palacio"},
           {d:12,city:"Estocolmo",flag:"\uD83C\uDDF8\uD83C\uDDEA",bg:"#f5f0eb",border:"#d8ccc0",text:navy,note:"Barco"},
